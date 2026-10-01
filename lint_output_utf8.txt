@@ -1,0 +1,183 @@
+﻿
+> courier-logistics-frontend@0.1.0 lint
+> eslint
+
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\aframe-webxr\skills\aframe-webxr\assets\starter_aframe\main.js
+  23:37  warning  'evt' is defined but never used  @typescript-eslint/no-unused-vars
+  35:39  warning  'evt' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\babylonjs-engine\skills\babylonjs-engine\assets\starter_babylon\src\main.js
+   72:9  warning  'groundAggregate' is assigned a value but never used   @typescript-eslint/no-unused-vars
+   91:9  warning  'sphere1Aggregate' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  110:9  warning  'box1Aggregate' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  129:9  warning  'sphere2Aggregate' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\core-3d-animation\skills\babylonjs-engine\assets\starter_babylon\src\main.js
+   72:9  warning  'groundAggregate' is assigned a value but never used   @typescript-eslint/no-unused-vars
+   91:9  warning  'sphere1Aggregate' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  110:9  warning  'box1Aggregate' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  129:9  warning  'sphere2Aggregate' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\core-3d-animation\skills\gsap-scrolltrigger\assets\starter_scroll\main.js
+  296:26  warning  'i' is defined but never used  @typescript-eslint/no-unused-vars
+  404:30  warning  'i' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\extended-3d-scroll\skills\aframe-webxr\assets\starter_aframe\main.js
+  23:37  warning  'evt' is defined but never used  @typescript-eslint/no-unused-vars
+  35:39  warning  'evt' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\extended-3d-scroll\skills\lightweight-3d-effects\assets\starter_lightweight\main.js
+  262:33  warning  'i' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\extended-3d-scroll\skills\locomotive-scroll\assets\starter_locomotive\main.js
+  51:9   warning  'scrollY' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  54:9   warning  'speed' is assigned a value but never used      @typescript-eslint/no-unused-vars
+  55:9   warning  'direction' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  62:11  warning  'progress' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  69:11  warning  'el' is assigned a value but never used         @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\extended-3d-scroll\skills\playcanvas-engine\assets\starter_playcanvas\scripts\app.js
+   8:5   warning  'inputManager' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  15:10  warning  'initApp' is defined but never used                @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\extended-3d-scroll\skills\playcanvas-engine\assets\starter_playcanvas\scripts\camera-controller.js
+  166:12  warning  'dt' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\extended-3d-scroll\skills\playcanvas-engine\assets\starter_playcanvas\scripts\input-manager.js
+  128:19  warning  'event' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\gsap-scrolltrigger\skills\gsap-scrolltrigger\assets\starter_scroll\main.js
+  296:26  warning  'i' is defined but never used  @typescript-eslint/no-unused-vars
+  404:30  warning  'i' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\lightweight-3d-effects\skills\lightweight-3d-effects\assets\starter_lightweight\main.js
+  262:33  warning  'i' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\locomotive-scroll\skills\locomotive-scroll\assets\starter_locomotive\main.js
+  51:9   warning  'scrollY' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  54:9   warning  'speed' is assigned a value but never used      @typescript-eslint/no-unused-vars
+  55:9   warning  'direction' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  62:11  warning  'progress' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  69:11  warning  'el' is assigned a value but never used         @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\playcanvas-engine\skills\playcanvas-engine\assets\starter_playcanvas\scripts\app.js
+   8:5   warning  'inputManager' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  15:10  warning  'initApp' is defined but never used                @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\playcanvas-engine\skills\playcanvas-engine\assets\starter_playcanvas\scripts\camera-controller.js
+  166:12  warning  'dt' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\plugins\playcanvas-engine\skills\playcanvas-engine\assets\starter_playcanvas\scripts\input-manager.js
+  128:19  warning  'event' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\skills\aframe-webxr\assets\starter_aframe\main.js
+  23:37  warning  'evt' is defined but never used  @typescript-eslint/no-unused-vars
+  35:39  warning  'evt' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\skills\babylonjs-engine\assets\starter_babylon\src\main.js
+   72:9  warning  'groundAggregate' is assigned a value but never used   @typescript-eslint/no-unused-vars
+   91:9  warning  'sphere1Aggregate' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  110:9  warning  'box1Aggregate' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  129:9  warning  'sphere2Aggregate' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\skills\gsap-scrolltrigger\assets\starter_scroll\main.js
+  296:26  warning  'i' is defined but never used  @typescript-eslint/no-unused-vars
+  404:30  warning  'i' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\skills\lightweight-3d-effects\assets\starter_lightweight\main.js
+  262:33  warning  'i' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\skills\locomotive-scroll\assets\starter_locomotive\main.js
+  51:9   warning  'scrollY' is assigned a value but never used    @typescript-eslint/no-unused-vars
+  54:9   warning  'speed' is assigned a value but never used      @typescript-eslint/no-unused-vars
+  55:9   warning  'direction' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  62:11  warning  'progress' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  69:11  warning  'el' is assigned a value but never used         @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\skills\playcanvas-engine\assets\starter_playcanvas\scripts\app.js
+   8:5   warning  'inputManager' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  15:10  warning  'initApp' is defined but never used                @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\skills\playcanvas-engine\assets\starter_playcanvas\scripts\camera-controller.js
+  166:12  warning  'dt' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\.agents\skills\playcanvas-engine\assets\starter_playcanvas\scripts\input-manager.js
+  128:19  warning  'event' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\src\app\(protected)\(customer)\dashboard\shipments\[id]\components\CancelShipmentDialog.tsx
+  1:10  warning  'useState' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\src\app\(protected)\(customer)\dashboard\shipments\[id]\components\EditShipmentDialog.tsx
+  13:10  warning  'Label' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\src\app\(protected)\(customer)\dashboard\shipments\[id]\components\PayNowButton.tsx
+  1:10  warning  'useState' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\src\app\(protected)\(customer)\dashboard\shipments\new\page.tsx
+    9:19  warning  'MapPin' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+   13:10  warning  'Label' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-unused-vars
+   82:29  warning  Compilation Skipped: Use of incompatible library
+
+This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\src\app\(protected)\(customer)\dashboard\shipments\new\page.tsx:82:29
+  80 |   });
+  81 |
+> 82 |   const destinationZoneId = form.watch("destinationZoneId");
+     |                             ^^^^ React Hook Form's `useForm()` API returns a `watch()` function which cannot be memoized safely.
+  83 |   const serviceType = form.watch("serviceType");
+  84 |   const weight = form.watch("parcel.weight");
+  85 |  react-hooks/incompatible-library
+  106:16  warning  'error' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\src\app\(protected)\(customer)\dashboard\shipments\page.tsx
+  23:10  warning  'Card' is defined but never used         @typescript-eslint/no-unused-vars
+  23:16  warning  'CardContent' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\src\app\api\auth\logout\route.ts
+  6:28  warning  'request' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\src\app\payment\cancel\page.tsx
+  1:10  warning  'Button' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\src\app\payment\success\page.tsx
+  15:10  warning  'Button' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\src\components\auth\RegisterForm.tsx
+   93:14  warning  'err' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  148:51  warning  Compilation Skipped: Use of incompatible library
+
+This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\src\components\auth\RegisterForm.tsx:148:51
+  146 |                     <PasswordInput placeholder="ΓÇóΓÇóΓÇóΓÇóΓÇóΓÇóΓÇóΓÇó" {...field} />
+  147 |                   </FormControl>
+> 148 |                   <PasswordStrengthHint password={form.watch("password")} />
+      |                                                   ^^^^ React Hook Form's `useForm()` API returns a `watch()` function which cannot be memoized safely.
+  149 |                   <FormMessage />
+  150 |                 </FormItem>
+  151 |               )}  react-hooks/incompatible-library
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\src\components\shared\DataTable.tsx
+  37:17  warning  Compilation Skipped: Use of incompatible library
+
+This API returns functions which cannot be memoized without leading to stale UI. To prevent this, by default React Compiler will skip memoizing this component/hook. However, you may see issues if values from this API are passed to other components/hooks that are memoized.
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\src\components\shared\DataTable.tsx:37:17
+  35 |   emptyDescription = "There are no records to display at this time.",
+  36 | }: DataTableProps<TData, TValue>) {
+> 37 |   const table = useReactTable({
+     |                 ^^^^^^^^^^^^^ TanStack Table's `useReactTable()` API returns functions that cannot be memoized safely
+  38 |     data,
+  39 |     columns,
+  40 |     getCoreRowModel: getCoreRowModel(),  react-hooks/incompatible-library
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\src\lib\api\response.ts
+  13:12  warning  '_error' is defined but never used  @typescript-eslint/no-unused-vars
+
+G:\programming\PH-assignment\Courier_Logistics_Platform_frontend\src\lib\auth\session.ts
+  30:12  warning  '_error' is defined but never used  @typescript-eslint/no-unused-vars
+
+Γ£û 71 problems (0 errors, 71 warnings)
+
