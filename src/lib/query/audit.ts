@@ -23,8 +23,8 @@ export function useAuditLogs(
       searchParams.set('page', page.toString());
       searchParams.set('limit', limit.toString());
 
-      const response = await apiClient<{ data: PaginatedAuditLogs }>(`/admin/audit-logs?${searchParams.toString()}`, { method: 'GET' });
-      return response.data;
+      const response = await apiClient<PaginatedAuditLogs>(`/admin/audit-logs?${searchParams.toString()}`, { method: 'GET' });
+      return response;
     },
   });
 }

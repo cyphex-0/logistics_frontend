@@ -13,9 +13,21 @@ export async function parseResponse<T>(response: Response): Promise<T> {
   if (!text || text.trim() === "") {
     data = {};
   } else {
+    // Detect HTML responses (e.g. Next.js page shell from redirects or middleware)
+    const trimmed = text.trimStart();
+    if (trimmed.startsWith("<!DOCTYPE") || trimmed.startsWith("<html")) {
+      throw new ApiError(
+        response.status,
+        response.status === 200
+          ? "Received an HTML page instead of JSON. You may need to log in again."
+          : `Unexpected HTML response (status ${response.status}). Please try again.`
+      );
+    }
+
     try {
       data = JSON.parse(text);
     } catch {
+      console.error(`[parseResponse] Failed to parse JSON. URL: ${response.url}, Status: ${response.status}, Content: ${text.substring(0, 500)}`);
       throw new ApiError(
         response.status,
         `Failed to parse server response as JSON. Status: ${response.status}. Response: ${text.substring(0, 150)}...`

@@ -7,7 +7,7 @@ export const getBaseUrl = () => {
     return "/api";
   }
   // If running on the server, call the backend directly
-  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+  return process.env.API_BASE_URL || "http://localhost:5000/api";
 };
 
 let refreshPromise: Promise<boolean> | null = null;
@@ -57,6 +57,8 @@ export async function apiClient<T>(
     config.body = JSON.stringify(body);
   }
 
+
+
   try {
     let response = await fetch(url.toString(), config);
     
@@ -78,16 +80,14 @@ export async function apiClient<T>(
       
       const refreshSuccess = await refreshPromise;
       if (refreshSuccess) {
-        // Retry the original request
+        // Retry the original request with refreshed token
         options._retry = true;
-        // Re-execute apiClient instead of fetch so it goes through parseResponse naturally?
-        // Actually, just re-fetch here is simpler, but wait, `parseResponse` takes the `Response` object.
         response = await fetch(url.toString(), config);
       } else {
-        // If refresh fails, clear session cookies via a logout API call or just redirect to login
-        // Redirecting directly ensures the user lands on login with their session invalidated
-        // eslint-disable-next-line @next/next/no-location-assign-relative-destination
-        window.location.href = "/login";
+        // Redirect to login and throw immediately so parseResponse is never
+        // reached on the stale 401 response (avoids confusing JSON-parse errors).
+        window.location.href = "/auth/login";
+        throw new ApiError(401, "Session expired. Redirecting to login...");
       }
     }
 

@@ -4,8 +4,8 @@ import { decrypt } from '@/lib/auth/session';
 import { UserRole } from '@/types/api';
 
 const publicRoutes = ['/', '/about', '/services', '/pricing', '/contact'];
-const authRoutes = ['/login', '/register'];
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://logistics-backend-jyz7.onrender.com/api/v1';
+const authRoutes = ['/auth/login', '/auth/register'];
+const API_URL = process.env.API_BASE_URL || 'https://logistics-backend-jyz7.onrender.com/api/v1';
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -19,23 +19,8 @@ export async function middleware(request: NextRequest) {
   }
 
   // --- API Proxy Logic ---
-  if (pathname.startsWith('/api') && !pathname.startsWith('/api/auth')) {
-    // This is a request meant for the backend
-    const accessToken = request.cookies.get('access_token')?.value;
-    const backendPath = pathname.replace('/api', '');
-    const url = new URL(API_URL + backendPath + request.nextUrl.search);
-    
-    const requestHeaders = new Headers(request.headers);
-    if (accessToken) {
-      requestHeaders.set('Authorization', `Bearer ${accessToken}`);
-    }
-
-    return NextResponse.rewrite(url, {
-      request: {
-        headers: requestHeaders,
-      },
-    });
-  }
+  // Proxying is now handled robustly by src/app/api/[...proxy]/route.ts
+  // to avoid Turbopack middleware rewrite bugs.
 
   if (pathname.startsWith('/api')) {
     return NextResponse.next();
@@ -59,7 +44,7 @@ export async function middleware(request: NextRequest) {
 
   // Redirect to login if trying to access protected route without session
   if (isProtectedRoute && !session) {
-    const url = new URL('/login', request.url);
+    const url = new URL('/auth/login', request.url);
     url.searchParams.set('callbackUrl', pathname);
     const response = NextResponse.redirect(url);
     if (sessionCookie) {

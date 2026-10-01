@@ -71,13 +71,15 @@ export function LoginForm() {
       
       const role = responseData.user?.role;
       let targetUrl = callbackUrl;
-      if (targetUrl === '/') {
+      // Prevent redirecting back to login if the callbackUrl is the login page itself
+      if (targetUrl === '/' || targetUrl.startsWith('/auth/login') || targetUrl === '/login') {
         if (role === 'ADMIN') targetUrl = '/admin';
         else if (role === 'COURIER') targetUrl = '/courier';
         else targetUrl = '/dashboard';
       }
       
       router.push(targetUrl);
+      router.refresh();
     } catch (error) {
       toast.error(error instanceof Error ? error.message : 'An unknown error occurred');
     } finally {
@@ -176,7 +178,7 @@ export function LoginForm() {
         
         <div className="mt-4 text-center text-sm text-muted-foreground">
           Don&apos;t have an account?{' '}
-          <Link href="/register" className="font-semibold text-primary hover:underline">
+          <Link href="/auth/register" className="font-semibold text-primary hover:underline">
             Register here
           </Link>
         </div>

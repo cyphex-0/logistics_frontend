@@ -24,10 +24,11 @@ export const userService = {
     });
   },
 
-  getNotifications: () => {
-    return apiClient<Notification[]>("/users/me/notifications", {
+  getNotifications: async () => {
+    const res = await apiClient<{ notifications: Notification[] }>("/users/me/notifications", {
       method: "GET",
     });
+    return res.notifications || [];
   },
 
   markNotificationRead: (id: string) => {
