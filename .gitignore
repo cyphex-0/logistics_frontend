@@ -80,3 +80,10 @@ __tests__/
 
 # Reference materials
 design-system/
+
+# Github and Workflow
+.github/
+
+# Jest Testing
+jest.config.*
+jest.setup.*
