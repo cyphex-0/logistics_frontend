@@ -1,11 +1,17 @@
 "use client";
 
 import { useProfile, useUpdateProfile } from "@/lib/query/auth";
+import { useAuth } from "@/components/providers/AuthProvider";
+import { useNotifications } from "@/lib/query/user";
+import { Notification } from "@/services/user.service";
+import { useTheme } from "next-themes";
+import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Loader2 } from "lucide-react";
+import { Loader2, LogOut, Moon, Sun, Monitor, Bell, Shield, Users, Map, DollarSign, FileText } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,6 +35,12 @@ type ProfileFormValues = z.infer<typeof profileSchema>;
 export default function ProfilePage() {
   const { data: profile, isLoading, isError } = useProfile();
   const updateProfile = useUpdateProfile();
+  const { logout } = useAuth();
+  const { setTheme, theme } = useTheme();
+  const { data } = useNotifications();
+  
+  const notifications: Notification[] = Array.isArray(data) ? data : (data as { notifications?: Notification[] })?.notifications || [];
+  const unreadCount = notifications.filter((n) => !n.isRead).length;
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
@@ -84,6 +96,18 @@ export default function ProfilePage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
+          <div className="mb-6 flex items-center space-x-4">
+            <Avatar className="h-16 w-16">
+              <AvatarImage src="" alt={profile.name} />
+              <AvatarFallback className="text-xl">
+                {profile.name?.charAt(0).toUpperCase() || "U"}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-sm text-muted-foreground">Profile Avatar</p>
+              <p className="text-xs text-muted-foreground">Initials generated automatically from your name.</p>
+            </div>
+          </div>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <div className="space-y-2">
@@ -136,20 +160,155 @@ export default function ProfilePage() {
                 )}
               />
 
-              <Button 
-                type="submit" 
-                disabled={
-                  updateProfile.isPending || 
-                  (form.watch("name") === profile.name && form.watch("phone") === profile.phone)
-                }
-              >
-                {updateProfile.isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-                Save Changes
-              </Button>
+              <div className="flex space-x-4 pt-4">
+                <Button 
+                  type="submit" 
+                  disabled={
+                    updateProfile.isPending || 
+                    (form.watch("name") === profile.name && form.watch("phone") === profile.phone)
+                  }
+                >
+                  {updateProfile.isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                  Save Changes
+                </Button>
+                <Button 
+                  type="button" 
+                  variant="outline"
+                  onClick={() => form.reset({ name: profile.name || "", phone: profile.phone || "" })}
+                  disabled={form.watch("name") === profile.name && form.watch("phone") === profile.phone}
+                >
+                  Cancel
+                </Button>
+              </div>
             </form>
           </Form>
         </CardContent>
       </Card>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <CardTitle>Appearance</CardTitle>
+            <CardDescription>
+              Customize how Shiply looks on your device.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex flex-col space-y-1">
+              <span className="text-sm font-medium">Interface Theme</span>
+              <span className="text-sm text-muted-foreground">Select Light, Dark, or System theme.</span>
+            </div>
+            <div className="flex gap-4">
+              <Button
+                variant={theme === "light" ? "default" : "outline"}
+                className="w-full"
+                onClick={() => setTheme("light")}
+              >
+                <Sun className="mr-2 h-4 w-4" /> Light
+              </Button>
+              <Button
+                variant={theme === "dark" ? "default" : "outline"}
+                className="w-full"
+                onClick={() => setTheme("dark")}
+              >
+                <Moon className="mr-2 h-4 w-4" /> Dark
+              </Button>
+              <Button
+                variant={theme === "system" ? "default" : "outline"}
+                className="w-full"
+                onClick={() => setTheme("system")}
+              >
+                <Monitor className="mr-2 h-4 w-4" /> System
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Notifications</CardTitle>
+            <CardDescription>
+              Manage your notifications and alerts.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex flex-col space-y-1">
+                <span className="text-sm font-medium">Unread Notifications</span>
+                <span className="text-sm text-muted-foreground">You have {unreadCount} unread messages.</span>
+              </div>
+              <div className="flex items-center justify-center h-8 w-8 rounded-full bg-primary text-primary-foreground font-medium text-sm">
+                {unreadCount}
+              </div>
+            </div>
+            <Button variant="outline" className="w-full mt-4" render={<Link href="/notifications" />}>
+              <Bell className="mr-2 h-4 w-4" /> Open Notifications Center
+            </Button>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Account Session</CardTitle>
+            <CardDescription>
+              Manage your active session on this device.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center justify-between">
+              <div className="flex flex-col space-y-1">
+                <span className="text-sm font-medium">Log out</span>
+                <span className="text-sm text-muted-foreground">End your current session safely.</span>
+              </div>
+              <Button variant="destructive" onClick={logout}>
+                <LogOut className="mr-2 h-4 w-4" /> Log Out
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {profile.role === "ADMIN" && (
+          <Card className="md:col-span-2">
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Shield className="w-5 h-5 mr-2 text-primary" />
+                Admin Shortcuts
+              </CardTitle>
+              <CardDescription>
+                Quick access to administrative functions.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <Button variant="outline" className="w-full justify-start h-auto py-3" render={<Link href="/admin/users" />}>
+                  <Users className="mr-2 h-4 w-4" />
+                  <div className="flex flex-col items-start text-left">
+                    <span className="text-sm font-medium">Manage Users</span>
+                  </div>
+                </Button>
+                <Button variant="outline" className="w-full justify-start h-auto py-3" render={<Link href="/admin/zones" />}>
+                  <Map className="mr-2 h-4 w-4" />
+                  <div className="flex flex-col items-start text-left">
+                    <span className="text-sm font-medium">Manage Zones</span>
+                  </div>
+                </Button>
+                <Button variant="outline" className="w-full justify-start h-auto py-3" render={<Link href="/admin/pricing" />}>
+                  <DollarSign className="mr-2 h-4 w-4" />
+                  <div className="flex flex-col items-start text-left">
+                    <span className="text-sm font-medium">Pricing Rules</span>
+                  </div>
+                </Button>
+                <Button variant="outline" className="w-full justify-start h-auto py-3" render={<Link href="/admin/audit-logs" />}>
+                  <FileText className="mr-2 h-4 w-4" />
+                  <div className="flex flex-col items-start text-left">
+                    <span className="text-sm font-medium">Audit Logs</span>
+                  </div>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+      </div>
     </div>
   );
 }
