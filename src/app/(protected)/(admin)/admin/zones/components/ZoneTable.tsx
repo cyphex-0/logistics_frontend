@@ -1,0 +1,55 @@
+"use client";
+
+import { Zone } from "@/services/zone.service";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { ZoneStatusSwitch } from "./ZoneStatusSwitch";
+import { ZoneDeleteDialog } from "./ZoneDeleteDialog";
+import { Timestamp } from "@/components/shared/Timestamp";
+
+export function ZoneTable({ zones }: { zones: Zone[] }) {
+  if (zones.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center p-8 text-center bg-muted/50 rounded-lg border border-dashed">
+        <p className="text-muted-foreground">No zones found.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="md:rounded-md md:border">
+      <Table mobileCards={true}>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Name</TableHead>
+            <TableHead>City</TableHead>
+            <TableHead>Created At</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead className="text-right">Actions</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {zones.map((zone) => (
+            <TableRow key={zone.id}>
+              <TableCell className="font-medium" data-label="Name">{zone.name}</TableCell>
+              <TableCell data-label="City">{zone.city}</TableCell>
+              <TableCell data-label="Created At"><Timestamp date={zone.createdAt} /></TableCell>
+              <TableCell data-label="Status">
+                <ZoneStatusSwitch zone={zone} />
+              </TableCell>
+              <TableCell className="text-right" data-label="Actions">
+                <ZoneDeleteDialog zone={zone} />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  );
+}

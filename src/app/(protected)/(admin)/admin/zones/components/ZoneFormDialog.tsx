@@ -1,0 +1,145 @@
+"use client";
+
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { useCreateZone } from "@/hooks/queries";
+import { CreateZonePayload } from "@/services/zone.service";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { Plus } from "lucide-react";
+import { toast } from "sonner";
+
+const zoneSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  city: z.string().min(2, "City must be at least 2 characters"),
+  isActive: z.boolean(),
+});
+
+type ZoneFormValues = z.infer<typeof zoneSchema>;
+
+export function ZoneFormDialog() {
+  const [open, setOpen] = useState(false);
+  const { mutate, isPending } = useCreateZone();
+
+  const form = useForm<ZoneFormValues>({
+    resolver: zodResolver(zoneSchema),
+    defaultValues: {
+      name: "",
+      city: "",
+      isActive: true,
+    },
+  });
+
+  const onSubmit = (values: ZoneFormValues) => {
+    mutate(values as CreateZonePayload, {
+      onSuccess: () => {
+        toast.success("Zone created successfully.");
+        setOpen(false);
+        form.reset();
+      },
+      onError: (err: Error) => {
+        toast.error(err.message || "Failed to create zone.");
+      },
+    });
+  };
+
+  return (
+    <>
+      <Button onClick={() => setOpen(true)}>
+        <Plus className="mr-2 h-4 w-4" />
+        Add Zone
+      </Button>
+      <Dialog open={open} onOpenChange={setOpen}>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Add New Zone</DialogTitle>
+          <DialogDescription>
+            Create a new delivery zone.
+          </DialogDescription>
+        </DialogHeader>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Zone Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="e.g. Dhaka North" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="city"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>City</FormLabel>
+                  <FormControl>
+                    <Input placeholder="e.g. Dhaka" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="isActive"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+                  <div className="space-y-0.5">
+                    <FormLabel className="text-base">
+                      Active Status
+                    </FormLabel>
+                    <FormDescription>
+                      Is this zone currently operational?
+                    </FormDescription>
+                  </div>
+                  <FormControl>
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={() => setOpen(false)} disabled={isPending}>
+                Cancel
+              </Button>
+              <Button type="submit" disabled={isPending}>
+                {isPending ? "Creating..." : "Create Zone"}
+              </Button>
+            </DialogFooter>
+          </form>
+        </Form>
+      </DialogContent>
+    </Dialog>
+    </>
+  );
+}
