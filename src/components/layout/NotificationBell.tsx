@@ -20,7 +20,7 @@ export function NotificationBell() {
   const { data } = useNotifications();
   const { mutate: markAsRead } = useMarkNotificationRead();
 
-  const notifications: Notification[] = Array.isArray(data) ? data : (data as { notifications?: Notification[] })?.notifications || [];
+  const notifications: Notification[] = Array.isArray(data) ? data : (data as unknown as { notifications?: Notification[] })?.notifications || [];
 
   const unreadCount = notifications.filter((n) => !n.isRead).length;
   const hasUnread = unreadCount > 0;

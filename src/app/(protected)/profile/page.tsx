@@ -39,7 +39,7 @@ export default function ProfilePage() {
   const { setTheme, theme } = useTheme();
   const { data } = useNotifications();
   
-  const notifications: Notification[] = Array.isArray(data) ? data : (data as { notifications?: Notification[] })?.notifications || [];
+  const notifications: Notification[] = Array.isArray(data) ? data : (data as unknown as { notifications?: Notification[] })?.notifications || [];
   const unreadCount = notifications.filter((n) => !n.isRead).length;
 
   const form = useForm<ProfileFormValues>({
