@@ -55,3 +55,25 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Agents and Skills
+.agents/
+skills/
+
+# Reports
+*report.md
+*_report.md
+*report*.txt
+lint_output*.txt
+
+# Planning
+implementation.md
+AGENTS.md
+planning/
+planning.md
+
+# Test files
+e2e/
+__tests__/
+*.test.*
+*.spec.*
