@@ -12,12 +12,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useNotifications, useMarkNotificationRead } from "@/lib/query/user";
+import { Notification } from "@/services/user.service";
 import { Timestamp } from "@/components/shared/Timestamp";
 import { cn } from "@/lib/utils";
 
 export function NotificationBell() {
-  const { data: notifications = [] } = useNotifications();
+  const { data } = useNotifications();
   const { mutate: markAsRead } = useMarkNotificationRead();
+
+  const notifications: Notification[] = Array.isArray(data) ? data : (data as { notifications?: Notification[] })?.notifications || [];
 
   const unreadCount = notifications.filter((n) => !n.isRead).length;
   const hasUnread = unreadCount > 0;
@@ -43,14 +46,16 @@ export function NotificationBell() {
           <span className="sr-only">Notifications</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-80" align="end">
-        <DropdownMenuLabel className="font-normal flex justify-between items-center">
-          <span className="font-semibold">Notifications</span>
-          {hasUnread && (
-            <Button variant="link" size="sm" className="h-auto p-0 text-xs" onClick={handleMarkAllAsRead}>
-              Mark all read
-            </Button>
-          )}
-        </DropdownMenuLabel>
+        <DropdownMenuGroup>
+          <DropdownMenuLabel className="font-normal flex justify-between items-center">
+            <span className="font-semibold">Notifications</span>
+            {hasUnread && (
+              <Button variant="link" size="sm" className="h-auto p-0 text-xs" onClick={handleMarkAllAsRead}>
+                Mark all read
+              </Button>
+            )}
+          </DropdownMenuLabel>
+        </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup className="max-h-[300px] overflow-auto">
           {notifications.length === 0 ? (

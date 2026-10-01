@@ -43,9 +43,9 @@ export function PricingRuleTable({ rules, onEdit }: PricingRuleTableProps) {
                 <TableCell data-label="Zone Name">
                   {rule.zone?.name || "All Zones"}
                 </TableCell>
-                <TableCell className="text-right" data-label="Base Price">${rule.basePrice.toFixed(2)}</TableCell>
-                <TableCell className="text-right" data-label="Price / KG">${rule.pricePerKg.toFixed(2)}</TableCell>
-                <TableCell className="text-right" data-label="Max Weight">{rule.maxWeight} KG</TableCell>
+                <TableCell className="text-right" data-label="Base Price">${Number(rule.basePrice).toFixed(2)}</TableCell>
+                <TableCell className="text-right" data-label="Price / KG">${Number(rule.pricePerKg).toFixed(2)}</TableCell>
+                <TableCell className="text-right" data-label="Max Weight">{Number(rule.maxWeight)} KG</TableCell>
                 <TableCell className="text-right" data-label="Actions">
                   <Button variant="ghost" size="icon" onClick={() => onEdit(rule)}>
                     <Edit2 className="h-4 w-4" />
