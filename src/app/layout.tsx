@@ -6,7 +6,7 @@ import { AuthProvider } from "@/components/providers/AuthProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { GlobalLoadingIndicator } from "@/components/feedback/global-loading-indicator";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleOAuthWrapper } from "@/components/providers/GoogleOAuthWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +35,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
-        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}>
+        <GoogleOAuthWrapper>
           <QueryProvider>
             <GlobalLoadingIndicator />
             <ThemeProvider
@@ -47,9 +47,10 @@ export default function RootLayout({
               <AuthProvider>{children}</AuthProvider>
             </ThemeProvider>
           </QueryProvider>
-        </GoogleOAuthProvider>
+        </GoogleOAuthWrapper>
         <Toaster />
       </body>
     </html>
   );
 }
+
