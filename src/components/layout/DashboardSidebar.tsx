@@ -63,9 +63,9 @@ export function DashboardSidebar({ className }: SidebarProps) {
     >
       <div className="space-y-4 py-4">
         <div className="px-3 py-2">
-          <div className="mb-2 px-4 text-xl font-bold tracking-tight text-sidebar-primary">
-            CourierLogistics
-          </div>
+          <Link href="/" className="block mb-2 px-4 text-xl font-bold tracking-tight text-sidebar-primary hover:text-sidebar-primary/80 transition-colors">
+            Shiply
+          </Link>
           <div className="space-y-1 mt-6">
             {links.map((link) => (
               <Link

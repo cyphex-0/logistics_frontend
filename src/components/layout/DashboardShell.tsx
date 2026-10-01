@@ -5,7 +5,7 @@ import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "./ThemeToggle";
-
+import Link from "next/link";
 interface DashboardShellProps {
   children: React.ReactNode;
 }
@@ -30,7 +30,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
                 <DashboardSidebar className="border-r-0" />
               </SheetContent>
             </Sheet>
-            <div className="font-bold text-lg text-primary">CourierLogistics</div>
+            <Link href="/" className="font-bold text-lg text-primary hover:text-primary/80 transition-colors">Shiply</Link>
           </div>
           
           <div className="flex items-center gap-4 ml-auto">
