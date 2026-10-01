@@ -26,10 +26,13 @@ export async function apiClient<T>(
   const baseUrl = getBaseUrl();
   
   // Construct URL
-  const url = new URL(
-    endpoint.startsWith("/") ? endpoint : `/${endpoint}`,
-    baseUrl.startsWith("http") ? baseUrl : (typeof window !== "undefined" ? window.location.origin + baseUrl : "http://localhost:3000/api")
-  );
+  const normalizedBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+  const normalizedEndpoint = endpoint.startsWith("/") ? endpoint.slice(1) : endpoint;
+  const baseString = normalizedBase.startsWith("http") 
+    ? normalizedBase 
+    : (typeof window !== "undefined" ? window.location.origin + normalizedBase : `http://localhost:3000${normalizedBase.startsWith("/") ? normalizedBase : `/${normalizedBase}`}`);
+    
+  const url = new URL(normalizedEndpoint, baseString);
 
   // Append query params
   if (params) {
