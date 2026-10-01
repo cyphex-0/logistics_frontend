@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { AdminShipmentsClient } from "./components/AdminShipmentsClient";
 
 export const metadata: Metadata = {
-  title: "Admin Shipments | Courier & Logistics Platform",
+  title: "Admin Shipments | Shiply",
   description: "Manage all shipments in the platform",
 };
 

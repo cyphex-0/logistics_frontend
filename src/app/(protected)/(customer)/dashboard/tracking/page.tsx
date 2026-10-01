@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { TrackingSearchForm } from "./components/TrackingSearchForm";
 
 export const metadata: Metadata = {
-  title: "Tracking Search | Courier Logistics",
+  title: "Tracking Search | Shiply",
 };
 
 export default function TrackingPage() {

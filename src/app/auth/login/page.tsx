@@ -4,7 +4,7 @@ import { LoginForm } from '@/components/auth/LoginForm';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export const metadata: Metadata = {
-  title: 'Login - Courier & Logistics Platform',
+  title: 'Login - Shiply',
   description: 'Login to your account',
 };
 

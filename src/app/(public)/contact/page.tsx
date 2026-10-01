@@ -3,7 +3,7 @@ import { CTASection } from "@/components/public/CTASection";
 import { HelpCircle, Mail, MapPin, Activity } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact & Support | Courier & Logistics Platform",
+  title: "Contact & Support | Shiply",
   description: "Get help with your shipments, learn about account-based support, and check platform health.",
 };
 

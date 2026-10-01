@@ -5,7 +5,7 @@ import { PageHeader } from "@/components/shared/PageHeader";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const metadata: Metadata = {
-  title: "User Details | Courier & Logistics Platform",
+  title: "User Details | Shiply",
   description: "View and manage user details",
 };
 

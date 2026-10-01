@@ -4,7 +4,7 @@ import { User, Truck, ShieldUser } from "lucide-react";
 import { CTASection } from "@/components/public/CTASection";
 
 export const metadata: Metadata = {
-  title: "About Us | Courier & Logistics Platform",
+  title: "About Us | Shiply",
   description: "Learn about our mission, platform roles, and our commitment to transparent and reliable logistics.",
 };
 

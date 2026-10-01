@@ -3,7 +3,7 @@ import { CTASection } from "@/components/public/CTASection";
 import { Package, Zap, MapPin, BarChart3, CreditCard, Bell } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Our Services | Courier & Logistics Platform",
+  title: "Our Services | Shiply",
   description: "Explore our delivery services, from Standard to Express, built for speed and transparency.",
 };
 

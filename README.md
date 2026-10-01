@@ -1,4 +1,4 @@
-# Courier & Logistics Platform Frontend
+# Shiply Frontend
 
 ## Requirements
 - Node.js: v24.21.0 or higher

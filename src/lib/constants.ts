@@ -8,7 +8,7 @@ export const APP_CONFIG = {
   API_BASE_URL: process.env.NEXT_PUBLIC_API_URL || "https://logistics-backend-jyz7.onrender.com/api/v1",
   DEFAULT_PAGE_SIZE: 10,
   MAX_PAGE_SIZE: 100,
-  APP_NAME: "Courier & Logistics Platform",
+  APP_NAME: "Shiply",
 };
 
 export const AUTH_CONFIG = {

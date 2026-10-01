@@ -6,7 +6,7 @@ import { PricingInfoCard } from "@/components/public/PricingInfoCard";
 import { Calculator } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Pricing | Courier & Logistics Platform",
+  title: "Pricing | Shiply",
   description: "Transparent pricing based on distance, weight, and service type. Log in to access the pricing calculator.",
 };
 

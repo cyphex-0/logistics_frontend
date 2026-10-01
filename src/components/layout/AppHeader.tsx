@@ -17,7 +17,7 @@ export function AppHeader() {
           <Link href="/" className="flex items-center space-x-2">
             <Package className="h-6 w-6 text-primary" />
             <span className="font-bold text-xl inline-block text-primary">
-              CourierLogistics
+              Shiply
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-6 ml-6 text-sm font-medium">

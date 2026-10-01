@@ -7,7 +7,7 @@ import { CTASection } from "@/components/public/CTASection";
 import { Truck, Map, Clock, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Courier & Logistics Platform | Fast & Reliable",
+  title: "Shiply | Fast & Reliable",
   description: "Next-generation logistics platform for individuals and businesses. Create shipments, pay securely, and track in real-time.",
 };
 

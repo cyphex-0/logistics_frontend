@@ -10,7 +10,7 @@ export function AppFooter() {
             <Link href="/" className="flex items-center space-x-2">
               <Package className="h-6 w-6 text-primary" />
               <span className="font-bold text-xl inline-block text-primary">
-                CourierLogistics
+                Shiply
               </span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground max-w-xs">
@@ -75,7 +75,7 @@ export function AppFooter() {
           </div>
         </div>
         <div className="mt-12 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} CourierLogistics. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Shiply. All rights reserved.</p>
         </div>
       </div>
     </footer>
