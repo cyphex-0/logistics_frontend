@@ -151,7 +151,7 @@ export function EditShipmentDialog({ shipment, isOpen, onClose }: EditShipmentDi
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Destination Zone</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select a delivery zone" />
@@ -175,7 +175,7 @@ export function EditShipmentDialog({ shipment, isOpen, onClose }: EditShipmentDi
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Service Type</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select service type" />

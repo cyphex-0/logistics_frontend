@@ -68,7 +68,7 @@ export function PricingRuleForm({ initialData, onSuccess }: PricingRuleFormProps
           render={({ field }) => (
             <FormItem>
               <FormLabel>Service Type</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value} disabled={!!initialData}>
+              <Select onValueChange={field.onChange} value={field.value} disabled={!!initialData}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select a service type" />
