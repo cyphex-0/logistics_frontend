@@ -11,54 +11,48 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   const plans = [
     {
-      name: "Pay As You Go",
-      description: "Perfect for individuals and small businesses with occasional shipping needs.",
-      price: "Variable",
-      subtitle: "Based on weight & distance",
+      name: "Light Parcels",
+      description: "Perfect for everyday items, documents, and small electronics.",
+      price: "Distance Based",
+      subtitle: "Starting at $5 base fee",
       features: [
-        { name: "Live GPS Tracking", included: true },
-        { name: "Standard Delivery (2-3 days)", included: true },
-        { name: "Basic Email Support", included: true },
-        { name: "Express Delivery", included: false },
-        { name: "API Access", included: false },
-        { name: "Dedicated Account Manager", included: false },
+        { name: "Up to 5 kg", included: true },
+        { name: "Standard dashboard tracking", included: true },
+        { name: "Local couriers only", included: true },
+        { name: "Secure Stripe Payments", included: true },
       ],
       button: "Start Shipping",
       href: "/auth/register",
       highlighted: false,
     },
     {
-      name: "Business Pro",
-      description: "For growing e-commerce businesses needing reliable, discounted bulk shipping.",
-      price: "$49",
-      subtitle: "per month",
+      name: "Standard Parcels",
+      description: "For larger boxes, clothing, and medium-sized packages.",
+      price: "Distance Based",
+      subtitle: "Starting at $15 base fee",
       features: [
-        { name: "Live GPS Tracking", included: true },
-        { name: "Standard & Express Delivery", included: true },
-        { name: "Priority 24/7 Support", included: true },
-        { name: "Up to 20% off base rates", included: true },
-        { name: "Full API Access", included: true },
-        { name: "Dedicated Account Manager", included: false },
+        { name: "Up to 20 kg", included: true },
+        { name: "Standard dashboard tracking", included: true },
+        { name: "Local couriers only", included: true },
+        { name: "Secure Stripe Payments", included: true },
       ],
-      button: "Start Free Trial",
+      button: "Start Shipping",
       href: "/auth/register",
       highlighted: true,
     },
     {
-      name: "Enterprise",
-      description: "Custom logistics infrastructure for massive scale operations.",
-      price: "Custom",
-      subtitle: "Tailored to your volume",
+      name: "Heavy Goods",
+      description: "For heavy items, equipment, and large deliveries.",
+      price: "Distance Based",
+      subtitle: "Starting at $30 base fee",
       features: [
-        { name: "Live GPS Tracking", included: true },
-        { name: "All Delivery Tiers", included: true },
-        { name: "White-glove 24/7 Support", included: true },
-        { name: "Maximum Volume Discounts", included: true },
-        { name: "Unlimited API Access", included: true },
-        { name: "Dedicated Account Manager", included: true },
+        { name: "Over 20 kg", included: true },
+        { name: "Standard dashboard tracking", included: true },
+        { name: "Cargo/Van couriers required", included: true },
+        { name: "Secure Stripe Payments", included: true },
       ],
-      button: "Contact Sales",
-      href: "/contact",
+      button: "Start Shipping",
+      href: "/auth/register",
       highlighted: false,
     }
   ];
@@ -136,15 +130,15 @@ export default function PricingPage() {
           <div className="space-y-8">
             <div>
               <h4 className="text-xl font-semibold mb-2">How do you calculate shipping rates?</h4>
-              <p className="text-muted-foreground">Base rates are determined by the origin, destination zone, and total weight. Business Pro and Enterprise tiers receive percentage discounts off these base rates.</p>
+              <p className="text-muted-foreground">Rates are calculated automatically based on the straight-line distance between the origin and destination addresses, multiplied by the weight of the package. A base fee is applied depending on the weight tier.</p>
             </div>
             <div>
-              <h4 className="text-xl font-semibold mb-2">Can I switch plans later?</h4>
-              <p className="text-muted-foreground">Absolutely. You can upgrade to Business Pro or scale down to Pay As You Go at any time from your billing dashboard. Changes take effect at the start of the next billing cycle.</p>
+              <h4 className="text-xl font-semibold mb-2">Do you have a subscription model?</h4>
+              <p className="text-muted-foreground">No, we keep things simple with a transparent pay-per-shipment model. You only pay for what you ship, with no hidden monthly fees.</p>
             </div>
             <div>
-              <h4 className="text-xl font-semibold mb-2">Is there a minimum volume for Enterprise?</h4>
-              <p className="text-muted-foreground">Enterprise plans typically require a minimum commitment of 5,000 shipments per month to unlock dedicated account management and custom integrations.</p>
+              <h4 className="text-xl font-semibold mb-2">How are couriers paid?</h4>
+              <p className="text-muted-foreground">The delivery fee you pay is securely held in escrow via Stripe until the package is successfully delivered, at which point the assigned courier receives their earnings.</p>
             </div>
           </div>
         </div>

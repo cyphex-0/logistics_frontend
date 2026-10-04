@@ -17,26 +17,16 @@ export default function AboutPage() {
         <div className="container px-4 mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Redefining Modern Logistics.</h1>
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Modernizing Local Logistics.</h1>
               <p className="text-lg text-muted-foreground mb-8 max-w-lg">
-                We are a leading courier and logistics platform dedicated to providing fast, reliable, and secure delivery services. 
-                Our platform connects customers with professional couriers, managed by advanced routing algorithms.
+                We are a logistics platform dedicated to providing reliable and secure delivery services. 
+                Our platform connects customers directly with independent professional couriers, providing full visibility from pickup to drop-off.
               </p>
-              <div className="flex gap-4">
-                <div className="border-l-4 border-primary pl-4">
-                  <h4 className="text-3xl font-bold">10M+</h4>
-                  <p className="text-sm text-muted-foreground">Deliveries completed</p>
-                </div>
-                <div className="border-l-4 border-primary pl-4">
-                  <h4 className="text-3xl font-bold">99.9%</h4>
-                  <p className="text-sm text-muted-foreground">On-time delivery</p>
-                </div>
-              </div>
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-video lg:aspect-square h-full max-h-[500px]">
               <img 
                 src="https://images.unsplash.com/photo-1586528116311-ad8ed74514f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                alt="Warehouse logistics" 
+                alt="Logistics warehouse" 
                 className="object-cover w-full h-full"
               />
             </div>
@@ -48,26 +38,21 @@ export default function AboutPage() {
       <section className="py-20 bg-background">
         <div className="container px-4 mx-auto text-center">
           <h2 className="text-3xl font-bold tracking-tight mb-12">Our Core Values</h2>
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="p-6 bg-muted/50 rounded-xl">
               <Zap className="h-10 w-10 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Speed</h3>
-              <p className="text-muted-foreground text-sm">Lightning-fast deliveries powered by optimized routing algorithms.</p>
+              <h3 className="text-xl font-semibold mb-2">Efficiency</h3>
+              <p className="text-muted-foreground text-sm">Direct connection between customers and couriers for faster pickups.</p>
             </div>
             <div className="p-6 bg-muted/50 rounded-xl">
               <ShieldUser className="h-10 w-10 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-2">Security</h3>
-              <p className="text-muted-foreground text-sm">Every package is tracked, insured, and handled with utmost care.</p>
+              <p className="text-muted-foreground text-sm">Payments are processed securely via Stripe, and all users are authenticated.</p>
             </div>
             <div className="p-6 bg-muted/50 rounded-xl">
-              <Globe className="h-10 w-10 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Global Scale</h3>
-              <p className="text-muted-foreground text-sm">Connecting local businesses to national and international markets.</p>
-            </div>
-            <div className="p-6 bg-muted/50 rounded-xl">
-              <Award className="h-10 w-10 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Excellence</h3>
-              <p className="text-muted-foreground text-sm">Award-winning customer service available 24/7 for all users.</p>
+              <Target className="h-10 w-10 text-primary mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Transparency</h3>
+              <p className="text-muted-foreground text-sm">Track your shipment status in real-time straight from your dashboard.</p>
             </div>
           </div>
         </div>
@@ -122,14 +107,14 @@ export default function AboutPage() {
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">Our Accountability Model</h2>
               <p className="text-muted-foreground mb-4 text-lg">
                 We believe in complete transparency. Every shipment has a strict lifecycle, from pending payment to delivery. 
-                Customers have full visibility into the exact location and status of their packages at any given moment.
+                Customers have visibility into the current status of their packages at any given moment.
               </p>
               <p className="text-muted-foreground text-lg mb-8">
-                Payments are processed securely via Stripe, and our courier partners are held to high standards of reliability and punctuality.
+                Payments are processed securely via Stripe, and our courier partners are expected to adhere to high standards of reliability and punctuality.
               </p>
               <ul className="space-y-3 text-muted-foreground">
-                <li className="flex items-center gap-2"><Target className="h-5 w-5 text-primary" /> End-to-end transparent tracking</li>
-                <li className="flex items-center gap-2"><Target className="h-5 w-5 text-primary" /> Automated route optimizations</li>
+                <li className="flex items-center gap-2"><Target className="h-5 w-5 text-primary" /> End-to-end transparent tracking statuses</li>
+                <li className="flex items-center gap-2"><Target className="h-5 w-5 text-primary" /> Independent professional couriers</li>
                 <li className="flex items-center gap-2"><Target className="h-5 w-5 text-primary" /> Secured payment escrows</li>
               </ul>
             </div>

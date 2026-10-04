@@ -11,35 +11,17 @@ export const metadata: Metadata = {
 export default function CareersPage() {
   const jobs = [
     {
-      title: "Senior Backend Engineer",
-      department: "Engineering",
-      location: "New York (Hybrid)",
-      type: "Full-time",
-    },
-    {
-      title: "Logistics Operations Manager",
+      title: "Independent Delivery Courier",
       department: "Operations",
-      location: "London, UK",
-      type: "Full-time",
+      location: "Your Local City",
+      type: "Contract / Flexible",
     },
     {
-      title: "Frontend Developer (React)",
-      department: "Engineering",
-      location: "Remote (Global)",
-      type: "Full-time",
-    },
-    {
-      title: "Enterprise Sales Executive",
-      department: "Sales",
-      location: "Chicago, IL",
-      type: "Full-time",
-    },
-    {
-      title: "Customer Success Specialist",
-      department: "Support",
-      location: "Remote (US)",
-      type: "Full-time",
-    },
+      title: "Platform Moderator",
+      department: "Trust & Safety",
+      location: "Remote",
+      type: "Part-time",
+    }
   ];
 
   return (
@@ -73,22 +55,22 @@ export default function CareersPage() {
               <div className="h-48 rounded-xl overflow-hidden mb-6">
                 <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" className="w-full h-full object-cover" alt="Remote work" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Work from anywhere</h3>
-              <p className="text-muted-foreground">We are a remote-first company with hubs in major cities. Work where you feel most productive.</p>
+              <h3 className="text-xl font-bold mb-2">Flexible Hours</h3>
+              <p className="text-muted-foreground">As a courier on our platform, you choose when and where you want to work.</p>
             </div>
             <div>
               <div className="h-48 rounded-xl overflow-hidden mb-6">
                 <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" className="w-full h-full object-cover" alt="Benefits" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Comprehensive benefits</h3>
-              <p className="text-muted-foreground">Top-tier health insurance, generous equity packages, and 401(k) matching for all full-time employees.</p>
+              <h3 className="text-xl font-bold mb-2">Transparent Earnings</h3>
+              <p className="text-muted-foreground">See exactly what you&apos;ll earn before you accept a delivery request.</p>
             </div>
             <div>
               <div className="h-48 rounded-xl overflow-hidden mb-6">
                 <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" className="w-full h-full object-cover" alt="Growth" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Continuous growth</h3>
-              <p className="text-muted-foreground">Annual learning stipends, mentorship programs, and clear pathways for career advancement.</p>
+              <h3 className="text-xl font-bold mb-2">Community</h3>
+              <p className="text-muted-foreground">Join a growing network of independent professionals connecting local businesses.</p>
             </div>
           </div>
         </div>

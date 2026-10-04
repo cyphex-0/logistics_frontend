@@ -39,26 +39,12 @@ export default function ContactPage() {
                     <Mail className="h-5 w-5" /> Email
                   </div>
                   <p className="text-foreground">support@shiply.example.com</p>
-                  <p className="text-foreground">sales@shiply.example.com</p>
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-primary font-semibold mb-2">
-                    <Phone className="h-5 w-5" /> Phone
+                    <MessageSquare className="h-5 w-5" /> In-App Support
                   </div>
-                  <p className="text-foreground">+1 (555) 123-4567</p>
-                  <p className="text-muted-foreground text-sm">Mon-Fri, 9am - 6pm EST</p>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-primary font-semibold mb-2">
-                    <MessageSquare className="h-5 w-5" /> Live Chat
-                  </div>
-                  <p className="text-foreground">Available 24/7 in your dashboard</p>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-primary font-semibold mb-2">
-                    <MapPin className="h-5 w-5" /> Headquarters
-                  </div>
-                  <p className="text-foreground">123 Logistics Way<br />Suite 400<br />New York, NY 10001</p>
+                  <p className="text-foreground">Available in your dashboard</p>
                 </div>
               </div>
             </div>

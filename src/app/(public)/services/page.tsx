@@ -10,28 +10,28 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   const services = [
     {
-      icon: <Zap className="h-12 w-12 text-primary" />,
-      title: "Express Delivery",
-      description: "Same-day and next-day delivery options for urgent packages. Our fastest routing ensures your package arrives precisely when it needs to.",
-      features: ["Same-day within city", "Next-day nationwide", "Priority handling"]
+      icon: <Package className="h-12 w-12 text-primary" />,
+      title: "Local Delivery",
+      description: "Reliable delivery for everyday shipments. Perfect for small businesses and personal shipments across town.",
+      features: ["Transparent pricing", "Status tracking updates", "Stripe payment integration"]
     },
     {
-      icon: <Package className="h-12 w-12 text-primary" />,
-      title: "Standard Shipping",
-      description: "Cost-effective, reliable delivery for everyday shipments. Perfect for e-commerce businesses and regular personal shipments.",
-      features: ["2-3 days delivery", "Cost-effective", "Scheduled pickups"]
+      icon: <Zap className="h-12 w-12 text-primary" />,
+      title: "Independent Couriers",
+      description: "Our platform connects you with local independent couriers who accept and deliver your requests on demand.",
+      features: ["Flexible pickup times", "Direct courier assignment", "Dedicated dashboards"]
     },
     {
       icon: <Globe className="h-12 w-12 text-primary" />,
-      title: "International Freight",
-      description: "Seamless international shipping with automated customs handling and global tracking visibility.",
-      features: ["Customs clearance", "Global network", "Air & Ocean freight"]
+      title: "E-Commerce Support",
+      description: "A centralized platform to manage your business shipments from origin to destination.",
+      features: ["Unified shipment dashboard", "Address management", "Order history"]
     },
     {
       icon: <Shield className="h-12 w-12 text-primary" />,
-      title: "Secure Transport",
-      description: "High-security transport for valuable items, confidential documents, and sensitive materials.",
-      features: ["GPS tracking", "Insured up to $10,000", "Identity verification on delivery"]
+      title: "Secure Platform",
+      description: "We take accountability seriously with role-based access and secure data handling.",
+      features: ["Authenticated users", "Secure payment escrows", "Admin oversight"]
     }
   ];
 
@@ -49,7 +49,7 @@ export default function ServicesPage() {
         <div className="container px-4 mx-auto relative z-10 text-center max-w-3xl">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Logistics solutions tailored to you.</h1>
           <p className="text-xl opacity-90 mb-8">
-            From lightning-fast express delivery to secure international freight, Shiply offers the infrastructure you need to move goods globally.
+            Shiply offers a streamlined platform connecting customers who need packages delivered with independent couriers ready to move them.
           </p>
         </div>
       </section>
@@ -101,12 +101,12 @@ export default function ServicesPage() {
             <div>
               <div className="h-16 w-16 mx-auto bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mb-6">3</div>
               <h4 className="text-xl font-bold mb-2">Transit</h4>
-              <p className="text-muted-foreground text-sm">Live GPS tracking directly from your unified dashboard.</p>
+              <p className="text-muted-foreground text-sm">Monitor the status of your package directly from your unified dashboard.</p>
             </div>
             <div>
               <div className="h-16 w-16 mx-auto bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mb-6">4</div>
               <h4 className="text-xl font-bold mb-2">Deliver</h4>
-              <p className="text-muted-foreground text-sm">Secure handover with digital signature and photo proof.</p>
+              <p className="text-muted-foreground text-sm">The courier marks the delivery as completed in the system.</p>
             </div>
           </div>
         </div>
