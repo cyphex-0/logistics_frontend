@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { CTASection } from "@/components/public/CTASection";
 import { Store, Building2, HeartPulse, ShoppingBag, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Industry Solutions | Shiply",
@@ -63,11 +63,9 @@ export default function SolutionsPage() {
                   <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                     {industry.description}
                   </p>
-                  <Button asChild variant="outline">
-                    <Link href="/contact">
-                      Talk to Sales <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
+                  <Link href="/contact" className={buttonVariants({ variant: "outline" })}>
+                    Talk to Sales <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
                 </div>
                 <div className={`order-1 ${index % 2 === 1 ? 'lg:order-1' : 'lg:order-2'} aspect-video rounded-3xl overflow-hidden shadow-2xl`}>
                   <img 
@@ -90,12 +88,8 @@ export default function SolutionsPage() {
             Automate your entire logistics pipeline using our robust REST APIs. From rate calculation to label generation and webhook tracking.
           </p>
           <div className="flex justify-center gap-4">
-            <Button asChild size="lg" variant="secondary">
-              <Link href="/auth/register">Get API Keys</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary border-primary-foreground">
-              <Link href="#">Read Documentation</Link>
-            </Button>
+            <Link href="/auth/register" className={buttonVariants({ size: "lg", variant: "secondary" })}>Get API Keys</Link>
+            <Link href="#" className={buttonVariants({ size: "lg", variant: "outline", className: "bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary border-primary-foreground" })}>Read Documentation</Link>
           </div>
         </div>
       </section>

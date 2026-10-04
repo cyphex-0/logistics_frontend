@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { Check, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -113,14 +113,16 @@ export default function PricingPage() {
                     </li>
                   ))}
                 </ul>
-                <Button 
-                  asChild 
-                  size="lg" 
-                  variant={plan.highlighted ? 'default' : 'outline'} 
-                  className="w-full"
+                <Link 
+                  href={plan.href}
+                  className={buttonVariants({ 
+                    size: "lg", 
+                    variant: plan.highlighted ? 'default' : 'outline',
+                    className: "w-full"
+                  })}
                 >
-                  <Link href={plan.href}>{plan.button}</Link>
-                </Button>
+                  {plan.button}
+                </Link>
               </div>
             ))}
           </div>

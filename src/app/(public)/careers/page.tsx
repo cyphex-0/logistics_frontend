@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { ArrowRight, MapPin, Briefcase, Clock } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -58,9 +58,9 @@ export default function CareersPage() {
           <p className="text-xl opacity-90 mb-8">
             We are looking for passionate, driven individuals to help us modernize global logistics and make commerce seamless for everyone.
           </p>
-          <Button asChild size="lg" variant="secondary">
-            <a href="#open-positions">View Open Positions</a>
-          </Button>
+          <a href="#open-positions" className={buttonVariants({ size: "lg", variant: "secondary" })}>
+            View Open Positions
+          </a>
         </div>
       </section>
 
