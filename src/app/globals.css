@@ -180,6 +180,12 @@
     @apply font-sans;
   }
 
+  /* Hide native Edge/IE password reveal button to prevent overlapping with custom button */
+  input::-ms-reveal,
+  input::-ms-clear {
+    display: none;
+  }
+
   @keyframes dash {
     to {
       stroke-dashoffset: 0;
