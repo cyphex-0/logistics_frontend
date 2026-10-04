@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useAuth } from "@/components/providers/AuthProvider";
 
 export function AppFooter() {
+  const { user } = useAuth();
+  
   return (
     <footer className="border-t bg-background">
       <div className="container mx-auto px-4 py-8 md:py-12 lg:py-16">
@@ -38,11 +43,13 @@ export function AppFooter() {
                   Pricing
                 </Link>
               </li>
-              <li>
-                <Link href="/tracking" className="hover:text-primary transition-colors">
-                  Track Package
-                </Link>
-              </li>
+              {user && (
+                <li>
+                  <Link href="/dashboard/tracking" className="hover:text-primary transition-colors">
+                    Track Package
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
           <div>
