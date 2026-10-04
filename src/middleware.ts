@@ -3,9 +3,8 @@ import type { NextRequest } from 'next/server';
 import { decrypt } from '@/lib/auth/session';
 import { UserRole } from '@/types/api';
 
-const publicRoutes = ['/', '/about', '/services', '/pricing', '/contact'];
+const publicRoutes = ['/', '/about', '/services', '/pricing', '/contact', '/solutions', '/careers'];
 const authRoutes = ['/auth/login', '/auth/register'];
-const API_URL = process.env.API_BASE_URL || 'https://logistics-backend-jyz7.onrender.com/api/v1';
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
