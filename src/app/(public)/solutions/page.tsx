@@ -80,16 +80,20 @@ export default function SolutionsPage() {
         </div>
       </section>
 
-      {/* Integration Banner */}
+      {/* Authentic CTA Banner */}
       <section className="py-24 bg-primary text-primary-foreground">
         <div className="container px-4 mx-auto text-center max-w-4xl">
-          <h2 className="text-3xl font-bold mb-6">Developer First API</h2>
+          <h2 className="text-3xl font-bold mb-6">Ready to streamline your deliveries?</h2>
           <p className="text-xl opacity-90 mb-10">
-            Automate your entire logistics pipeline using our robust REST APIs. From rate calculation to label generation and webhook tracking.
+            Join thousands of customers who trust Shiply for secure, transparent, and efficient logistics. Create shipments, track packages in real-time, and manage everything from a unified dashboard.
           </p>
           <div className="flex justify-center gap-4">
-            <Link href="/auth/register" className={buttonVariants({ size: "lg", variant: "secondary" })}>Get API Keys</Link>
-            <Link href="#" className={buttonVariants({ size: "lg", variant: "outline", className: "bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary border-primary-foreground" })}>Read Documentation</Link>
+            <Link href="/auth/register" className={buttonVariants({ size: "lg", variant: "secondary" })}>
+              Create an Account
+            </Link>
+            <Link href="/services" className={buttonVariants({ size: "lg", variant: "outline", className: "bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary border-primary-foreground" })}>
+              View Our Services
+            </Link>
           </div>
         </div>
       </section>
