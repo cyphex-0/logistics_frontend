@@ -12,7 +12,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2, LogOut, Moon, Sun, Monitor, Bell, Shield, Users, Map, DollarSign, FileText } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -28,6 +28,7 @@ import {
 const profileSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   phone: z.string().min(5, "Phone number is too short"),
+  avatar: z.string().optional(),
 });
 
 type ProfileFormValues = z.infer<typeof profileSchema>;
@@ -47,14 +48,29 @@ export default function ProfilePage() {
     defaultValues: {
       name: "",
       phone: "",
+      avatar: "",
     },
   });
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        form.setValue("avatar", reader.result as string, { shouldDirty: true });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   useEffect(() => {
     if (profile) {
       form.reset({
         name: profile.name || "",
         phone: profile.phone || "",
+        avatar: profile.avatar || "",
       });
     }
   }, [profile, form]);
@@ -96,20 +112,52 @@ export default function ProfilePage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="mb-6 flex items-center space-x-4">
-            <Avatar className="h-16 w-16">
-              <AvatarImage src="" alt={profile.name} />
-              <AvatarFallback className="text-xl">
-                {profile.name?.charAt(0).toUpperCase() || "U"}
-              </AvatarFallback>
-            </Avatar>
-            <div>
-              <p className="text-sm text-muted-foreground">Profile Avatar</p>
-              <p className="text-xs text-muted-foreground">Initials generated automatically from your name.</p>
-            </div>
-          </div>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <div className="mb-6 flex items-center space-x-4">
+                <Avatar className="h-16 w-16">
+                  <AvatarImage src={form.watch("avatar") || ""} alt={profile.name} />
+                  <AvatarFallback className="text-xl">
+                    {profile.name?.charAt(0).toUpperCase() || "U"}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <p className="text-sm font-medium mb-1">Profile Avatar</p>
+                  <p className="text-xs text-muted-foreground mb-3">JPG, GIF or PNG. Max size of 2MB.</p>
+                  <div className="flex gap-2">
+                    <input 
+                      type="file" 
+                      ref={fileInputRef} 
+                      onChange={handleAvatarChange} 
+                      accept="image/png, image/jpeg, image/gif" 
+                      className="hidden" 
+                    />
+                    <Button 
+                      type="button" 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={() => fileInputRef.current?.click()}
+                    >
+                      Upload Picture
+                    </Button>
+                    {form.watch("avatar") && (
+                      <Button 
+                        type="button" 
+                        variant="ghost" 
+                        size="sm" 
+                        onClick={() => {
+                          form.setValue("avatar", "", { shouldDirty: true });
+                          if (fileInputRef.current) fileInputRef.current.value = "";
+                        }}
+                        className="text-destructive hover:text-destructive hover:bg-destructive/10"
+                      >
+                        Remove
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </div>
+
               <div className="space-y-2">
                 <Label htmlFor="email">Email Address</Label>
                 <Input 
@@ -163,10 +211,7 @@ export default function ProfilePage() {
               <div className="flex space-x-4 pt-4">
                 <Button 
                   type="submit" 
-                  disabled={
-                    updateProfile.isPending || 
-                    (form.watch("name") === profile.name && form.watch("phone") === profile.phone)
-                  }
+                  disabled={updateProfile.isPending || !form.formState.isDirty}
                 >
                   {updateProfile.isPending && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
                   Save Changes
@@ -174,8 +219,8 @@ export default function ProfilePage() {
                 <Button 
                   type="button" 
                   variant="outline"
-                  onClick={() => form.reset({ name: profile.name || "", phone: profile.phone || "" })}
-                  disabled={form.watch("name") === profile.name && form.watch("phone") === profile.phone}
+                  onClick={() => form.reset({ name: profile.name || "", phone: profile.phone || "", avatar: profile.avatar || "" })}
+                  disabled={!form.formState.isDirty}
                 >
                   Cancel
                 </Button>
