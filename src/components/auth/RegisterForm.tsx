@@ -1,3 +1,4 @@
+import { Truck, User } from 'lucide-react';
 'use client';
 
 import { useState } from 'react';
@@ -17,7 +18,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { UserRole } from '@/types/api';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import Link from 'next/link';
 import { PasswordInput } from '@/components/auth/PasswordInput';
 import { PasswordStrengthHint } from '@/components/auth/PasswordStrengthHint';
@@ -98,38 +98,82 @@ export function RegisterForm() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto">
-      <CardHeader className="space-y-1 text-center">
-        <CardTitle className="text-2xl font-bold">Create an account</CardTitle>
-        <CardDescription>
-          Enter your information to get started
+    <Card className="w-full max-w-lg mx-auto shadow-lg border-muted">
+      <CardHeader className="space-y-2 text-center pb-6">
+        <CardTitle className="text-3xl font-bold tracking-tight">Create an account</CardTitle>
+        <CardDescription className="text-base">
+          Join Shiply to manage your logistics easily
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
             <FormField
               control={form.control}
-              name="name"
+              name="role"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
+                <FormItem className="space-y-3 pb-2">
+                  <FormLabel className="text-sm font-medium">Account Type</FormLabel>
                   <FormControl>
-                    <Input placeholder="John Doe" {...field} />
+                    <div className="grid grid-cols-2 gap-4">
+                      <div 
+                        className={`flex flex-col items-center justify-center rounded-xl border-2 p-4 cursor-pointer transition-all hover:shadow-sm ${field.value === UserRole.CUSTOMER ? 'border-primary bg-primary/5 text-primary' : 'border-muted bg-transparent hover:bg-accent/50 text-muted-foreground'}`}
+                        onClick={() => field.onChange(UserRole.CUSTOMER)}
+                      >
+                        <User className="mb-2 h-6 w-6" />
+                        <span className="text-sm font-medium">Customer</span>
+                      </div>
+                      <div 
+                        className={`flex flex-col items-center justify-center rounded-xl border-2 p-4 cursor-pointer transition-all hover:shadow-sm ${field.value === UserRole.COURIER ? 'border-primary bg-primary/5 text-primary' : 'border-muted bg-transparent hover:bg-accent/50 text-muted-foreground'}`}
+                        onClick={() => field.onChange(UserRole.COURIER)}
+                      >
+                        <Truck className="mb-2 h-6 w-6" />
+                        <span className="text-sm font-medium">Courier</span>
+                      </div>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Full Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="John Doe" className="h-10" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone <span className="text-muted-foreground font-normal">(optional)</span></FormLabel>
+                    <FormControl>
+                      <Input placeholder="+1234567890" className="h-10" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>Email Address</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="name@example.com" {...field} />
+                    <Input type="email" placeholder="name@example.com" className="h-10" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -143,66 +187,30 @@ export function RegisterForm() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder="••••••••" {...field} />
+                    <PasswordInput placeholder="Enter a secure password" {...field} />
                   </FormControl>
                   <PasswordStrengthHint password={form.watch("password")} />
                   <FormMessage />
                 </FormItem>
               )}
             />
-            
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Phone (optional)</FormLabel>
-                  <FormControl>
-                    <Input placeholder="+1234567890" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="role"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>I am a</FormLabel>
-                  <Select onValueChange={field.onChange} value={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a role" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value={UserRole.CUSTOMER}>Customer</SelectItem>
-                      <SelectItem value={UserRole.COURIER}>Courier</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
 
             {error && (
-              <div className="text-sm font-medium text-destructive mt-2">
+              <div className="text-sm font-medium text-destructive mt-2 p-3 bg-destructive/10 rounded-md">
                 {error}
               </div>
             )}
 
-            <Button type="submit" className="w-full mt-4" disabled={isLoading}>
-              {isLoading ? 'Registering...' : 'Register'}
+            <Button type="submit" size="lg" className="w-full mt-6 text-base font-medium h-11" disabled={isLoading}>
+              {isLoading ? 'Creating account...' : 'Create Account'}
             </Button>
           </form>
         </Form>
       </CardContent>
-      <CardFooter className="flex flex-col space-y-4">
-        <div className="text-sm text-center text-muted-foreground w-full">
+      <CardFooter className="flex flex-col space-y-4 pt-4 border-t mt-6">
+        <div className="text-sm text-center text-muted-foreground w-full pt-2">
           Already have an account?{' '}
-          <Link href="/login" className="text-primary hover:underline font-medium">
+          <Link href="/login" className="text-primary hover:underline font-semibold transition-colors">
             Log in
           </Link>
         </div>
@@ -210,3 +218,4 @@ export function RegisterForm() {
     </Card>
   );
 }
+
