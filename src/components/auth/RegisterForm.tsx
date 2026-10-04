@@ -1,5 +1,5 @@
-import { Truck, User } from 'lucide-react';
 'use client';
+import { Truck, User } from 'lucide-react';
 
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -218,4 +218,5 @@ export function RegisterForm() {
     </Card>
   );
 }
+
 
