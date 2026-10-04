@@ -10,6 +10,7 @@ export interface SessionMetadata {
   email: string;
   role: UserRole;
   name?: string;
+  avatar?: string | null;
 }
 
 export async function encrypt(payload: SessionMetadata) {
