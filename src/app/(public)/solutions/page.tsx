@@ -3,6 +3,7 @@ import { CTASection } from "@/components/public/CTASection";
 import { Store, Building2, HeartPulse, ShoppingBag, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { AuthAwareCTAButton } from "@/components/public/AuthAwareCTAButton";
 
 export const metadata: Metadata = {
   title: "Industry Solutions | Shiply",
@@ -88,9 +89,10 @@ export default function SolutionsPage() {
             Join thousands of customers who trust Shiply for secure, transparent, and efficient logistics. Create shipments, track packages in real-time, and manage everything from a unified dashboard.
           </p>
           <div className="flex justify-center gap-4">
-            <Link href="/auth/register" className={buttonVariants({ size: "lg", variant: "secondary" })}>
-              Create an Account
-            </Link>
+            <AuthAwareCTAButton 
+              unauthenticatedText="Create an Account" 
+              className={buttonVariants({ size: "lg", variant: "secondary" })} 
+            />
             <Link href="/services" className={buttonVariants({ size: "lg", variant: "outline", className: "bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary border-primary-foreground" })}>
               View Our Services
             </Link>

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Check, X } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { AuthAwareCTAButton } from "@/components/public/AuthAwareCTAButton";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -107,16 +108,16 @@ export default function PricingPage() {
                     </li>
                   ))}
                 </ul>
-                <Link 
+                <AuthAwareCTAButton 
                   href={plan.href}
+                  unauthenticatedText={plan.button}
+                  authenticatedText="Go to Dashboard"
                   className={buttonVariants({ 
                     size: "lg", 
                     variant: plan.highlighted ? 'default' : 'outline',
                     className: "w-full"
                   })}
-                >
-                  {plan.button}
-                </Link>
+                />
               </div>
             ))}
           </div>
