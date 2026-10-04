@@ -46,7 +46,7 @@ export async function apiClient<T>(
   const config: RequestInit = {
     ...customConfig,
     headers: {
-      "Content-Type": "application/json",
+      ...(body instanceof FormData ? {} : { "Content-Type": "application/json" }),
       ...headers,
     },
     // Required for sending/receiving HttpOnly cookies with BFF or cross-origin (if allowed)
@@ -54,7 +54,7 @@ export async function apiClient<T>(
   };
 
   if (body) {
-    config.body = JSON.stringify(body);
+    config.body = body instanceof FormData ? body : JSON.stringify(body);
   }
 
 

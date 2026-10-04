@@ -1,6 +1,6 @@
 "use client";
 
-import { useProfile, useUpdateProfile } from "@/lib/query/auth";
+import { useProfile, useUpdateProfile, useUploadAvatar } from "@/lib/query/auth";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { useNotifications } from "@/lib/query/user";
 import { Notification } from "@/services/user.service";
@@ -12,7 +12,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Loader2, LogOut, Moon, Sun, Monitor, Bell, Shield, Users, Map, DollarSign, FileText } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -36,6 +36,7 @@ type ProfileFormValues = z.infer<typeof profileSchema>;
 export default function ProfilePage() {
   const { data: profile, isLoading, isError } = useProfile();
   const updateProfile = useUpdateProfile();
+  const uploadAvatar = useUploadAvatar();
   const { logout } = useAuth();
   const { setTheme, theme } = useTheme();
   const { data } = useNotifications();
@@ -57,11 +58,11 @@ export default function ProfilePage() {
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        form.setValue("avatar", reader.result as string, { shouldDirty: true });
-      };
-      reader.readAsDataURL(file);
+      uploadAvatar.mutate(file, {
+        onSuccess: () => {
+          if (fileInputRef.current) fileInputRef.current.value = "";
+        }
+      });
     }
   };
 
@@ -116,7 +117,7 @@ export default function ProfilePage() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <div className="mb-6 flex items-center space-x-4">
                 <Avatar className="h-16 w-16">
-                  <AvatarImage src={form.watch("avatar") || ""} alt={profile.name} />
+                  <AvatarImage src={profile.avatar || ""} alt={profile.name} />
                   <AvatarFallback className="text-xl">
                     {profile.name?.charAt(0).toUpperCase() || "U"}
                   </AvatarFallback>
@@ -137,16 +138,17 @@ export default function ProfilePage() {
                       variant="outline" 
                       size="sm" 
                       onClick={() => fileInputRef.current?.click()}
+                      disabled={uploadAvatar.isPending}
                     >
-                      Upload Picture
+                      {uploadAvatar.isPending ? "Uploading..." : "Upload Picture"}
                     </Button>
-                    {form.watch("avatar") && (
+                    {profile.avatar && (
                       <Button 
                         type="button" 
                         variant="ghost" 
                         size="sm" 
                         onClick={() => {
-                          form.setValue("avatar", "", { shouldDirty: true });
+                          updateProfile.mutate({ avatar: null });
                           if (fileInputRef.current) fileInputRef.current.value = "";
                         }}
                         className="text-destructive hover:text-destructive hover:bg-destructive/10"

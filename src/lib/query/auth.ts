@@ -65,3 +65,18 @@ export function useUpdateProfile() {
     },
   });
 }
+
+export function useUploadAvatar() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (file: File) => userService.uploadAvatar(file),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.auth.me });
+      toast.success("Avatar uploaded successfully");
+    },
+    onError: (error: any) => {
+      toast.error(error.message || "Failed to upload avatar");
+    }
+  });
+}

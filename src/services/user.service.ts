@@ -24,6 +24,15 @@ export const userService = {
     });
   },
 
+  uploadAvatar: (file: File) => {
+    const formData = new FormData();
+    formData.append("avatar", file);
+    return apiClient<{ avatar: string }>("/users/me/avatar", {
+      method: "POST",
+      body: formData,
+    });
+  },
+
   getNotifications: async () => {
     const res = await apiClient<{ notifications: Notification[] }>("/users/me/notifications", {
       method: "GET",
