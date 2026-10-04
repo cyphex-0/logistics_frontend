@@ -245,24 +245,24 @@ export default function ProfilePage() {
               <span className="text-sm font-medium">Interface Theme</span>
               <span className="text-sm text-muted-foreground">Select Light, Dark, or System theme.</span>
             </div>
-            <div className="flex gap-4">
+            <div className="flex p-1 bg-muted rounded-lg">
               <Button
-                variant={theme === "light" ? "default" : "outline"}
-                className="w-full"
+                variant="ghost"
+                className={`flex-1 rounded-md h-9 ${theme === "light" ? "bg-background shadow-sm hover:bg-background text-foreground" : "hover:bg-transparent text-muted-foreground"}`}
                 onClick={() => setTheme("light")}
               >
                 <Sun className="mr-2 h-4 w-4" /> Light
               </Button>
               <Button
-                variant={theme === "dark" ? "default" : "outline"}
-                className="w-full"
+                variant="ghost"
+                className={`flex-1 rounded-md h-9 ${theme === "dark" ? "bg-background shadow-sm hover:bg-background text-foreground" : "hover:bg-transparent text-muted-foreground"}`}
                 onClick={() => setTheme("dark")}
               >
                 <Moon className="mr-2 h-4 w-4" /> Dark
               </Button>
               <Button
-                variant={theme === "system" ? "default" : "outline"}
-                className="w-full"
+                variant="ghost"
+                className={`flex-1 rounded-md h-9 ${theme === "system" ? "bg-background shadow-sm hover:bg-background text-foreground" : "hover:bg-transparent text-muted-foreground"}`}
                 onClick={() => setTheme("system")}
               >
                 <Monitor className="mr-2 h-4 w-4" /> System
