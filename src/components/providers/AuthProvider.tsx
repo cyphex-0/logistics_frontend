@@ -24,7 +24,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     queryFn: async () => {
       const res = await fetch('/api/auth/me');
       if (!res.ok) {
-        throw new Error('Not authenticated');
+        return null;
       }
       const data = await res.json();
       return data.user as SessionMetadata;

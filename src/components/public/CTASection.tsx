@@ -1,21 +1,30 @@
 import Link from "next/link";
-import { buttonVariants } from "@/components/ui/button";
 
 export function CTASection() {
   return (
-    <section className="py-20 bg-muted/50">
-      <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold tracking-tight mb-4">Ready to Get Started?</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto mb-8 text-lg">
-          Join our platform today to manage your shipments, or become a courier to start delivering.
-        </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Link href="/auth/register" className={buttonVariants({ size: "lg" })}>
-            Create an Account
-          </Link>
-          <Link href="/auth/login" className={buttonVariants({ size: "lg", variant: "outline" })}>
-            Sign In
-          </Link>
+    <section className="py-24 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="bg-primary text-primary-foreground rounded-3xl p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-12 relative overflow-hidden">
+          {/* Decorative Background */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-foreground/0 via-primary-foreground/5 to-primary-foreground/10" />
+          
+          <div className="max-w-2xl relative z-10">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+              Ready to move your first shipment?
+            </h2>
+            <p className="text-primary-foreground/80 text-lg md:text-xl">
+              Get a clear plan, a precise quote, and a partner who stays close to every handoff.
+            </p>
+          </div>
+          
+          <div className="relative z-10 shrink-0">
+            <Link 
+              href="/auth/register" 
+              className="inline-flex h-14 items-center justify-center rounded-md bg-background px-8 text-lg font-medium text-foreground shadow transition-colors hover:bg-background/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+            >
+              Start a Quote
+            </Link>
+          </div>
         </div>
       </div>
     </section>

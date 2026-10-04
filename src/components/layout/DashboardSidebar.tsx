@@ -15,6 +15,7 @@ import {
   Bell,
   BarChart3
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -63,8 +64,9 @@ export function DashboardSidebar({ className }: SidebarProps) {
     >
       <div className="space-y-4 py-4">
         <div className="px-3 py-2">
-          <Link href="/" className="block mb-2 px-4 text-xl font-bold tracking-tight text-sidebar-primary hover:text-sidebar-primary/80 transition-colors">
-            Shiply
+          <Link href="/" className="flex items-center space-x-2 mb-6 px-4 text-xl font-bold tracking-tight text-sidebar-primary hover:text-sidebar-primary/80 transition-colors">
+            <Image src="/logo.png" alt="Shiply Logo" width={32} height={32} className="h-8 w-auto object-contain" />
+            <span>Shiply</span>
           </Link>
           <div className="space-y-1 mt-6">
             {links.map((link) => (

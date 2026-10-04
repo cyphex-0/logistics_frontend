@@ -1,15 +1,22 @@
 import Link from "next/link";
-import { Package } from "lucide-react";
+import Image from "next/image";
 
 export function AppFooter() {
   return (
     <footer className="border-t bg-background">
-      <div className="container py-8 md:py-12 lg:py-16">
+      <div className="container mx-auto px-4 py-8 md:py-12 lg:py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center space-x-2">
-              <Package className="h-6 w-6 text-primary" />
-              <span className="font-bold text-xl inline-block text-primary">
+            <Link href="/" className="flex items-center gap-3">
+              <div className="relative h-10 w-10">
+                <Image 
+                  src="/logo.png" 
+                  alt="Shiply Logo" 
+                  fill
+                  className="object-contain" 
+                />
+              </div>
+              <span className="font-bold text-2xl tracking-tight inline-block text-primary">
                 Shiply
               </span>
             </Link>
