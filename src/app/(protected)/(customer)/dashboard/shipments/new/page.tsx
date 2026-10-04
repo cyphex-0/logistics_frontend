@@ -234,7 +234,13 @@ export default function CreateShipmentWizard() {
                           <Select onValueChange={field.onChange} value={field.value} disabled={isLoading}>
                             <FormControl>
                               <SelectTrigger>
-                                <SelectValue placeholder={isLoading ? "Loading zones..." : "Select pickup zone"} />
+                                <SelectValue placeholder={isLoading ? "Loading zones..." : "Select pickup zone"}>
+                                  {(val: string | null) => {
+                                    if (!val) return isLoading ? "Loading zones..." : "Select pickup zone";
+                                    const zone = zones.find(z => z.id === val);
+                                    return zone ? zone.name : val;
+                                  }}
+                                </SelectValue>
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
@@ -257,7 +263,13 @@ export default function CreateShipmentWizard() {
                           <Select onValueChange={field.onChange} value={field.value} disabled={isLoading}>
                             <FormControl>
                               <SelectTrigger>
-                                <SelectValue placeholder={isLoading ? "Loading zones..." : "Select destination zone"} />
+                                <SelectValue placeholder={isLoading ? "Loading zones..." : "Select destination zone"}>
+                                  {(val: string | null) => {
+                                    if (!val) return isLoading ? "Loading zones..." : "Select destination zone";
+                                    const zone = zones.find(z => z.id === val);
+                                    return zone ? zone.name : val;
+                                  }}
+                                </SelectValue>
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>

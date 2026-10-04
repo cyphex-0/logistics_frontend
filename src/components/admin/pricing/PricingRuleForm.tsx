@@ -92,12 +92,18 @@ export function PricingRuleForm({ initialData, onSuccess }: PricingRuleFormProps
               <FormLabel>Zone (Optional)</FormLabel>
               <Select 
                 onValueChange={(val) => field.onChange(val === "none" ? null : val)} 
-                defaultValue={field.value || "none"}
+                value={field.value || "none"}
                 disabled={!!initialData}
               >
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a zone for specific rule" />
+                    <SelectValue placeholder="Select a zone for specific rule">
+                      {(val: string | null) => {
+                        if (!val || val === "none") return "Fallback/Default (All Zones)";
+                        const zone = zonesData?.find((z: { id: string, name: string }) => z.id === val);
+                        return zone ? zone.name : val;
+                      }}
+                    </SelectValue>
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>

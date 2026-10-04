@@ -154,7 +154,13 @@ export function EditShipmentDialog({ shipment, isOpen, onClose }: EditShipmentDi
                   <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select a delivery zone" />
+                        <SelectValue placeholder="Select a delivery zone">
+                          {(val: string | null) => {
+                            if (!val) return "Select a delivery zone";
+                            const zone = zones.find(z => z.id === val);
+                            return zone ? zone.name : val;
+                          }}
+                        </SelectValue>
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
