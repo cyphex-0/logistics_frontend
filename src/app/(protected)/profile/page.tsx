@@ -27,7 +27,7 @@ import {
 
 const profileSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
-  phone: z.string().min(5, "Phone number is too short"),
+  phone: z.string().min(5, "Phone number is too short").optional().or(z.literal("")),
   avatar: z.string().optional(),
 });
 
