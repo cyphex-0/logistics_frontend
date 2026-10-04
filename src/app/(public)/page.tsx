@@ -17,11 +17,11 @@ export default function Home() {
     <div className="flex flex-col min-h-[calc(100vh-140px)]">
       <HeroSection />
       <ServicesGrid />
-      <StatsBanner />
       <ProcessSteps />
-      <CTASection />
+      <StatsBanner />
       <IndustriesGrid />
       <TestimonialSection />
+      <CTASection />
     </div>
   );
 }

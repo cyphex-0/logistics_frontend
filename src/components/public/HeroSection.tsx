@@ -73,15 +73,6 @@ export function HeroSection() {
                     className="animate-[dash_3s_linear_infinite]"
                     style={{ strokeDasharray: '400', strokeDashoffset: '400' }}
                   />
-                  <style>
-                    {`
-                      @keyframes dash {
-                        to {
-                          stroke-dashoffset: 0;
-                        }
-                      }
-                    `}
-                  </style>
                   
                   {/* Nodes */}
                   {/* Origin */}
