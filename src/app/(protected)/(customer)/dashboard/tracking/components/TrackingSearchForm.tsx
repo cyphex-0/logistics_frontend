@@ -47,8 +47,10 @@ export function TrackingSearchForm() {
     <div className="space-y-6">
       <form onSubmit={handleSearch} className="flex gap-2">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-3.5 h-5 w-5 text-muted-foreground" />
+          <label htmlFor="tracking-search" className="sr-only">Tracking Number</label>
+          <Search className="absolute left-3 top-3.5 h-5 w-5 text-muted-foreground" aria-hidden="true" />
           <Input
+            id="tracking-search"
             placeholder="Enter tracking number (e.g. TRK-123456789)"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}

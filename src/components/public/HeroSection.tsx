@@ -33,7 +33,7 @@ export function HeroSection() {
           {/* Right Mock Card */}
           <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
             {/* Outer wrapper: blurry, lighter color, glass effect */}
-            <div className="bg-white/10 backdrop-blur-xl p-2 md:p-3 rounded-[2.5rem] shadow-2xl relative border border-white/20">
+            <div className="bg-slate-200/50 dark:bg-white/10 backdrop-blur-xl p-2 md:p-3 rounded-[2.5rem] shadow-2xl relative border border-slate-300/50 dark:border-white/20">
               {/* Inner wrapper: deep solid color */}
               <div className="bg-slate-950 text-slate-100 rounded-[2rem] p-6 md:p-8 relative overflow-hidden border border-slate-900 shadow-inner">
               {/* Header */}
