@@ -241,7 +241,7 @@ export default function ProfilePage() {
                 {unreadCount}
               </div>
             </div>
-            <Button variant="outline" className="w-full mt-4" render={<Link href="/notifications" />}>
+            <Button variant="outline" className="w-full mt-4" render={<Link href="/notifications" />} nativeButton={false}>
               <Bell className="mr-2 h-4 w-4" /> Open Notifications Center
             </Button>
           </CardContent>
@@ -280,25 +280,25 @@ export default function ProfilePage() {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <Button variant="outline" className="w-full justify-start h-auto py-3" render={<Link href="/admin/users" />}>
+                <Button variant="outline" className="w-full justify-start h-auto py-3" render={<Link href="/admin/users" />} nativeButton={false}>
                   <Users className="mr-2 h-4 w-4" />
                   <div className="flex flex-col items-start text-left">
                     <span className="text-sm font-medium">Manage Users</span>
                   </div>
                 </Button>
-                <Button variant="outline" className="w-full justify-start h-auto py-3" render={<Link href="/admin/zones" />}>
+                <Button variant="outline" className="w-full justify-start h-auto py-3" render={<Link href="/admin/zones" />} nativeButton={false}>
                   <Map className="mr-2 h-4 w-4" />
                   <div className="flex flex-col items-start text-left">
                     <span className="text-sm font-medium">Manage Zones</span>
                   </div>
                 </Button>
-                <Button variant="outline" className="w-full justify-start h-auto py-3" render={<Link href="/admin/pricing" />}>
+                <Button variant="outline" className="w-full justify-start h-auto py-3" render={<Link href="/admin/pricing" />} nativeButton={false}>
                   <DollarSign className="mr-2 h-4 w-4" />
                   <div className="flex flex-col items-start text-left">
                     <span className="text-sm font-medium">Pricing Rules</span>
                   </div>
                 </Button>
-                <Button variant="outline" className="w-full justify-start h-auto py-3" render={<Link href="/admin/audit-logs" />}>
+                <Button variant="outline" className="w-full justify-start h-auto py-3" render={<Link href="/admin/audit-logs" />} nativeButton={false}>
                   <FileText className="mr-2 h-4 w-4" />
                   <div className="flex flex-col items-start text-left">
                     <span className="text-sm font-medium">Audit Logs</span>
