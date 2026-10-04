@@ -198,7 +198,7 @@ export default function CreateShipmentWizard() {
               </CardDescription>
             </CardHeader>
 
-            <CardContent className="min-h-[350px]">
+            <CardContent>
               {/* Step 1: Route & Service */}
               {currentStep === 0 && (
                 <div className="space-y-6">
