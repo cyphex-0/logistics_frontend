@@ -23,12 +23,12 @@ export function StatCard({
   className,
 }: StatCardProps) {
   return (
-    <Card className={cn("overflow-hidden", className)}>
+    <Card className={cn("overflow-hidden transition-all hover:shadow-md hover:border-primary/40 group", className)}>
       <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
+        <CardTitle className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
           {title}
         </CardTitle>
-        {Icon && <Icon className="w-4 h-4 text-muted-foreground" />}
+        {Icon && <Icon className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />}
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">{value}</div>

@@ -41,11 +41,14 @@ export function TrackingTimeline({ shipmentId }: { shipmentId: string }) {
             
             return (
               <div key={index} className="relative">
-                <div className="absolute -left-[35px] bg-background border-2 border-muted rounded-full p-1 z-10 flex items-center justify-center">
-                  <Icon className={`w-5 h-5 ${config.colorClass}`} />
+                <div className={`absolute -left-[35px] bg-background border-2 ${index === 0 ? 'border-primary' : 'border-muted'} rounded-full p-1 z-10 flex items-center justify-center transition-colors`}>
+                  {index === 0 && (
+                    <div className="absolute inset-0 rounded-full animate-ping bg-primary opacity-20"></div>
+                  )}
+                  <Icon className={`w-5 h-5 ${index === 0 ? 'text-primary' : config.colorClass}`} />
                 </div>
                 <div className="flex flex-col space-y-1">
-                  <span className="font-semibold text-foreground tracking-tight">
+                  <span className={`font-semibold tracking-tight ${index === 0 ? 'text-foreground' : 'text-foreground/80'}`}>
                     {config.label}
                   </span>
                   <span className="text-sm text-muted-foreground">{event.description}</span>

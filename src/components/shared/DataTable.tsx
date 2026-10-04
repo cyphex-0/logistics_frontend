@@ -133,7 +133,7 @@ export function DataTable<TData, TValue>({
             table.getRowModel().rows.map((row) => (
               <div
                 key={row.id}
-                className="flex flex-col gap-2 rounded-lg border bg-card p-4 text-card-foreground shadow-sm"
+                className="flex flex-col gap-2 rounded-lg border bg-card p-4 text-card-foreground shadow-sm hover:border-primary/40 transition-colors"
               >
                 {row.getVisibleCells().map((cell) => (
                   <div

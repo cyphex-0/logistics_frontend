@@ -224,7 +224,7 @@ export default function CustomerDashboardPage() {
                 const formData = new FormData(e.currentTarget);
                 const trackingNumber = formData.get("tracking") as string;
                 if (trackingNumber) {
-                  router.push(`/track/${trackingNumber}`);
+                  router.push(`/dashboard/tracking?q=${trackingNumber}`);
                 }
               }}
             >

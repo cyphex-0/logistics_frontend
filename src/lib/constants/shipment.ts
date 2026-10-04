@@ -26,7 +26,7 @@ export const SHIPMENT_STATUS_CONFIG: Record<ShipmentStatus, ShipmentStatusConfig
     label: "Pending",
     icon: Clock,
     colorClass: "text-status-pending",
-    bgClass: "bg-status-pending text-status-pending-foreground hover:bg-status-pending/80",
+    bgClass: "bg-status-pending text-slate-900 hover:bg-status-pending/80",
     lightBgClass: "bg-status-pending/20",
   },
   [ShipmentStatus.CONFIRMED]: {
@@ -61,7 +61,7 @@ export const SHIPMENT_STATUS_CONFIG: Record<ShipmentStatus, ShipmentStatusConfig
     label: "Out For Delivery",
     icon: MapPin,
     colorClass: "text-status-out-for-delivery",
-    bgClass: "bg-status-out-for-delivery text-status-out-for-delivery-foreground hover:bg-status-out-for-delivery/80",
+    bgClass: "bg-status-out-for-delivery text-slate-900 hover:bg-status-out-for-delivery/80",
     lightBgClass: "bg-status-out-for-delivery/20",
   },
   [ShipmentStatus.DELIVERED]: {
