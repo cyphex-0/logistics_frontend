@@ -1,98 +1,117 @@
 import { Metadata } from "next";
+import { Package, Zap, Globe, Shield, Clock, MapPin, Truck } from "lucide-react";
 import { CTASection } from "@/components/public/CTASection";
-import { Package, Zap, MapPin, BarChart3, CreditCard, Bell } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Our Services | Shiply",
-  description: "Explore our delivery services, from Standard to Express, built for speed and transparency.",
+  description: "Explore our comprehensive range of logistics and courier delivery services.",
 };
 
 export default function ServicesPage() {
+  const services = [
+    {
+      icon: <Zap className="h-12 w-12 text-primary" />,
+      title: "Express Delivery",
+      description: "Same-day and next-day delivery options for urgent packages. Our fastest routing ensures your package arrives precisely when it needs to.",
+      features: ["Same-day within city", "Next-day nationwide", "Priority handling"]
+    },
+    {
+      icon: <Package className="h-12 w-12 text-primary" />,
+      title: "Standard Shipping",
+      description: "Cost-effective, reliable delivery for everyday shipments. Perfect for e-commerce businesses and regular personal shipments.",
+      features: ["2-3 days delivery", "Cost-effective", "Scheduled pickups"]
+    },
+    {
+      icon: <Globe className="h-12 w-12 text-primary" />,
+      title: "International Freight",
+      description: "Seamless international shipping with automated customs handling and global tracking visibility.",
+      features: ["Customs clearance", "Global network", "Air & Ocean freight"]
+    },
+    {
+      icon: <Shield className="h-12 w-12 text-primary" />,
+      title: "Secure Transport",
+      description: "High-security transport for valuable items, confidential documents, and sensitive materials.",
+      features: ["GPS tracking", "Insured up to $10,000", "Identity verification on delivery"]
+    }
+  ];
+
   return (
     <div className="flex flex-col min-h-[calc(100vh-140px)]">
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-muted/20">
-        <div className="container px-4 text-center mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Our Services</h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Comprehensive logistics solutions tailored for modern businesses and individuals. 
-            Choose the speed that fits your needs.
+      {/* Hero */}
+      <section className="relative py-24 bg-foreground text-background overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img 
+            src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
+            alt="Shipping containers" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container px-4 mx-auto relative z-10 text-center max-w-3xl">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Logistics solutions tailored to you.</h1>
+          <p className="text-xl opacity-90 mb-8">
+            From lightning-fast express delivery to secure international freight, Shiply offers the infrastructure you need to move goods globally.
           </p>
         </div>
       </section>
 
-      {/* Core Delivery Services */}
-      <section className="py-20 bg-background">
+      {/* Services List */}
+      <section className="py-24 bg-background">
         <div className="container px-4 mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            <div className="p-8 rounded-2xl border bg-card hover:border-primary/50 transition-colors">
-              <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-                <Package className="h-8 w-8 text-primary" />
+          <div className="grid lg:grid-cols-2 gap-16">
+            {services.map((service, index) => (
+              <div key={index} className="flex flex-col sm:flex-row gap-6 p-6 rounded-2xl bg-muted/30 hover:bg-muted/50 transition-colors border">
+                <div className="shrink-0 p-4 bg-background rounded-xl shadow-sm h-fit">
+                  {service.icon}
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-2">
+                    {service.features.map((feature, fIndex) => (
+                      <li key={fIndex} className="flex items-center gap-2 text-sm font-medium">
+                        <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <h2 className="text-2xl font-bold mb-4">Standard Delivery</h2>
-              <p className="text-muted-foreground mb-4">
-                Reliable and cost-effective shipping for packages that aren&apos;t time-critical. 
-                Full tracking capabilities and secure handling included.
-              </p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Estimated 2-5 business days</li>
-                <li>• Full lifecycle tracking</li>
-                <li>• Proof of delivery</li>
-              </ul>
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div className="p-8 rounded-2xl border bg-card hover:border-primary/50 transition-colors">
-              <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-                <Zap className="h-8 w-8 text-primary" />
-              </div>
-              <h2 className="text-2xl font-bold mb-4">Express Delivery</h2>
-              <p className="text-muted-foreground mb-4">
-                Prioritized routing for urgent shipments. Next-day and same-day options available 
-                depending on origin and destination.
-              </p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Priority courier assignment</li>
-                <li>• Real-time map tracking</li>
-                <li>• Expedited handling</li>
-              </ul>
+      {/* Process Section */}
+      <section className="py-24 bg-muted/30">
+        <div className="container px-4 mx-auto text-center">
+          <h2 className="text-3xl font-bold tracking-tight mb-16">How It Works</h2>
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <div className="h-16 w-16 mx-auto bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mb-6">1</div>
+              <h4 className="text-xl font-bold mb-2">Book</h4>
+              <p className="text-muted-foreground text-sm">Enter your package details and choose a service tier.</p>
+            </div>
+            <div>
+              <div className="h-16 w-16 mx-auto bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mb-6">2</div>
+              <h4 className="text-xl font-bold mb-2">Pickup</h4>
+              <p className="text-muted-foreground text-sm">A courier arrives at your location to collect the shipment.</p>
+            </div>
+            <div>
+              <div className="h-16 w-16 mx-auto bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mb-6">3</div>
+              <h4 className="text-xl font-bold mb-2">Transit</h4>
+              <p className="text-muted-foreground text-sm">Live GPS tracking directly from your unified dashboard.</p>
+            </div>
+            <div>
+              <div className="h-16 w-16 mx-auto bg-primary text-primary-foreground rounded-full flex items-center justify-center text-2xl font-bold mb-6">4</div>
+              <h4 className="text-xl font-bold mb-2">Deliver</h4>
+              <p className="text-muted-foreground text-sm">Secure handover with digital signature and photo proof.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Platform Capabilities */}
-      <section className="py-20 bg-muted/30">
-        <div className="container px-4 mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tight mb-4">Platform Features</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">Everything you need to manage logistics effectively.</p>
-          </div>
-          
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 rounded-xl bg-background border transition-all duration-300 hover:shadow-md hover:-translate-y-1">
-              <MapPin className="h-8 w-8 text-primary mb-4" />
-              <h3 className="font-semibold mb-2">Live Map Tracking</h3>
-              <p className="text-sm text-muted-foreground">Track your courier in real-time as they approach the destination.</p>
-            </div>
-            <div className="p-6 rounded-xl bg-background border transition-all duration-300 hover:shadow-md hover:-translate-y-1">
-              <CreditCard className="h-8 w-8 text-primary mb-4" />
-              <h3 className="font-semibold mb-2">Secure Payments</h3>
-              <p className="text-sm text-muted-foreground">Pay safely with Stripe integration and clear pricing breakdown.</p>
-            </div>
-            <div className="p-6 rounded-xl bg-background border transition-all duration-300 hover:shadow-md hover:-translate-y-1">
-              <Bell className="h-8 w-8 text-primary mb-4" />
-              <h3 className="font-semibold mb-2">Status Notifications</h3>
-              <p className="text-sm text-muted-foreground">Receive updates at every critical stage of the shipment lifecycle.</p>
-            </div>
-            <div className="p-6 rounded-xl bg-background border transition-all duration-300 hover:shadow-md hover:-translate-y-1">
-              <BarChart3 className="h-8 w-8 text-primary mb-4" />
-              <h3 className="font-semibold mb-2">Analytics Dashboard</h3>
-              <p className="text-sm text-muted-foreground">Access your shipment history and usage metrics (available for registered users).</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
       <CTASection />
     </div>
   );
