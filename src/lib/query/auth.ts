@@ -49,7 +49,7 @@ export function useLogout() {
 
 export function useProfile() {
   return useQuery({
-    queryKey: queryKeys.auth.me,
+    queryKey: queryKeys.user.profile,
     queryFn: () => userService.getProfile(),
   });
 }
@@ -60,6 +60,8 @@ export function useUpdateProfile() {
   return useMutation({
     mutationFn: (data: unknown) => userService.updateProfile(data),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.user.profile });
+      // Also invalidate auth.me in case name or avatar was updated
       queryClient.invalidateQueries({ queryKey: queryKeys.auth.me });
       toast.success("Profile updated successfully");
     },
@@ -72,6 +74,8 @@ export function useUploadAvatar() {
   return useMutation({
     mutationFn: (file: File) => userService.uploadAvatar(file),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.user.profile });
+      // Also invalidate auth.me so the AppHeader avatar updates
       queryClient.invalidateQueries({ queryKey: queryKeys.auth.me });
       toast.success("Avatar uploaded successfully");
     },
