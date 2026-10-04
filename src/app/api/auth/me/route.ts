@@ -24,14 +24,19 @@ export async function GET() {
       const data = await res.json();
       const freshUser = data.data;
       
-      // If the name or avatar has changed, update the session cookie
-      if (session.name !== freshUser.name || session.avatar !== freshUser.avatar) {
+      // Only update name in the cookie. DO NOT update avatar in the cookie because Base64 images exceed the 4KB cookie limit!
+      if (session.name !== freshUser.name) {
         session.name = freshUser.name;
-        session.avatar = freshUser.avatar;
         
         const refreshToken = await getRefreshToken();
         await createSession(session, accessToken, refreshToken);
       }
+      
+      return NextResponse.json({
+        success: true,
+        // Inject the avatar directly into the response so the frontend has it, but it stays out of the cookie
+        user: { ...session, avatar: freshUser.avatar },
+      });
     }
 
     return NextResponse.json({
