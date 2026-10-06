@@ -46,6 +46,10 @@ export interface Shipment {
   serviceType: ServiceType;
   /** Guaranteed: Initially computed estimated price, decimal as string */
   estimatedPrice: string;
+    /** Conditional: The status of the payment if initiated */
+    paymentStatus?: PaymentStatus | null;
+    /** Conditional: The method used for payment */
+    paymentMethod?: PaymentMethod | null;
   /** Conditional: Set only on payment confirmation, decimal as string */
   finalPrice?: string | null;
   /** Optional: Additional notes for the delivery */
@@ -398,3 +402,7 @@ export interface CreatePricingRuleInput {
   pricePerKg: number;
   maxWeight?: number;
 }
+
+
+
+
