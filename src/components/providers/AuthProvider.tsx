@@ -22,7 +22,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const { data, isLoading } = useQuery({
     queryKey: queryKeys.auth.me(),
     queryFn: async () => {
-      const res = await fetch('/api/auth/me');
+      const res = await fetch('/api/auth/me?_t=' + Date.now(), { headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' } });
       if (!res.ok) {
         return null;
       }
@@ -60,3 +60,4 @@ export function useAuth() {
   }
   return context;
 }
+
