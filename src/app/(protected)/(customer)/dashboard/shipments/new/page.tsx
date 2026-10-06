@@ -138,11 +138,8 @@ export default function CreateShipmentWizard() {
       setIsSubmitting(true);
       const result = await shipmentService.createShipment(data);
       toast.success("Shipment created successfully!");
-      if (result && result.id) {
-        router.push(`/dashboard/shipments/${result.id}`);
-      } else {
-        router.push(`/dashboard/shipments`);
-      }
+        form.reset();
+        setCurrentStep(0);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Failed to create shipment");
     } finally {
@@ -583,5 +580,7 @@ export default function CreateShipmentWizard() {
     </div>
   );
 }
+
+
 
 
