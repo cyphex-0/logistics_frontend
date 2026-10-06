@@ -17,14 +17,14 @@ export async function GET() {
     const backendUrl = process.env.API_BASE_URL || 'https://logistics-backend-jyz7.onrender.com/api/v1';
     
     // First attempt to fetch fresh profile
-    let res = await fetch("/users/me", {
-      headers: { 'Authorization': "Bearer $accessToken" },
+    let res = await fetch(`${backendUrl}/users/me`, {
+      headers: { 'Authorization': `Bearer ${accessToken}` },
       cache: 'no-store'
     });
 
     // If 401, try to refresh the token transparently on the server
     if (res.status === 401 && refreshToken) {
-      const refreshRes = await fetch("/auth/refresh-token", {
+      const refreshRes = await fetch(`${backendUrl}/auth/refresh-token`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ refreshToken }),
@@ -39,8 +39,8 @@ export async function GET() {
         await createSession(session, newAccess as string, (newRefresh || refreshToken) as string);
         
         // Retry fetching profile
-        res = await fetch("/users/me", {
-          headers: { 'Authorization': "Bearer $accessToken" },
+        res = await fetch(`${backendUrl}/users/me`, {
+          headers: { 'Authorization': `Bearer ${accessToken}` },
           cache: 'no-store'
         });
       }
@@ -50,7 +50,7 @@ export async function GET() {
       const data = await res.json();
       const freshUser = data.data;
       
-      if (session.name !== freshUser.name) {
+      if (freshUser && session.name !== freshUser.name) {
         session.name = freshUser.name;
         // The token might have already been refreshed, but it's safe to call createSession again
         const latestRefresh = await getRefreshToken();
@@ -59,7 +59,7 @@ export async function GET() {
       
       return NextResponse.json({
         success: true,
-        user: { ...session, avatar: freshUser.avatar },
+        user: { ...session, avatar: freshUser?.avatar },
       });
     }
 
@@ -75,3 +75,4 @@ export async function GET() {
     );
   }
 }
+
