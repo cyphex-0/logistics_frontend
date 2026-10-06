@@ -50,7 +50,7 @@ export function UserFilters() {
     <div className="w-full sm:w-[200px]">
       <Select value={initialRole} onValueChange={(val) => handleRoleChange(val || "")}>
         <SelectTrigger>
-          <SelectValue placeholder="Filter by role" />
+          <SelectValue placeholder="Filter by role">{initialRole === "ALL" ? "All Roles" : initialRole}</SelectValue>
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="ALL">All Roles</SelectItem>
@@ -90,3 +90,4 @@ export function UserFilters() {
     </div>
   );
 }
+

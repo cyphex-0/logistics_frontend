@@ -75,7 +75,7 @@ export function DashboardSidebar({ className }: SidebarProps) {
                 href={link.href}
                 className={cn(
                   "flex items-center gap-3 rounded-md px-4 py-2 text-sm font-medium hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors",
-                  pathname === link.href || pathname.startsWith(link.href + "/")
+                  pathname === link.href || (pathname.startsWith(link.href + "/") && link.href !== "/dashboard" && link.href !== "/admin" && link.href !== "/courier")
                     ? "bg-sidebar-accent text-sidebar-accent-foreground"
                     : "text-muted-foreground"
                 )}
@@ -116,3 +116,4 @@ export function DashboardSidebar({ className }: SidebarProps) {
     </div>
   );
 }
+

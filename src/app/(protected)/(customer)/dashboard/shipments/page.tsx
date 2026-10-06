@@ -138,7 +138,7 @@ function ShipmentsListClient() {
         <div className="flex items-center gap-2 w-full sm:w-auto overflow-x-auto pb-1 sm:pb-0">
           <Select value={urlStatus as string} onValueChange={handleStatusChange}>
             <SelectTrigger className="w-[160px] shrink-0">
-              <SelectValue placeholder="Filter by status" />
+              <SelectValue placeholder="Filter by status">{urlStatus === "ALL" ? "All Statuses" : (urlStatus as string).replace(/_/g, " ")}</SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="ALL">All Statuses</SelectItem>
@@ -152,7 +152,7 @@ function ShipmentsListClient() {
 
           <Select value={urlSort as string} onValueChange={handleSortChange}>
             <SelectTrigger className="w-[160px] shrink-0">
-              <SelectValue placeholder="Sort by" />
+              <SelectValue placeholder="Sort by">{urlSort === "createdAt:desc" ? "Newest First" : urlSort === "createdAt:asc" ? "Oldest First" : urlSort === "status:asc" ? "Status (A-Z)" : "Status (Z-A)"}</SelectValue>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="createdAt:desc">Newest First</SelectItem>
@@ -328,3 +328,4 @@ export default function CustomerShipmentsPage() {
     </Suspense>
   );
 }
+
