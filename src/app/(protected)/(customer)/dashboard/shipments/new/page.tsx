@@ -210,7 +210,7 @@ export default function CreateShipmentWizard() {
                         <FormLabel>Service Type</FormLabel>
                         <Select onValueChange={field.onChange} value={field.value}>
                           <FormControl>
-                            <SelectTrigger>
+                            <SelectTrigger className="w-full">
                               <SelectValue placeholder="Select a service type" />
                             </SelectTrigger>
                           </FormControl>
@@ -233,7 +233,7 @@ export default function CreateShipmentWizard() {
                           <FormLabel>Pickup Zone</FormLabel>
                           <Select onValueChange={field.onChange} value={field.value} disabled={isLoading}>
                             <FormControl>
-                              <SelectTrigger>
+                              <SelectTrigger className="w-full">
                                 <SelectValue placeholder={isLoading ? "Loading zones..." : "Select pickup zone"}>
                                   {(val: string | null) => {
                                     if (!val) return isLoading ? "Loading zones..." : "Select pickup zone";
@@ -262,7 +262,7 @@ export default function CreateShipmentWizard() {
                           <FormLabel>Destination Zone</FormLabel>
                           <Select onValueChange={field.onChange} value={field.value} disabled={isLoading}>
                             <FormControl>
-                              <SelectTrigger>
+                              <SelectTrigger className="w-full">
                                 <SelectValue placeholder={isLoading ? "Loading zones..." : "Select destination zone"}>
                                   {(val: string | null) => {
                                     if (!val) return isLoading ? "Loading zones..." : "Select destination zone";
@@ -583,3 +583,4 @@ export default function CreateShipmentWizard() {
     </div>
   );
 }
+
