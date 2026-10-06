@@ -4,7 +4,8 @@ import { getSession, getAccessToken, getRefreshToken, createSession } from '@/li
 export async function GET() {
   try {
     const session = await getSession();
-    const accessToken = await getAccessToken();
+    let accessToken = await getAccessToken();
+    const refreshToken = await getRefreshToken();
 
     if (!session || !accessToken) {
       return NextResponse.json(
@@ -13,35 +14,58 @@ export async function GET() {
       );
     }
 
-    // Fetch fresh profile from backend
     const backendUrl = process.env.API_BASE_URL || 'https://logistics-backend-jyz7.onrender.com/api/v1';
-    const res = await fetch(`${backendUrl}/users/me`, {
-      headers: { 'Authorization': `Bearer ${accessToken}` },
+    
+    // First attempt to fetch fresh profile
+    let res = await fetch("/users/me", {
+      headers: { 'Authorization': "Bearer $accessToken" },
       cache: 'no-store'
     });
+
+    // If 401, try to refresh the token transparently on the server
+    if (res.status === 401 && refreshToken) {
+      const refreshRes = await fetch("/auth/refresh-token", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ refreshToken }),
+      });
+      
+      if (refreshRes.ok) {
+        const refreshData = await refreshRes.json();
+        const { accessToken: newAccess, refreshToken: newRefresh } = refreshData.data || refreshData;
+        
+        // Save new tokens
+        accessToken = newAccess;
+        await createSession(session, newAccess as string, (newRefresh || refreshToken) as string);
+        
+        // Retry fetching profile
+        res = await fetch("/users/me", {
+          headers: { 'Authorization': "Bearer $accessToken" },
+          cache: 'no-store'
+        });
+      }
+    }
 
     if (res.ok) {
       const data = await res.json();
       const freshUser = data.data;
       
-      // Only update name in the cookie. DO NOT update avatar in the cookie because Base64 images exceed the 4KB cookie limit!
       if (session.name !== freshUser.name) {
         session.name = freshUser.name;
-        
-        const refreshToken = await getRefreshToken();
-        await createSession(session, accessToken, refreshToken);
+        // The token might have already been refreshed, but it's safe to call createSession again
+        const latestRefresh = await getRefreshToken();
+        await createSession(session, accessToken as string, (latestRefresh || refreshToken || "") as string);
       }
       
       return NextResponse.json({
         success: true,
-        // Inject the avatar directly into the response so the frontend has it, but it stays out of the cookie
         user: { ...session, avatar: freshUser.avatar },
       });
     }
 
     return NextResponse.json({
       success: true,
-      user: session,
+      user: session, // Fallback without avatar if everything fails but we still have a session
     });
   } catch (error) {
     console.error('Auth me error:', error);

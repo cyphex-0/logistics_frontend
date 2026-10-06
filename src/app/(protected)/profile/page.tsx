@@ -117,7 +117,7 @@ export default function ProfilePage() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <div className="mb-6 flex items-center space-x-4">
                 <Avatar className="h-16 w-16">
-                  <AvatarImage src={profile.avatar || ""} alt={profile.name} />
+                  {profile.avatar && <AvatarImage src={profile.avatar} alt={profile.name || "Avatar"} />}
                   <AvatarFallback className="text-xl">
                     {profile.name?.charAt(0).toUpperCase() || "U"}
                   </AvatarFallback>
@@ -359,6 +359,7 @@ export default function ProfilePage() {
     </div>
   );
 }
+
 
 
 
