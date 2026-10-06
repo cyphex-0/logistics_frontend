@@ -76,7 +76,7 @@ export default function PaymentsPage() {
                         shipment.paymentStatus === "INITIATED" ? "secondary" : 
                         shipment.paymentStatus === "FAILED" ? "destructive" : "outline"
                       }>
-                        {shipment.paymentStatus || "UNKNOWN"}
+                        {shipment.paymentStatus || "UNPAID"}
                       </Badge>
                     </TableCell>
                   </TableRow>
@@ -89,3 +89,4 @@ export default function PaymentsPage() {
     </div>
   );
 }
+
