@@ -11,7 +11,7 @@ import { ShipmentStatus } from "@/types/api";
 // --- Users & Profile ---
 export function useProfile() {
   return useQuery({
-    queryKey: queryKeys.auth.me(),
+    queryKey: ["users", "me"],
     queryFn: () => userService.getProfile(),
     staleTime: 5 * 60 * 1000,
   });
