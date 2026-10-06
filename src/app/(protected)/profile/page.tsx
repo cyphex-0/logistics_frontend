@@ -248,21 +248,21 @@ export default function ProfilePage() {
             <div className="grid grid-cols-3 p-1 bg-muted rounded-lg">
               <Button
                 variant="ghost"
-                className={`w-full rounded-md h-9 ${theme === "light" ? "bg-background shadow-sm hover:bg-background text-foreground" : "hover:bg-transparent text-muted-foreground"}`}
+                className={`w-full rounded-md h-9 px-1 ${theme === "light" ? "bg-background shadow-sm hover:bg-background text-foreground" : "hover:bg-transparent text-muted-foreground"}`}
                 onClick={() => setTheme("light")}
               >
                 <Sun className="mr-2 h-4 w-4" /> Light
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full rounded-md h-9 ${theme === "dark" ? "bg-background shadow-sm hover:bg-background text-foreground" : "hover:bg-transparent text-muted-foreground"}`}
+                className={`w-full rounded-md h-9 px-1 ${theme === "dark" ? "bg-background shadow-sm hover:bg-background text-foreground" : "hover:bg-transparent text-muted-foreground"}`}
                 onClick={() => setTheme("dark")}
               >
                 <Moon className="mr-2 h-4 w-4" /> Dark
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full rounded-md h-9 ${theme === "system" ? "bg-background shadow-sm hover:bg-background text-foreground" : "hover:bg-transparent text-muted-foreground"}`}
+                className={`w-full rounded-md h-9 px-1 ${theme === "system" ? "bg-background shadow-sm hover:bg-background text-foreground" : "hover:bg-transparent text-muted-foreground"}`}
                 onClick={() => setTheme("system")}
               >
                 <Monitor className="mr-2 h-4 w-4" /> System
@@ -359,6 +359,7 @@ export default function ProfilePage() {
     </div>
   );
 }
+
 
 
 
