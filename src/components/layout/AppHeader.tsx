@@ -6,6 +6,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import Image from "next/image";
 import { MobileNav } from "./MobileNav";
 import { useAuth } from "@/components/providers/AuthProvider";
+import { UserNav } from "./UserNav";
 
 export function AppHeader() {
   const { user } = useAuth();
@@ -66,6 +67,7 @@ export function AppHeader() {
           <div className="hidden md:flex items-center gap-2">
             {user ? (
               <Link href="/dashboard" className={buttonVariants()}>Dashboard</Link>
+                <UserNav />
             ) : (
               <>
                 <Link href="/auth/login" className={buttonVariants({ variant: "ghost", className: "text-base font-medium" })}>
@@ -82,3 +84,7 @@ export function AppHeader() {
     </header>
   );
 }
+
+
+
+
