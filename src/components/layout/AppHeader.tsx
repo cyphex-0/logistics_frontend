@@ -9,7 +9,7 @@ import { useAuth } from "@/components/providers/AuthProvider";
 import { UserNav } from "./UserNav";
 
 export function AppHeader() {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -65,7 +65,12 @@ export function AppHeader() {
           <MobileNav />
 
           <div className="hidden md:flex items-center gap-2">
-            {user ? (
+            {isLoading ? (
+              <div className="flex items-center gap-2">
+                <div className="h-10 w-24 rounded-md bg-muted animate-pulse"></div>
+                <div className="h-8 w-8 rounded-full bg-muted animate-pulse"></div>
+              </div>
+            ) : user ? (
               <div className="flex items-center gap-2">
                 <Link href="/dashboard" className={buttonVariants()}>Dashboard</Link>
                 <UserNav />
@@ -86,6 +91,7 @@ export function AppHeader() {
     </header>
   );
 }
+
 
 
 

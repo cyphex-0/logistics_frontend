@@ -10,7 +10,7 @@ import { useAuth } from "@/components/providers/AuthProvider";
 import { useUIStore } from "@/lib/store/ui.store";
 
 export function MobileNav() {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
   const pathname = usePathname();
   const { isMobileNavOpen, setMobileNavOpen } = useUIStore();
 
@@ -51,7 +51,12 @@ export function MobileNav() {
             Careers
           </Link>
           <hr className="my-4 border-border/50" />
-          {user ? (
+          {isLoading ? (
+            <div className="flex flex-col gap-3">
+              <div className="h-11 w-full rounded-md bg-muted animate-pulse"></div>
+              <div className="h-11 w-full rounded-md bg-muted animate-pulse"></div>
+            </div>
+          ) : user ? (
             <Link href="/dashboard" className={buttonVariants({ size: "lg" })}>Dashboard</Link>
           ) : (
             <div className="flex flex-col gap-3">
@@ -68,3 +73,4 @@ export function MobileNav() {
     </Sheet>
   );
 }
+
