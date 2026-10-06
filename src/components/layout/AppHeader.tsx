@@ -66,8 +66,10 @@ export function AppHeader() {
 
           <div className="hidden md:flex items-center gap-2">
             {user ? (
-              <Link href="/dashboard" className={buttonVariants()}>Dashboard</Link>
+              <div className="flex items-center gap-2">
+                <Link href="/dashboard" className={buttonVariants()}>Dashboard</Link>
                 <UserNav />
+              </div>
             ) : (
               <>
                 <Link href="/auth/login" className={buttonVariants({ variant: "ghost", className: "text-base font-medium" })}>
@@ -84,6 +86,8 @@ export function AppHeader() {
     </header>
   );
 }
+
+
 
 
 
