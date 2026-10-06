@@ -93,7 +93,7 @@ export default function CreateShipmentWizard() {
   } = useCalculatePrice({
     destinationZoneId: debouncedDestinationZoneId,
     serviceType: debouncedServiceType,
-    weight: debouncedWeight,
+    weight: Number(debouncedWeight) || 0,
   });
 
   useEffect(() => {
@@ -583,4 +583,5 @@ export default function CreateShipmentWizard() {
     </div>
   );
 }
+
 
