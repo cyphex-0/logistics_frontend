@@ -57,7 +57,7 @@ export function ShipmentFilterBar() {
       <div className="w-full sm:w-[200px]">
         <Select value={initialStatus} onValueChange={(val) => handleStatusChange(val || "")}>
           <SelectTrigger>
-            <SelectValue placeholder="Filter by status">{urlStatus === "ALL" ? "All Statuses" : (urlStatus as string).replace(/_/g, " ")}</SelectValue>
+            <SelectValue placeholder="Filter by status">{initialStatus === "ALL" ? "All Statuses" : (initialStatus as string).replace(/_/g, " ")}</SelectValue>
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="ALL">All Statuses</SelectItem>
@@ -72,7 +72,7 @@ export function ShipmentFilterBar() {
       <div className="w-full sm:w-[180px]">
         <Select value={initialSort} onValueChange={(val) => handleSortChange(val || "")}>
           <SelectTrigger>
-            <SelectValue placeholder="Sort by">{urlSort === "createdAt:desc" ? "Newest First" : urlSort === "createdAt:asc" ? "Oldest First" : urlSort === "status:asc" ? "Status (A-Z)" : "Status (Z-A)"}</SelectValue>
+            <SelectValue placeholder="Sort by">{initialSort === "createdAt:desc" ? "Newest First" : initialSort === "createdAt:asc" ? "Oldest First" : initialSort === "status:asc" ? "Status (A-Z)" : "Status (Z-A)"}</SelectValue>
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="newest">Newest First</SelectItem>
@@ -110,4 +110,5 @@ export function ShipmentFilterBar() {
     </div>
   );
 }
+
 
