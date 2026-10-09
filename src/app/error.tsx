@@ -3,6 +3,8 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
+import * as Sentry from "@sentry/nextjs";
+
 export default function RootError({
   error,
   reset,
@@ -12,6 +14,7 @@ export default function RootError({
 }) {
   useEffect(() => {
     console.error(error);
+    Sentry.captureException(error);
   }, [error]);
 
   return (
