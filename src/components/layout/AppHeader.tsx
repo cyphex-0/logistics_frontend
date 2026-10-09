@@ -67,7 +67,6 @@ export function AppHeader() {
           <div className="hidden md:flex items-center gap-2">
             {isLoading ? (
               <div className="flex items-center gap-2">
-                <div className="h-10 w-24 rounded-md bg-muted animate-pulse"></div>
                 <div className="h-8 w-8 rounded-full bg-muted animate-pulse"></div>
               </div>
             ) : user ? (
@@ -91,6 +90,7 @@ export function AppHeader() {
     </header>
   );
 }
+
 
 
 
