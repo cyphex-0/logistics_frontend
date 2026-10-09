@@ -38,9 +38,9 @@ export function AdminChartCard({ shipments, isLoading }: AdminChartCardProps) {
             <p className="text-sm text-muted-foreground">No data available for chart.</p>
           </div>
         ) : (
-          <div className="h-64 w-full">
+          <div className="h-64 w-full [&_.recharts-wrapper]:outline-none [&_.recharts-surface]:outline-none [&_.recharts-pie-sector]:outline-none">
             <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
+              <PieChart style={{ outline: 'none' }}>
                 <Pie
                   data={data}
                   cx="50%"
@@ -49,9 +49,10 @@ export function AdminChartCard({ shipments, isLoading }: AdminChartCardProps) {
                   outerRadius={80}
                   paddingAngle={5}
                   dataKey="value"
+                  style={{ outline: 'none' }}
                 >
                   {data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} style={{ outline: 'none' }} />
                   ))}
                 </Pie>
                 <Tooltip />
