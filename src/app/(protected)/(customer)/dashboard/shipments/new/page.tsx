@@ -35,9 +35,9 @@ export const formSchema = z.object({
   recipientPhone: z.string().min(10, "Valid phone number is required"),
   parcel: z.object({
     weight: z.coerce.number().min(0.1, "Weight must be at least 0.1 kg"),
-    length: z.coerce.number().min(1, "Length is required (cm)"),
-    width: z.coerce.number().min(1, "Width is required (cm)"),
-    height: z.coerce.number().min(1, "Height is required (cm)"),
+    length: z.coerce.number().min(1, "Length must be at least 1 cm"),
+    width: z.coerce.number().min(1, "Width must be at least 1 cm"),
+    height: z.coerce.number().min(1, "Height must be at least 1 cm"),
     description: z.string().optional(),
     isFragile: z.boolean().default(false),
   }),
