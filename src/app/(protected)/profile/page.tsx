@@ -93,7 +93,10 @@ export default function ProfilePage() {
   }
 
   const onSubmit = (data: ProfileFormValues) => {
-    updateProfile.mutate(data);
+    const payload: any = { ...data };
+    if (!payload.avatar) delete payload.avatar;
+    if (!payload.phone) delete payload.phone;
+    updateProfile.mutate(payload);
   };
 
   return (
