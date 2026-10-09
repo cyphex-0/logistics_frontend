@@ -96,7 +96,7 @@ export function ZoneFormDialog() {
         
         {/* Template Selector */}
         <div className="space-y-2">
-          <FormLabel>Quick Load Template (Optional)</FormLabel>
+          <span className="text-sm font-medium leading-none">Quick Load Template (Optional)</span>
           <Select onValueChange={handleTemplateSelect}>
             <SelectTrigger>
               <SelectValue placeholder="Select a Bangladesh Division to auto-fill..." />
