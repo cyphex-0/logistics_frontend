@@ -72,11 +72,6 @@ export function ServicesGrid() {
                 >
                   Learn more <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Link>
-                
-                {/* Decorative subtle background icon */}
-                <div className="absolute -bottom-6 -right-6 opacity-[0.03] text-primary group-hover:opacity-[0.05] transition-opacity">
-                  <Icon className="w-48 h-48" />
-                </div>
               </div>
             );
           })}
@@ -85,3 +80,4 @@ export function ServicesGrid() {
     </section>
   );
 }
+
