@@ -82,7 +82,11 @@ export function CourierAssignDialog({ shipment, open, onOpenChange }: CourierAss
           ) : (
             <Select value={selectedCourierId} onValueChange={(val) => setSelectedCourierId(val || "")}>
               <SelectTrigger id="courier-select">
-                <SelectValue placeholder="Select a courier..." />
+                <span className="flex-1 text-left truncate">
+                  {selectedCourierId && couriers.find((c: any) => c.id === selectedCourierId) 
+                    ? `${couriers.find((c: any) => c.id === selectedCourierId).name} (${couriers.find((c: any) => c.id === selectedCourierId).email})`
+                    : "Select a courier..."}
+                </span>
               </SelectTrigger>
               <SelectContent>
                 {couriers.length === 0 ? (
