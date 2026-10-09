@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut, Settings, User, Users, Map, DollarSign, ClipboardList } from "lucide-react";
+import { LogOut, Settings, User, Users, Map, DollarSign, ClipboardList, LayoutDashboard } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
 export function UserNav() {
@@ -41,6 +41,10 @@ export function UserNav() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
+          <DropdownMenuItem className="cursor-pointer" onClick={() => router.push('/dashboard')}>
+              <LayoutDashboard className="mr-2 h-4 w-4" />
+              <span>Dashboard</span>
+          </DropdownMenuItem>
           <DropdownMenuItem className="cursor-pointer" onClick={() => router.push('/profile')}>
               <User className="mr-2 h-4 w-4" />
               <span>Profile</span>
@@ -56,4 +60,5 @@ export function UserNav() {
     </DropdownMenu>
   );
 }
+
 
