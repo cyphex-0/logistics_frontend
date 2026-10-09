@@ -4,8 +4,8 @@ import { ArrowRight, Play, MapPin } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="py-20 md:py-32 px-4 overflow-hidden relative">
-      <div className="container mx-auto">
+    <section className="py-20 md:py-32 overflow-hidden relative">
+      <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Text Content */}
           <div className="max-w-xl">
@@ -121,3 +121,4 @@ export function HeroSection() {
     </section>
   );
 }
+

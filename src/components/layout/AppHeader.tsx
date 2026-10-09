@@ -17,7 +17,7 @@ export function AppHeader() {
         {/* Left side: Logo */}
         <div className="flex items-center gap-4 z-10">
           <Link href="/" className="flex items-center gap-3">
-            <div className="relative h-10 w-10 md:h-12 md:w-12 -ml-2">
+            <div className="relative h-10 w-10 md:h-12 md:w-12">
               <Image 
                 src="/logo.png" 
                 alt="Shiply Logo" 
@@ -72,7 +72,7 @@ export function AppHeader() {
               </div>
             ) : user ? (
               <div className="flex items-center gap-2">
-                <Link href="/dashboard" className={buttonVariants()}>Dashboard</Link>
+                
                 <UserNav />
               </div>
             ) : (
@@ -91,6 +91,7 @@ export function AppHeader() {
     </header>
   );
 }
+
 
 
 
