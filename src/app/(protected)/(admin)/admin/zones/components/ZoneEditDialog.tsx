@@ -110,23 +110,6 @@ export function ZoneEditDialog({ zone }: ZoneEditDialogProps) {
           </DialogDescription>
         </DialogHeader>
 
-        {/* Template Selector */}
-        <div className="space-y-2">
-          <span className="text-sm font-medium leading-none">Quick Load Template (Optional)</span>
-          <Select onValueChange={handleTemplateSelect}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select a Bangladesh Division to auto-fill..." />
-            </SelectTrigger>
-            <SelectContent>
-              {BANGLADESH_LOCATIONS.map((div) => (
-                <SelectItem key={div.name} value={div.name}>
-                  {div.name} Division
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
@@ -136,7 +119,29 @@ export function ZoneEditDialog({ zone }: ZoneEditDialogProps) {
                 <FormItem>
                   <FormLabel>Zone Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g. Khulna" {...field} />
+                    <div>
+                      <Input 
+                        placeholder="e.g. Khulna" 
+                        {...field} 
+                        list="edit-division-options"
+                        onChange={(e) => {
+                          field.onChange(e);
+                          const typedName = e.target.value;
+                          const matchedDivision = BANGLADESH_LOCATIONS.find(d => d.name.toLowerCase() === typedName.toLowerCase());
+                          if (matchedDivision) {
+                            const currentCities = form.getValues('coverageCities');
+                            if (!currentCities || currentCities.trim() === '') {
+                              form.setValue('coverageCities', matchedDivision.districts.join(', '));
+                            }
+                          }
+                        }}
+                      />
+                      <datalist id="edit-division-options">
+                        {BANGLADESH_LOCATIONS.map(div => (
+                          <option key={div.name} value={div.name} />
+                        ))}
+                      </datalist>
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
