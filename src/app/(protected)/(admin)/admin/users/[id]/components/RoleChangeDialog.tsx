@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { User } from "@/types/api";
 import { UserRole } from "@/types/api";
-import { useUpdateUserRole, useProfile, useZones } from "@/hooks/queries";
+import { useUpdateUserRole, useProfile } from "@/hooks/queries";
 import { toast } from "sonner";
 import { Loader2, ShieldAlert } from "lucide-react";
 import {
@@ -31,7 +31,6 @@ export function RoleChangeDialog({ user }: { user: User }) {
   
   const updateRole = useUpdateUserRole();
   const { data: me } = useProfile();
-  const { data: zones = [], isLoading: zonesLoading } = useZones();
   
   const isSelf = me?.id === user.id;
 
@@ -85,34 +84,15 @@ export function RoleChangeDialog({ user }: { user: User }) {
 
           {role === UserRole.COURIER && (
             <div className="space-y-2">
-              <Label htmlFor="serviceArea">Service Area</Label>
-              {zonesLoading ? (
-                <div className="flex items-center text-sm text-muted-foreground">
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Loading zones...
-                </div>
-              ) : (
-                <Select value={serviceArea} onValueChange={(v) => setServiceArea(v || "")}>
-                  <SelectTrigger id="serviceArea">
-                    <SelectValue placeholder="Select a zone..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {zones.length === 0 ? (
-                      <SelectItem value="none" disabled>
-                        No zones found
-                      </SelectItem>
-                    ) : (
-                      zones.map((zone) => (
-                        <SelectItem key={zone.id} value={zone.name}>
-                          {zone.name}
-                        </SelectItem>
-                      ))
-                    )}
-                  </SelectContent>
-                </Select>
-              )}
+              <Label htmlFor="serviceArea">Service Areas (Comma Separated)</Label>
+              <Input
+                id="serviceArea"
+                value={serviceArea}
+                onChange={(e) => setServiceArea(e.target.value)}
+                placeholder="e.g. Dhaka, Khulna, Sylhet"
+              />
               <p className="text-xs text-muted-foreground">
-                Required for couriers to filter relevant shipments.
+                Required for couriers to filter relevant shipments. You can specify multiple zones separated by commas.
               </p>
             </div>
           )}

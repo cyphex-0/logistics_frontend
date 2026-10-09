@@ -47,7 +47,8 @@ export function CourierAssignDialog({ shipment, open, onOpenChange }: CourierAss
   const allCouriers = Array.isArray(usersData) ? usersData : ((usersData as unknown as { data: User[] })?.data || []);
   const couriers = allCouriers.filter((c: any) => {
     if (!originZone || !c.serviceArea) return false;
-    return c.serviceArea.toLowerCase() === originZone.name.toLowerCase();
+    const allowedZones = c.serviceArea.toLowerCase().split(',').map((z: string) => z.trim());
+    return allowedZones.includes(originZone.name.toLowerCase());
   });
 
   const handleAssign = () => {
