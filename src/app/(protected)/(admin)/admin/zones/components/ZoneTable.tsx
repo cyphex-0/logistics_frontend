@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table";
 import { ZoneStatusSwitch } from "./ZoneStatusSwitch";
 import { ZoneDeleteDialog } from "./ZoneDeleteDialog";
+import { ZoneEditDialog } from "./ZoneEditDialog";
 import { Timestamp } from "@/components/shared/Timestamp";
 
 export function ZoneTable({ zones }: { zones: Zone[] }) {
@@ -51,7 +52,8 @@ export function ZoneTable({ zones }: { zones: Zone[] }) {
               <TableCell data-label="Status">
                 <ZoneStatusSwitch zone={zone} />
               </TableCell>
-              <TableCell className="text-right" data-label="Actions">
+              <TableCell className="text-right flex items-center justify-end" data-label="Actions">
+                <ZoneEditDialog zone={zone} />
                 <ZoneDeleteDialog zone={zone} />
               </TableCell>
             </TableRow>
