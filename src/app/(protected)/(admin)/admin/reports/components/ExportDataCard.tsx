@@ -94,15 +94,15 @@ export function ExportDataCard() {
   return (
     <div className="grid gap-4 md:grid-cols-2">
       {EXPORT_OPTIONS.map((option) => (
-        <Card key={option.id}>
-          <CardHeader>
+        <Card key={option.id} className="flex flex-col h-full">
+          <CardHeader className="flex-1">
             <CardTitle className="flex items-center gap-2">
               <FileSpreadsheet className="h-5 w-5 text-muted-foreground" />
               {option.title}
             </CardTitle>
             <CardDescription>{option.description}</CardDescription>
           </CardHeader>
-          <CardFooter>
+          <CardFooter className="mt-auto">
             <Button 
               onClick={() => handleExport(option.id)}
               disabled={isExporting !== null}
