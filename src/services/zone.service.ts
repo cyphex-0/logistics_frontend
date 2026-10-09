@@ -3,14 +3,14 @@ import { apiClient } from "@/lib/api/client";
 export interface Zone {
   id: string;
   name: string;
-  city: string;
+  coverageCities: string[];
   isActive: boolean;
   createdAt: string;
 }
 
 export interface CreateZonePayload {
   name: string;
-  city: string;
+  coverageCities: string[];
   isActive?: boolean;
 }
 

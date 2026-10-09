@@ -308,9 +308,18 @@ export default function CreateShipmentWizard() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>City</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Dhaka" {...field} />
-                            </FormControl>
+                            <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select a city" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {(zones.find(z => z.id === form.watch("originZoneId"))?.coverageCities || []).map(city => (
+                                  <SelectItem key={city} value={city}>{city}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
                             <FormMessage />
                           </FormItem>
                         )}
@@ -366,9 +375,18 @@ export default function CreateShipmentWizard() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Delivery City</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Chittagong" {...field} />
-                            </FormControl>
+                            <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select a city" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {(zones.find(z => z.id === form.watch("destinationZoneId"))?.coverageCities || []).map(city => (
+                                  <SelectItem key={city} value={city}>{city}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
                             <FormMessage />
                           </FormItem>
                         )}

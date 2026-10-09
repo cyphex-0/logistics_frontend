@@ -28,7 +28,7 @@ export function ZoneTable({ zones }: { zones: Zone[] }) {
         <TableHeader>
           <TableRow>
             <TableHead>Name</TableHead>
-            <TableHead>City</TableHead>
+            <TableHead>Coverage Cities</TableHead>
             <TableHead>Created At</TableHead>
             <TableHead>Status</TableHead>
             <TableHead className="text-right">Actions</TableHead>
@@ -38,7 +38,15 @@ export function ZoneTable({ zones }: { zones: Zone[] }) {
           {zones.map((zone) => (
             <TableRow key={zone.id}>
               <TableCell className="font-medium" data-label="Name">{zone.name}</TableCell>
-              <TableCell data-label="City">{zone.city}</TableCell>
+              <TableCell data-label="Coverage Cities">
+                <div className="flex flex-wrap gap-1">
+                  {(zone.coverageCities || []).map(city => (
+                    <span key={city} className="inline-flex items-center rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground">
+                      {city}
+                    </span>
+                  ))}
+                </div>
+              </TableCell>
               <TableCell data-label="Created At"><Timestamp date={zone.createdAt} /></TableCell>
               <TableCell data-label="Status">
                 <ZoneStatusSwitch zone={zone} />

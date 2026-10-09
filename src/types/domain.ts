@@ -223,8 +223,8 @@ export interface DeliveryZone {
   id: string;
   /** Guaranteed: Unique name of the zone */
   name: string;
-  /** Guaranteed: City the zone belongs to */
-  city: string;
+  /** Guaranteed: Array of cities covered by this zone */
+  coverageCities: string[];
   /** Guaranteed: Active status flag */
   isActive: boolean;
   /** Guaranteed: Creation timestamp (ISO string) */
@@ -385,13 +385,13 @@ export interface RecordDeliveryAttemptInput {
 
 export interface CreateZoneInput {
   name: string;
-  city: string;
+  coverageCities: string[];
   isActive?: boolean;
 }
 
 export interface UpdateZoneInput {
   name?: string;
-  city?: string;
+  coverageCities?: string[];
   isActive?: boolean;
 }
 

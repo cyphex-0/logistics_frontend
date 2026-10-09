@@ -114,7 +114,18 @@ export function EditShipmentDialog({ shipment, isOpen, onClose }: EditShipmentDi
                   )} />
                   <div className="grid grid-cols-2 gap-4">
                     <FormField control={form.control as any} name="originCity" render={({ field }) => (
-                      <FormItem><FormLabel>Origin City</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+                      <FormItem>
+                        <FormLabel>Origin City</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
+                          <FormControl><SelectTrigger><SelectValue placeholder="Select city" /></SelectTrigger></FormControl>
+                          <SelectContent>
+                            {(zones.find(z => z.id === form.watch("originZoneId"))?.coverageCities || []).map(city => (
+                              <SelectItem key={city} value={city}>{city}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
                     )} />
                     <FormField control={form.control as any} name="originZoneId" render={({ field }) => (
                       <FormItem>
@@ -157,7 +168,18 @@ export function EditShipmentDialog({ shipment, isOpen, onClose }: EditShipmentDi
                   )} />
                   <div className="grid grid-cols-2 gap-4">
                     <FormField control={form.control as any} name="destinationCity" render={({ field }) => (
-                      <FormItem><FormLabel>Destination City</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
+                      <FormItem>
+                        <FormLabel>Destination City</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
+                          <FormControl><SelectTrigger><SelectValue placeholder="Select city" /></SelectTrigger></FormControl>
+                          <SelectContent>
+                            {(zones.find(z => z.id === form.watch("destinationZoneId"))?.coverageCities || []).map(city => (
+                              <SelectItem key={city} value={city}>{city}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
                     )} />
                     <FormField control={form.control as any} name="destinationZoneId" render={({ field }) => (
                       <FormItem>

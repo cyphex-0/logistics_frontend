@@ -13,7 +13,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
   Form,
@@ -32,7 +31,7 @@ import { toast } from "sonner";
 
 const zoneSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
-  city: z.string().min(2, "City must be at least 2 characters"),
+  coverageCities: z.string().min(2, "At least one city is required"),
   isActive: z.boolean(),
 });
 
@@ -46,13 +45,23 @@ export function ZoneFormDialog() {
     resolver: zodResolver(zoneSchema),
     defaultValues: {
       name: "",
-      city: "",
+      coverageCities: "",
       isActive: true,
     },
   });
 
   const onSubmit = (values: ZoneFormValues) => {
-    mutate(values as CreateZonePayload, {
+    // Convert comma-separated string to array
+    const parsedCities = values.coverageCities
+      .split(",")
+      .map(city => city.trim())
+      .filter(city => city.length > 0);
+
+    mutate({
+      name: values.name,
+      coverageCities: parsedCities,
+      isActive: values.isActive
+    } as unknown as CreateZonePayload, {
       onSuccess: () => {
         setOpen(false);
         form.reset();
@@ -83,7 +92,7 @@ export function ZoneFormDialog() {
                 <FormItem>
                   <FormLabel>Zone Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g. Dhaka North" {...field} />
+                    <Input placeholder="e.g. Khulna Division" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -91,13 +100,16 @@ export function ZoneFormDialog() {
             />
             <FormField
               control={form.control}
-              name="city"
+              name="coverageCities"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>City</FormLabel>
+                  <FormLabel>Coverage Cities (Comma Separated)</FormLabel>
                   <FormControl>
-                    <Input placeholder="e.g. Dhaka" {...field} />
+                    <Input placeholder="e.g. Khulna, Satkhira, Jessore" {...field} />
                   </FormControl>
+                  <FormDescription>
+                    Enter the cities covered by this zone, separated by commas.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
