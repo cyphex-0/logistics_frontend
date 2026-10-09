@@ -424,7 +424,7 @@ export default function CreateShipmentWizard() {
                         <FormItem>
                           <FormLabel>Weight (kg)</FormLabel>
                           <FormControl>
-                            <Input type="number" step="0.1" placeholder="1.5" {...field} />
+                            <Input type="number" step="0.1" min="0.1" placeholder="1.5" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -437,7 +437,7 @@ export default function CreateShipmentWizard() {
                         <FormItem>
                           <FormLabel>Length (cm)</FormLabel>
                           <FormControl>
-                            <Input type="number" placeholder="10" {...field} />
+                            <Input type="number" min="1" placeholder="10" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -450,7 +450,7 @@ export default function CreateShipmentWizard() {
                         <FormItem>
                           <FormLabel>Width (cm)</FormLabel>
                           <FormControl>
-                            <Input type="number" placeholder="10" {...field} />
+                            <Input type="number" min="1" placeholder="10" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -463,7 +463,7 @@ export default function CreateShipmentWizard() {
                         <FormItem>
                           <FormLabel>Height (cm)</FormLabel>
                           <FormControl>
-                            <Input type="number" placeholder="10" {...field} />
+                            <Input type="number" min="1" placeholder="10" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
