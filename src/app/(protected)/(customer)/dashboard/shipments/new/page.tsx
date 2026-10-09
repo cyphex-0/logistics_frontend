@@ -138,8 +138,7 @@ export default function CreateShipmentWizard() {
       setIsSubmitting(true);
       const result = await shipmentService.createShipment(data);
       toast.success("Shipment created successfully!");
-        form.reset();
-        setCurrentStep(0);
+      router.push(`/dashboard/shipments/${result.id}`);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Failed to create shipment");
     } finally {
@@ -194,7 +193,14 @@ export default function CreateShipmentWizard() {
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={(e) => {
+          if (currentStep !== STEPS.length - 1) {
+            e.preventDefault();
+            handleNext();
+          } else {
+            form.handleSubmit(onSubmit)(e);
+          }
+        }}>
           <Card>
             <CardHeader>
               <CardTitle>{STEPS[currentStep]}</CardTitle>
