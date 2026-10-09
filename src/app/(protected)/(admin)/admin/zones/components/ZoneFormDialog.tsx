@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -23,15 +23,16 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
-import { Plus } from "lucide-react";
-import { toast } from "sonner";
+import { Plus, CheckSquare, Square } from "lucide-react";
+import { BANGLADESH_LOCATIONS } from "@/lib/bangladesh-locations";
 
 const zoneSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  coverageCities: z.string().min(2, "At least one city is required"),
+  name: z.string().min(2, "Division is required"),
+  coverageCities: z.array(z.string()).min(1, "At least one district is required"),
   isActive: z.boolean(),
 });
 
@@ -45,21 +46,31 @@ export function ZoneFormDialog() {
     resolver: zodResolver(zoneSchema),
     defaultValues: {
       name: "",
-      coverageCities: "",
+      coverageCities: [],
       isActive: true,
     },
   });
 
-  const onSubmit = (values: ZoneFormValues) => {
-    // Convert comma-separated string to array
-    const parsedCities = values.coverageCities
-      .split(",")
-      .map(city => city.trim())
-      .filter(city => city.length > 0);
+  const selectedDivisionName = form.watch("name");
+  
+  // When division changes, reset coverage cities unless we are just opening the dialog
+  useEffect(() => {
+    if (open && selectedDivisionName) {
+      const currentCities = form.getValues("coverageCities");
+      const division = BANGLADESH_LOCATIONS.find(d => d.name === selectedDivisionName);
+      // If the current selected cities don't belong to the new division, clear them
+      if (division && currentCities.length > 0 && !currentCities.every(c => division.districts.includes(c))) {
+        form.setValue("coverageCities", [], { shouldValidate: true });
+      }
+    }
+  }, [selectedDivisionName, open, form]);
 
+  const selectedDivision = BANGLADESH_LOCATIONS.find(d => d.name === selectedDivisionName);
+
+  const onSubmit = (values: ZoneFormValues) => {
     mutate({
       name: values.name,
-      coverageCities: parsedCities,
+      coverageCities: values.coverageCities,
       isActive: values.isActive
     } as unknown as CreateZonePayload, {
       onSuccess: () => {
@@ -69,51 +80,133 @@ export function ZoneFormDialog() {
     });
   };
 
+  const handleSelectAll = () => {
+    if (selectedDivision) {
+      form.setValue("coverageCities", selectedDivision.districts, { shouldValidate: true });
+    }
+  };
+
+  const handleDeselectAll = () => {
+    form.setValue("coverageCities", [], { shouldValidate: true });
+  };
+
   return (
     <>
-      <Button onClick={() => setOpen(true)}>
+      <Button onClick={() => { form.reset(); setOpen(true); }}>
         <Plus className="mr-2 h-4 w-4" />
         Add Zone
       </Button>
       <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle>Add New Zone</DialogTitle>
           <DialogDescription>
-            Create a new delivery zone.
+            Select a division and its operational districts.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Zone Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="e.g. Khulna Division" {...field} />
-                  </FormControl>
+                  <FormLabel>Division (Zone Name)</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a division" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {BANGLADESH_LOCATIONS.map((div) => (
+                        <SelectItem key={div.name} value={div.name}>
+                          {div.name} Division
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="coverageCities"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Coverage Cities (Comma Separated)</FormLabel>
-                  <FormControl>
-                    <Input placeholder="e.g. Khulna, Satkhira, Jessore" {...field} />
-                  </FormControl>
-                  <FormDescription>
-                    Enter the cities covered by this zone, separated by commas.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+
+            {selectedDivision && (
+              <FormField
+                control={form.control}
+                name="coverageCities"
+                render={() => (
+                  <FormItem>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <FormLabel>Coverage Districts</FormLabel>
+                        <FormDescription>
+                          Select the districts this zone will operate in.
+                        </FormDescription>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button 
+                          type="button" 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={handleSelectAll}
+                          className="h-7 text-xs px-2"
+                        >
+                          <CheckSquare className="h-3 w-3 mr-1" /> All
+                        </Button>
+                        <Button 
+                          type="button" 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={handleDeselectAll}
+                          className="h-7 text-xs px-2"
+                        >
+                          <Square className="h-3 w-3 mr-1" /> None
+                        </Button>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-2 mt-3 max-h-[200px] overflow-y-auto p-1 border rounded-md bg-muted/20">
+                      {selectedDivision.districts.map((district) => (
+                        <FormField
+                          key={district}
+                          control={form.control}
+                          name="coverageCities"
+                          render={({ field }) => {
+                            return (
+                              <FormItem
+                                key={district}
+                                className="flex flex-row items-start space-x-3 space-y-0 rounded-md p-2 hover:bg-muted/50 transition-colors"
+                              >
+                                <FormControl>
+                                  <Checkbox
+                                    checked={field.value?.includes(district)}
+                                    onCheckedChange={(checked) => {
+                                      return checked
+                                        ? field.onChange([...field.value, district])
+                                        : field.onChange(
+                                            field.value?.filter(
+                                              (value) => value !== district
+                                            )
+                                          )
+                                    }}
+                                  />
+                                </FormControl>
+                                <FormLabel className="text-sm font-normal cursor-pointer w-full">
+                                  {district}
+                                </FormLabel>
+                              </FormItem>
+                            )
+                          }}
+                        />
+                      ))}
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
+
             <FormField
               control={form.control}
               name="isActive"
