@@ -77,7 +77,7 @@ export function HeroSection() {
                   {/* Nodes */}
                   {/* Origin */}
                   <circle cx="20" cy="80" r="6" fill="#6366f1" />
-                  <text x="20" y="105" fill="#94a3b8" fontSize="12" textAnchor="middle">Khulna</text>
+                  <text x="20" y="105" fill="#94a3b8" fontSize="12" textAnchor="start" transform="translate(-10, 0)">Khulna</text>
                   
                   {/* Waypoint */}
                   <circle cx="200" cy="80" r="6" fill="#6366f1" />
@@ -86,7 +86,7 @@ export function HeroSection() {
                   
                   {/* Destination */}
                   <circle cx="380" cy="60" r="6" fill="#334155" />
-                  <text x="380" y="85" fill="#94a3b8" fontSize="12" textAnchor="middle">Dhaka</text>
+                  <text x="380" y="85" fill="#94a3b8" fontSize="12" textAnchor="end" transform="translate(10, 0)">Dhaka</text>
                 </svg>
 
                 {/* Truck/Ship icon moving along path - static positioned at waypoint for now, or could animate */}
