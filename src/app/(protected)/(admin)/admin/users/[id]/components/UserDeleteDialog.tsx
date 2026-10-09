@@ -26,12 +26,8 @@ export function UserDeleteDialog({ user }: { user: User }) {
   const handleDelete = () => {
     deleteUser.mutate(user.id, {
       onSuccess: () => {
-        toast.success("User deleted successfully.");
         setOpen(false);
         router.push("/admin/users");
-      },
-      onError: (err: Error) => {
-        toast.error(err.message || "Failed to delete user.");
       },
     });
   };

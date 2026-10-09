@@ -16,8 +16,11 @@ export function handleApiError(error: unknown, defaultTitle: string = "Action fa
       title = "Permission Denied";
       description = "You do not have the required permissions to perform this action.";
     } else if (error.status === 409) {
-      title = "State Conflict";
-      description = "This resource was modified by someone else or has an conflicting state. Please refresh and try again.";
+      title = "Conflict / Already Exists";
+      const isUniqueConstraint = error.message?.toLowerCase().includes("unique constraint") || error.message?.toLowerCase().includes("already exists");
+      description = isUniqueConstraint 
+        ? "A record with this name or identifier already exists. Please use a different one."
+        : (error.message || "This resource was modified by someone else or has a conflicting state.");
     } else if (error.fieldErrors && error.fieldErrors.length > 0) {
       title = "Validation Error";
       description = error.fieldErrors.map((e) => e.message).join("\n");

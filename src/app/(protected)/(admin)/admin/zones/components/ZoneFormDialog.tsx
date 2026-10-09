@@ -54,12 +54,8 @@ export function ZoneFormDialog() {
   const onSubmit = (values: ZoneFormValues) => {
     mutate(values as CreateZonePayload, {
       onSuccess: () => {
-        toast.success("Zone created successfully.");
         setOpen(false);
         form.reset();
-      },
-      onError: (err: Error) => {
-        toast.error(err.message || "Failed to create zone.");
       },
     });
   };

@@ -43,11 +43,7 @@ export function RoleChangeDialog({ user }: { user: User }) {
       },
       {
         onSuccess: () => {
-          toast.success("User role updated successfully.");
           setOpen(false);
-        },
-        onError: (err: Error) => {
-          toast.error(err.message || "Failed to update user role.");
         },
       }
     );

@@ -25,11 +25,9 @@ export function ZoneDeleteDialog({ zone }: { zone: Zone }) {
   const handleDelete = () => {
     mutate(zone.id, {
       onSuccess: () => {
-        toast.success(`Zone ${zone.name} deleted successfully.`);
         setOpen(false);
       },
-      onError: (err: Error) => {
-        toast.error(err.message || "Failed to delete zone.");
+      onError: () => {
         setOpen(false);
       },
     });
