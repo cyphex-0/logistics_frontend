@@ -39,9 +39,7 @@ export function NotificationBell() {
       <DropdownMenuTrigger render={<Button variant="ghost" size="icon" className="relative" />}>
           <Bell className="h-5 w-5" />
           {hasUnread && (
-            <span className="absolute top-2 right-2 flex h-3 w-3 items-center justify-center rounded-full bg-status-pending">
-              {/* Optional: Add unread count if needed, but simple dot matches the previous style */}
-            </span>
+            <span className="absolute top-[6px] right-[6px] flex h-2.5 w-2.5 rounded-full bg-orange-500 border-2 border-background"></span>
           )}
           <span className="sr-only">Notifications</span>
       </DropdownMenuTrigger>
@@ -93,3 +91,4 @@ export function NotificationBell() {
     </DropdownMenu>
   );
 }
+
