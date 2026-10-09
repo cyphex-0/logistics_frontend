@@ -86,7 +86,7 @@ export function HeroSection() {
                   
                   {/* Destination */}
                   <circle cx="380" cy="60" r="6" fill="#334155" />
-                  <text x="380" y="85" fill="#94a3b8" fontSize="12" textAnchor="end" transform="translate(10, 0)">Dhaka</text>
+                  <text x="380" y="45" fill="#94a3b8" fontSize="12" textAnchor="end">Dhaka</text>
                 </svg>
 
                 {/* Truck/Ship icon moving along path - static positioned at waypoint for now, or could animate */}
