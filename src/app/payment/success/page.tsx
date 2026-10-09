@@ -12,6 +12,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2, Package, ArrowRight, Loader2 } from "lucide-react";
 import Link from "next/link";
@@ -26,6 +27,7 @@ export default function PaymentSuccessPage({
 }) {
   const shipmentId = searchParams.shipmentId;
   const queryClient = useQueryClient();
+  const router = useRouter();
   const [isPolling, setIsPolling] = useState(true);
   
   // Use React Query to fetch the shipment. We'll enable it only if we have a shipmentId.
@@ -54,6 +56,10 @@ export default function PaymentSuccessPage({
       ) {
         setIsPolling(false);
         queryClient.invalidateQueries({ queryKey: queryKeys.shipments.all });
+        // Automatically redirect back to the shipment page after 2 seconds
+        setTimeout(() => {
+          router.push(`/dashboard/shipments/${shipmentId}`);
+        }, 2000);
         return;
       }
 
@@ -87,6 +93,7 @@ export default function PaymentSuccessPage({
             <div className="bg-green-50 text-green-800 p-4 rounded-lg">
               <p className="font-semibold">Payment Confirmed!</p>
               <p className="text-sm mt-1">Your shipment is now confirmed and ready for the next steps.</p>
+              <p className="text-sm mt-3 animate-pulse">Redirecting to your shipment details...</p>
             </div>
           ) : (
             <>
