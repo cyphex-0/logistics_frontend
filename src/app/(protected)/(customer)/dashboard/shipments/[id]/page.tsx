@@ -19,7 +19,15 @@ export default function ShipmentDetailPage({ params }: { params: Promise<{ id: s
   // Unbox params
   const { id } = use(params);
   
-  const { data: shipment, isLoading, isError } = useShipment(id);
+  const { data: shipment, isLoading, isError } = useShipment(id, {
+    refetchInterval: (query) => {
+      const currentShipment = query.state.data as any;
+      if (!currentShipment) return 5000;
+      if (currentShipment.status === "PENDING") return 3000;
+      if (["CONFIRMED", "PICKED_UP", "IN_TRANSIT"].includes(currentShipment.status)) return 10000;
+      return false; // STOP polling if delivered or cancelled
+    }
+  });
 
   if (isLoading) {
     return (
