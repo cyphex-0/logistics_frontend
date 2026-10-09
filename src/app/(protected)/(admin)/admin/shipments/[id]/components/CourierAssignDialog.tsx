@@ -46,8 +46,8 @@ export function CourierAssignDialog({ shipment, open, onOpenChange }: CourierAss
   // Filter couriers to only those whose serviceArea matches the originZone's name
   const allCouriers = Array.isArray(usersData) ? usersData : ((usersData as unknown as { data: User[] })?.data || []);
   const couriers = allCouriers.filter((c: any) => {
-    if (!originZone) return false;
-    return c.serviceArea === originZone.name;
+    if (!originZone || !c.serviceArea) return false;
+    return c.serviceArea.toLowerCase() === originZone.name.toLowerCase();
   });
 
   const handleAssign = () => {
