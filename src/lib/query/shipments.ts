@@ -8,14 +8,19 @@ export function useShipments(filters?: { status?: ShipmentStatus; page?: number;
   return useQuery({
     queryKey: queryKeys.shipments.list(filters || {}),
     queryFn: () => shipmentService.getShipments(filters),
+    refetchOnWindowFocus: true,
+    staleTime: 0,
   });
 }
 
-export function useShipment(id: string) {
+export function useShipment(id: string, options?: { refetchInterval?: number | false | ((query: any) => number | false) }) {
   return useQuery({
     queryKey: queryKeys.shipments.detail(id),
     queryFn: () => shipmentService.getShipmentById(id),
     enabled: !!id,
+    refetchOnWindowFocus: true,
+    staleTime: 0,
+    refetchInterval: options?.refetchInterval,
   });
 }
 
@@ -142,4 +147,7 @@ export function useShipmentTimeline(id: string) {
     enabled: !!id,
   });
 }
+
+
+
 

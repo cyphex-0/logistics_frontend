@@ -72,3 +72,5 @@ export default function ShipmentDetailPage({ params }: { params: Promise<{ id: s
     </div>
   );
 }
+
+

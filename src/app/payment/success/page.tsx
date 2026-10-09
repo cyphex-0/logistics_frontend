@@ -15,7 +15,8 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2, Package, ArrowRight, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useShipment } from "@/lib/query/shipments";
+import { useShipment, queryKeys } from "@/lib/query";
+import { useQueryClient } from "@tanstack/react-query";
 import { PaymentStatus, ShipmentStatus } from "@/types/api";
 
 export default function PaymentSuccessPage({
@@ -24,6 +25,7 @@ export default function PaymentSuccessPage({
   searchParams: { shipmentId?: string; session_id?: string };
 }) {
   const shipmentId = searchParams.shipmentId;
+  const queryClient = useQueryClient();
   const [isPolling, setIsPolling] = useState(true);
   
   // Use React Query to fetch the shipment. We'll enable it only if we have a shipmentId.
@@ -32,6 +34,7 @@ export default function PaymentSuccessPage({
   useEffect(() => {
     if (!shipmentId) {
       setTimeout(() => setIsPolling(false), 0);
+      queryClient.invalidateQueries({ queryKey: queryKeys.shipments.all });
       return;
     }
 
@@ -50,6 +53,7 @@ export default function PaymentSuccessPage({
          currentShipment.status !== ShipmentStatus.PENDING)
       ) {
         setIsPolling(false);
+        queryClient.invalidateQueries({ queryKey: queryKeys.shipments.all });
         return;
       }
 
@@ -138,3 +142,5 @@ export default function PaymentSuccessPage({
     </div>
   );
 }
+
+

@@ -14,6 +14,8 @@ export function PayNowButton({ shipmentId }: PayNowButtonProps) {
     initiatePayment({
       shipmentId,
       method: PaymentMethod.STRIPE,
+      successUrl: `${window.location.origin}/payment/success?shipmentId=${shipmentId}`,
+      cancelUrl: `${window.location.origin}/payment/cancel?shipmentId=${shipmentId}`,
     });
   };
 
@@ -28,3 +30,4 @@ export function PayNowButton({ shipmentId }: PayNowButtonProps) {
     </Button>
   );
 }
+

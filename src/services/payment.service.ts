@@ -4,6 +4,8 @@ import { PaymentMethod } from "@/types/api";
 export interface InitiatePaymentPayload {
   shipmentId: string;
   method: PaymentMethod;
+  successUrl?: string;
+  cancelUrl?: string;
 }
 
 export interface InitiatePaymentResponse {
@@ -26,4 +28,5 @@ export const paymentService = {
     });
   },
 };
+
 
