@@ -65,11 +65,6 @@ export function AppFooter() {
                   Contact
                 </Link>
               </li>
-              <li>
-                <Link href="/careers" className="hover:text-primary transition-colors">
-                  Careers
-                </Link>
-              </li>
             </ul>
           </div>
           <div>

@@ -47,9 +47,6 @@ export function MobileNav() {
           <Link href="/contact" className={`text-lg font-medium hover:text-primary ${pathname === '/contact' ? 'text-primary' : 'text-foreground/70'}`}>
             Contact
           </Link>
-          <Link href="/careers" className={`text-lg font-medium hover:text-primary ${pathname === '/careers' ? 'text-primary' : 'text-foreground/70'}`}>
-            Careers
-          </Link>
           <hr className="my-4 border-border/50" />
           {isLoading ? (
             <div className="flex flex-col gap-3">

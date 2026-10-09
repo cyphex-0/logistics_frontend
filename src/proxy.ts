@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 import { decrypt } from '@/lib/auth/session';
 import { UserRole } from '@/types/api';
 
-const publicRoutes = ['/', '/about', '/services', '/pricing', '/contact', '/solutions', '/careers'];
+const publicRoutes = ['/', '/about', '/services', '/pricing', '/contact', '/solutions'];
 const authRoutes = ['/auth/login', '/auth/register'];
 
 export async function proxy(request: NextRequest) {

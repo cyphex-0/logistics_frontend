@@ -54,9 +54,6 @@ export function AppHeader() {
           <Link href="/contact" className="transition-colors hover:text-primary text-foreground/70">
             Contact
           </Link>
-          <Link href="/careers" className="transition-colors hover:text-primary text-foreground/70">
-            Careers
-          </Link>
         </nav>
         
         {/* Right side: Actions */}
