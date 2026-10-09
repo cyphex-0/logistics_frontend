@@ -15,8 +15,10 @@ import { useNotifications, useMarkNotificationRead } from "@/lib/query/user";
 import { Notification } from "@/services/user.service";
 import { Timestamp } from "@/components/shared/Timestamp";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 export function NotificationBell() {
+  const router = useRouter();
   const { data } = useNotifications();
   const { mutate: markAsRead } = useMarkNotificationRead();
 
@@ -84,7 +86,10 @@ export function NotificationBell() {
           )}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="w-full text-center text-sm font-medium text-primary justify-center cursor-pointer">
+        <DropdownMenuItem 
+          className="w-full text-center text-sm font-medium text-primary justify-center cursor-pointer"
+          onClick={() => router.push('/notifications')}
+        >
           View all notifications
         </DropdownMenuItem>
       </DropdownMenuContent>
