@@ -53,6 +53,15 @@ export default function CreateShipmentWizard() {
   const [zones, setZones] = useState<Zone[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [canSubmit, setCanSubmit] = useState(false);
+
+  useEffect(() => {
+    if (currentStep === 3) {
+      setCanSubmit(false);
+      const timer = setTimeout(() => setCanSubmit(true), 800);
+      return () => clearTimeout(timer);
+    }
+  }, [currentStep]);
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -198,6 +207,10 @@ export default function CreateShipmentWizard() {
             e.preventDefault();
             handleNext();
           } else {
+            if (!canSubmit) {
+              e.preventDefault();
+              return;
+            }
             form.handleSubmit(onSubmit)(e);
           }
         }}>
@@ -603,7 +616,7 @@ export default function CreateShipmentWizard() {
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               ) : (
-                <Button type="submit" disabled={isSubmitting || isCalculatingPrice || !!pricingError}>
+                <Button type="submit" disabled={isSubmitting || isCalculatingPrice || !!pricingError || !canSubmit}>
                   {isSubmitting ? "Submitting..." : "Confirm & Submit"}
                   {!isSubmitting && <CheckCircle className="w-4 h-4 ml-2" />}
                 </Button>
