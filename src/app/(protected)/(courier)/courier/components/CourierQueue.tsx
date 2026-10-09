@@ -72,7 +72,7 @@ export function CourierQueue() {
             />
           </div>
           <div className="w-full sm:w-48">
-            <Select value={statusFilter} onValueChange={setStatusFilter}>
+            <Select value={statusFilter} onValueChange={(val) => setStatusFilter(val || "ALL")}>
               <SelectTrigger className="bg-background">
                 <span className="flex items-center gap-2">
                   <Filter className="h-4 w-4 text-muted-foreground" />
