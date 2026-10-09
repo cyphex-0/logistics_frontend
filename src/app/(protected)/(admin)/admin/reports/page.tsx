@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { AdminReportsClient } from './AdminReportsClient';
 
 export const metadata: Metadata = {
   title: 'Reports | Admin Dashboard',
@@ -15,10 +16,7 @@ export default function AdminReportsPage() {
         </p>
       </div>
 
-      <div className="rounded-md border p-8 text-center text-muted-foreground">
-        <p>Reports module is currently under development.</p>
-        <p className="text-sm mt-2">Check back later for comprehensive analytics and reporting tools.</p>
-      </div>
+      <AdminReportsClient />
     </div>
   );
 }

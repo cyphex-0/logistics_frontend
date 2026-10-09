@@ -173,6 +173,20 @@ export function useDeleteZone() {
 }
 
 // --- Admin ---
+export function useRevenueReport(days: number = 30) {
+  return useQuery({
+    queryKey: ["admin", "reports", "revenue", days],
+    queryFn: () => adminService.getRevenueReport(days),
+  });
+}
+
+export function useCourierPerformance() {
+  return useQuery({
+    queryKey: ["admin", "reports", "courier-performance"],
+    queryFn: () => adminService.getCourierPerformance(),
+  });
+}
+
 export function useDashboardStats() {
   return useQuery({
     queryKey: queryKeys.analytics.adminDashboard(),

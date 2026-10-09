@@ -13,6 +13,26 @@ export interface DashboardStats {
 }
 
 export const adminService = {
+  getRevenueReport: (days: number = 30) => {
+    return apiClient<{ date: string; revenue: number }[]>("/admin/reports/revenue", {
+      method: "GET",
+      params: { days },
+    });
+  },
+
+  getCourierPerformance: () => {
+    return apiClient<any[]>("/admin/reports/courier-performance", {
+      method: "GET",
+    });
+  },
+
+  exportData: (type: 'shipments' | 'users' | 'payments' | 'audit-logs', startDate?: string, endDate?: string) => {
+    return apiClient<any[]>("/admin/reports/export", {
+      method: "GET",
+      params: { type, startDate, endDate },
+    });
+  },
+
   getStats: () => {
     return apiClient<DashboardStats>("/admin/dashboard-stats", {
       method: "GET",
