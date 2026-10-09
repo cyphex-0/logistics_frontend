@@ -8,6 +8,17 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      API_BASE_URL: https://logistics-backend-jyz7.onrender.com/api/v1
+      NEXT_PUBLIC_APP_URL: http://localhost:3000
+      SESSION_SECRET: ci-test-session-secret-placeholder-32chars
+      NEXT_PUBLIC_GOOGLE_CLIENT_ID: placeholder-for-ci
+      NEXT_PUBLIC_DEMO_CUSTOMER_EMAIL: customer@example.com
+      NEXT_PUBLIC_DEMO_CUSTOMER_PASSWORD: password123
+      NEXT_PUBLIC_DEMO_COURIER_EMAIL: courier@example.com
+      NEXT_PUBLIC_DEMO_COURIER_PASSWORD: password123
+      NEXT_PUBLIC_DEMO_ADMIN_EMAIL: admin@example.com
+      NEXT_PUBLIC_DEMO_ADMIN_PASSWORD: password123
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
