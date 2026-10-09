@@ -8,7 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { useAdminUsers, useAssignCourier } from "@/hooks/queries";
+import { useAdminUsers, useAssignCourier, useZones } from "@/hooks/queries";
 import { Shipment } from "@/services/shipment.service";
 import { ApiResponse, User } from "@/types/api";
 import { toast } from "sonner";
@@ -37,8 +37,18 @@ export function CourierAssignDialog({ shipment, open, onOpenChange }: CourierAss
     limit: 50, // Fetch enough to show in a select
   });
 
+  // Fetch zones to find the origin zone's name
+  const { data: zones = [], isLoading: zonesLoading } = useZones();
+  const originZone = zones.find((z) => z.id === shipment.originZoneId);
+
   const assignCourier = useAssignCourier();
-  const couriers = Array.isArray(usersData) ? usersData : ((usersData as unknown as { data: User[] })?.data || []);
+  
+  // Filter couriers to only those whose serviceArea matches the originZone's name
+  const allCouriers = Array.isArray(usersData) ? usersData : ((usersData as unknown as { data: User[] })?.data || []);
+  const couriers = allCouriers.filter((c: any) => {
+    if (!originZone) return false;
+    return c.serviceArea === originZone.name;
+  });
 
   const handleAssign = () => {
     if (!selectedCourierId) {
@@ -74,7 +84,7 @@ export function CourierAssignDialog({ shipment, open, onOpenChange }: CourierAss
           <Label htmlFor="courier-select" className="mb-2 block">
             Select Courier
           </Label>
-          {couriersLoading ? (
+          {couriersLoading || zonesLoading ? (
             <div className="flex items-center text-sm text-muted-foreground">
               <Loader2 className="w-4 h-4 mr-2 animate-spin" />
               Loading couriers...
@@ -91,7 +101,7 @@ export function CourierAssignDialog({ shipment, open, onOpenChange }: CourierAss
               <SelectContent>
                 {couriers.length === 0 ? (
                   <SelectItem value="none" disabled>
-                    No couriers found
+                    {originZone ? `No couriers found in ${originZone.name}` : "No couriers found"}
                   </SelectItem>
                 ) : (
                   couriers.map((courier: { id: string; name: string; email: string }) => (
@@ -111,7 +121,7 @@ export function CourierAssignDialog({ shipment, open, onOpenChange }: CourierAss
           </Button>
           <Button 
             onClick={handleAssign} 
-            disabled={!selectedCourierId || assignCourier.isPending || couriersLoading}
+            disabled={!selectedCourierId || assignCourier.isPending || couriersLoading || zonesLoading}
           >
             {assignCourier.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             Confirm Assignment
