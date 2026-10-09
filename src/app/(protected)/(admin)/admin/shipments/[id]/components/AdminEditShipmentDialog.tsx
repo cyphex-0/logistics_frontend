@@ -92,6 +92,17 @@ export function AdminEditShipmentDialog({ shipment, open, onOpenChange }: AdminA
     );
   };
 
+  const getCitiesForZone = (zoneId: string) => {
+    const zone = zones.find(z => z.id === zoneId);
+    if (!zone) return [];
+    const cities = new Set<string>();
+    if (zone.name) cities.add(zone.name);
+    if (zone.coverageCities && Array.isArray(zone.coverageCities)) {
+      zone.coverageCities.forEach(c => cities.add(c));
+    }
+    return Array.from(cities);
+  };
+
   return (
     <Dialog open={open} onOpenChange={(open) => !open && onOpenChange(false)}>
       <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-hidden flex flex-col">
@@ -119,7 +130,7 @@ export function AdminEditShipmentDialog({ shipment, open, onOpenChange }: AdminA
                         <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
                           <FormControl><SelectTrigger><SelectValue placeholder="Select city" /></SelectTrigger></FormControl>
                           <SelectContent>
-                            {(zones.find(z => z.id === form.watch("originZoneId"))?.coverageCities || []).map(city => (
+                            {getCitiesForZone(form.watch("originZoneId")).map(city => (
                               <SelectItem key={city} value={city}>{city}</SelectItem>
                             ))}
                           </SelectContent>
@@ -173,7 +184,7 @@ export function AdminEditShipmentDialog({ shipment, open, onOpenChange }: AdminA
                         <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
                           <FormControl><SelectTrigger><SelectValue placeholder="Select city" /></SelectTrigger></FormControl>
                           <SelectContent>
-                            {(zones.find(z => z.id === form.watch("destinationZoneId"))?.coverageCities || []).map(city => (
+                            {getCitiesForZone(form.watch("destinationZoneId")).map(city => (
                               <SelectItem key={city} value={city}>{city}</SelectItem>
                             ))}
                           </SelectContent>

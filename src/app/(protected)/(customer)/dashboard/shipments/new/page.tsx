@@ -149,6 +149,17 @@ export default function CreateShipmentWizard() {
 
   const formValues = form.getValues();
 
+  const getCitiesForZone = (zoneId: string) => {
+    const zone = zones.find(z => z.id === zoneId);
+    if (!zone) return [];
+    const cities = new Set<string>();
+    if (zone.name) cities.add(zone.name);
+    if (zone.coverageCities && Array.isArray(zone.coverageCities)) {
+      zone.coverageCities.forEach(c => cities.add(c));
+    }
+    return Array.from(cities);
+  };
+
   return (
     <div className="container max-w-3xl mx-auto py-8">
       <div className="mb-8">
@@ -315,7 +326,7 @@ export default function CreateShipmentWizard() {
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                {(zones.find(z => z.id === form.watch("originZoneId"))?.coverageCities || []).map(city => (
+                                {getCitiesForZone(form.watch("originZoneId")).map(city => (
                                   <SelectItem key={city} value={city}>{city}</SelectItem>
                                 ))}
                               </SelectContent>
@@ -382,7 +393,7 @@ export default function CreateShipmentWizard() {
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                {(zones.find(z => z.id === form.watch("destinationZoneId"))?.coverageCities || []).map(city => (
+                                {getCitiesForZone(form.watch("destinationZoneId")).map(city => (
                                   <SelectItem key={city} value={city}>{city}</SelectItem>
                                 ))}
                               </SelectContent>
