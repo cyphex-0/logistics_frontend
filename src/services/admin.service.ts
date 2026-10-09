@@ -1,10 +1,15 @@
 import { apiClient } from "@/lib/api/client";
 import { User } from "@/types/api";
 export interface DashboardStats {
-  totalUsers: number;
+  totalCustomers: number;
+  totalCouriers: number;
   totalShipments: number;
-  activeShipments: number;
-  revenue: number;
+  shipmentsByStatus: {
+    pending: number;
+    inTransit: number;
+    delivered: number;
+  };
+  totalRevenue: number;
 }
 
 export const adminService = {

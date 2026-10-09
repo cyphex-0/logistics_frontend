@@ -50,7 +50,7 @@ export function AdminDashboardClient() {
           <AdminStatGrid stats={stats} isLoading={statsLoading} />
         </div>
         <div className="md:col-span-1">
-          <RevenueCard revenue={stats?.revenue} isLoading={statsLoading} />
+          <RevenueCard revenue={stats?.totalRevenue} isLoading={statsLoading} />
         </div>
       </div>
 

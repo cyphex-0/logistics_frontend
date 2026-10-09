@@ -8,11 +8,14 @@ interface AdminStatGridProps {
 }
 
 export function AdminStatGrid({ stats, isLoading }: AdminStatGridProps) {
+  const totalUsers = stats ? (stats.totalCustomers || 0) + (stats.totalCouriers || 0) : 0;
+  const activeShipments = stats ? (stats.shipmentsByStatus?.inTransit || 0) + (stats.shipmentsByStatus?.pending || 0) : 0;
+
   return (
     <div className="grid gap-4 md:grid-cols-3">
       <StatCard
         title="Total Users"
-        value={isLoading ? "-" : stats?.totalUsers?.toLocaleString() || "0"}
+        value={isLoading ? "-" : totalUsers.toLocaleString()}
         icon={Users}
         description="Registered platform users"
       />
@@ -24,7 +27,7 @@ export function AdminStatGrid({ stats, isLoading }: AdminStatGridProps) {
       />
       <StatCard
         title="Active Shipments"
-        value={isLoading ? "-" : stats?.activeShipments?.toLocaleString() || "0"}
+        value={isLoading ? "-" : activeShipments.toLocaleString()}
         icon={Activity}
         description="Currently in progress"
       />
