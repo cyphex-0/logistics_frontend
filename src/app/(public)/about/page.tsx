@@ -25,7 +25,7 @@ export default function AboutPage() {
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-video lg:aspect-square h-full max-h-[500px]">
               <img 
-                src="https://images.unsplash.com/photo-1586528116311-ad8ed74514f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
                 alt="Logistics warehouse" 
                 className="object-cover w-full h-full"
               />
@@ -126,3 +126,4 @@ export default function AboutPage() {
     </div>
   );
 }
+
