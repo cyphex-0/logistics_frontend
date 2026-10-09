@@ -51,7 +51,9 @@ export function TrackingTimeline({ shipmentId }: { shipmentId: string }) {
                   <span className={`font-semibold tracking-tight ${index === 0 ? 'text-foreground' : 'text-foreground/80'}`}>
                     {config.label}
                   </span>
-                  <span className="text-sm text-muted-foreground">{event.description}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {event.description === event.status || event.description === event.status.replace(/_/g, ' ') ? `Status updated to ${config.label}` : event.description}
+                  </span>
                   <Timestamp 
                     date={event.createdAt} 
                     showTime 
@@ -66,3 +68,5 @@ export function TrackingTimeline({ shipmentId }: { shipmentId: string }) {
     </div>
   );
 }
+
+

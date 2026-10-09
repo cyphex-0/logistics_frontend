@@ -145,8 +145,10 @@ export function useShipmentTimeline(id: string) {
     queryKey: queryKeys.shipments.timeline(id),
     queryFn: () => shipmentService.getShipmentTracking(id),
     enabled: !!id,
+    refetchInterval: 5000,
   });
 }
+
 
 
 
