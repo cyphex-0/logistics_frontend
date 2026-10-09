@@ -76,6 +76,7 @@ planning.md
 __tests__/
 *.test.*
 *.spec.*
+!e2e/**/*.spec.*
 
 # Reference materials
 design-system/
