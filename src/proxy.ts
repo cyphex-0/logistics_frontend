@@ -6,7 +6,7 @@ import { UserRole } from '@/types/api';
 const publicRoutes = ['/', '/about', '/services', '/pricing', '/contact', '/solutions', '/careers'];
 const authRoutes = ['/auth/login', '/auth/register'];
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
   // Exclude static files
