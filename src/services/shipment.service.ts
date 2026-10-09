@@ -105,9 +105,10 @@ export const shipmentService = {
     });
   },
 
-  cancelShipment: (id: string) => {
+  cancelShipment: (id: string, reason: string) => {
     return apiClient<Shipment>(`/shipments/${id}/cancel`, {
       method: "POST",
+      body: { reason },
     });
   },
 

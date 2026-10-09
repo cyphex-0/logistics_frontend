@@ -65,18 +65,18 @@ export function useCancelShipment() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id: string) => shipmentService.cancelShipment(id),
+    mutationFn: ({ id, reason }: { id: string; reason: string }) => 
+      shipmentService.cancelShipment(id, reason),
     meta: { suppressGlobalError: true },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: queryKeys.shipments.detail(data.id) });
       queryClient.invalidateQueries({ queryKey: queryKeys.shipments.lists() });
       toast.success("Shipment cancelled successfully");
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onError: (error: any, variables) => {
       if (error?.response?.status === 409 || error?.status === 409) {
         toast.error("Shipment status has changed. Refreshing data...");
-        queryClient.invalidateQueries({ queryKey: queryKeys.shipments.detail(variables) });
+        queryClient.invalidateQueries({ queryKey: queryKeys.shipments.detail(variables.id) });
         queryClient.invalidateQueries({ queryKey: queryKeys.shipments.lists() });
       } else {
         toast.error(error?.response?.data?.message || error?.message || "Failed to cancel shipment");
