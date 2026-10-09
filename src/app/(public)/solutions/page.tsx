@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Metadata } from "next";
 import { CTASection } from "@/components/public/CTASection";
 import { Store, Building2, HeartPulse, ShoppingBag, ArrowRight } from "lucide-react";
@@ -69,7 +70,7 @@ export default function SolutionsPage() {
                   </Link>
                 </div>
                 <div className={`order-1 ${index % 2 === 1 ? 'lg:order-1' : 'lg:order-2'} aspect-video rounded-3xl overflow-hidden shadow-2xl`}>
-                  <img 
+                  <Image fill unoptimized 
                     src={industry.image} 
                     alt={industry.title} 
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Metadata } from "next";
 import { RoleCard } from "@/components/public/RoleCard";
 import { User, Truck, ShieldUser, Target, Globe, Zap, Award } from "lucide-react";
@@ -24,10 +25,10 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-video lg:aspect-square h-full max-h-[500px]">
-              <img 
+              <Image fill unoptimized 
                 src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
                 alt="Logistics warehouse" 
-                className="object-cover w-full h-full"
+                className="object-cover"
               />
             </div>
           </div>
@@ -97,10 +98,10 @@ export default function AboutPage() {
         <div className="container px-4 mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="order-2 lg:order-1 relative rounded-2xl overflow-hidden shadow-2xl aspect-video h-full max-h-[400px]">
-              <img 
+              <Image fill unoptimized 
                 src="https://images.unsplash.com/photo-1554774853-719586f82d77?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
                 alt="Accountability and tracking" 
-                className="object-cover w-full h-full"
+                className="object-cover"
               />
             </div>
             <div className="order-1 lg:order-2">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Metadata } from "next";
 import { Package, Zap, Globe, Shield, Clock, MapPin, Truck } from "lucide-react";
 import { CTASection } from "@/components/public/CTASection";
@@ -40,7 +41,7 @@ export default function ServicesPage() {
       {/* Hero */}
       <section className="relative py-24 bg-foreground text-background overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <img 
+          <Image fill unoptimized 
             src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
             alt="Shipping containers" 
             className="w-full h-full object-cover"

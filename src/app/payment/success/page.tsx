@@ -72,7 +72,7 @@ export default function PaymentSuccessPage({
 
     const timer = setTimeout(poll, intervalTime);
     return () => clearTimeout(timer);
-  }, [shipmentId, refetch]);
+  }, [shipmentId, refetch, queryClient, router]);
 
   const isConfirmed = shipment?.paymentStatus === PaymentStatus.PAID;
 

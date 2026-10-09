@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Metadata } from "next";
 import { Mail, Phone, MapPin, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -26,7 +27,7 @@ export default function ContactPage() {
             {/* Contact Info */}
             <div className="space-y-12">
               <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-lg">
-                <img 
+                <Image fill unoptimized 
                   src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                   alt="Customer support team" 
                   className="w-full h-full object-cover"
