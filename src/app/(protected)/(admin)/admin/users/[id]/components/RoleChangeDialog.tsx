@@ -52,12 +52,14 @@ export function RoleChangeDialog({ user }: { user: User }) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant="outline" size="sm" disabled={isSelf}>
-          <ShieldAlert className="w-4 h-4 mr-2" />
-          Change Role
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger
+        render={
+          <Button variant="outline" size="sm" disabled={isSelf}>
+            <ShieldAlert className="w-4 h-4 mr-2" />
+            Change Role
+          </Button>
+        }
+      />
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Change User Role</DialogTitle>
@@ -90,7 +92,7 @@ export function RoleChangeDialog({ user }: { user: User }) {
                   Loading zones...
                 </div>
               ) : (
-                <Select value={serviceArea} onValueChange={(v) => setServiceArea(v)}>
+                <Select value={serviceArea} onValueChange={(v) => setServiceArea(v || "")}>
                   <SelectTrigger id="serviceArea">
                     <SelectValue placeholder="Select a zone..." />
                   </SelectTrigger>
