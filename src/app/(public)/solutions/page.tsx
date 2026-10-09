@@ -69,7 +69,7 @@ export default function SolutionsPage() {
                     Talk to Sales <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </div>
-                <div className={`order-1 ${index % 2 === 1 ? 'lg:order-1' : 'lg:order-2'} aspect-video rounded-3xl overflow-hidden shadow-2xl`}>
+                <div className={`relative order-1 ${index % 2 === 1 ? 'lg:order-1' : 'lg:order-2'} aspect-video rounded-3xl overflow-hidden shadow-2xl`}>
                   <Image fill unoptimized 
                     src={industry.image} 
                     alt={industry.title} 
