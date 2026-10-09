@@ -15,12 +15,14 @@ export default function CareersPage() {
       department: "Operations",
       location: "Your Local City",
       type: "Contract / Flexible",
+      href: "/auth/register?role=COURIER"
     },
     {
       title: "Platform Moderator",
       department: "Trust & Safety",
       location: "Remote",
       type: "Part-time",
+      href: "mailto:careers@shiply.example.com?subject=Application%20for%20Platform%20Moderator"
     }
   ];
 
@@ -95,8 +97,10 @@ export default function CareersPage() {
                     <span className="flex items-center gap-1"><Clock className="h-4 w-4" /> {job.type}</span>
                   </div>
                 </div>
-                <Button variant="outline" className="w-full md:w-auto group-hover:bg-primary group-hover:text-primary-foreground">
-                  Apply Now <ArrowRight className="ml-2 h-4 w-4" />
+                <Button variant="outline" className="w-full md:w-auto group-hover:bg-primary group-hover:text-primary-foreground" asChild>
+                  <Link href={job.href}>
+                    Apply Now <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
                 </Button>
               </div>
             ))}
@@ -106,3 +110,4 @@ export default function CareersPage() {
     </div>
   );
 }
+
