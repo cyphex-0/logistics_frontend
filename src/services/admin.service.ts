@@ -12,6 +12,16 @@ export interface DashboardStats {
   totalRevenue: number;
 }
 
+export interface CourierPerformance {
+  id: string;
+  name: string;
+  serviceArea: string | null;
+  totalAssigned: number;
+  delivered: number;
+  failed: number;
+  avgDeliveryTimeHours: number;
+}
+
 export const adminService = {
   getRevenueReport: (days: number = 30) => {
     return apiClient<{ date: string; revenue: number }[]>("/admin/reports/revenue", {
@@ -21,13 +31,13 @@ export const adminService = {
   },
 
   getCourierPerformance: () => {
-    return apiClient<any[]>("/admin/reports/courier-performance", {
+    return apiClient<CourierPerformance[]>("/admin/reports/courier-performance", {
       method: "GET",
     });
   },
 
   exportData: (type: 'shipments' | 'users' | 'payments' | 'audit-logs', startDate?: string, endDate?: string) => {
-    return apiClient<any[]>("/admin/reports/export", {
+    return apiClient<Record<string, unknown>[]>("/admin/reports/export", {
       method: "GET",
       params: { type, startDate, endDate },
     });

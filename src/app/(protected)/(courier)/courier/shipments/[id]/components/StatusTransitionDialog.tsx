@@ -85,14 +85,14 @@ export function StatusTransitionDialog({
           </DialogDescription>
         </DialogHeader>
 
-        {error && (
+        {!!error && (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
             <AlertTitle>Update Failed</AlertTitle>
             <AlertDescription>
               {isConflictError && errorData?.code === "MAX_DELIVERY_ATTEMPTS_REACHED"
                 ? "Maximum delivery attempts reached. You can only mark this shipment as Returned."
-                : errorData?.message || "An error occurred while updating the status."}
+                : String(errorData?.message || "An error occurred while updating the status.")}
             </AlertDescription>
           </Alert>
         )}

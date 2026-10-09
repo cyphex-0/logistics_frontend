@@ -87,6 +87,7 @@ export default function CreateShipmentWizard() {
     mode: "onTouched",
   });
 
+  const originZoneId = form.watch("originZoneId");
   const destinationZoneId = form.watch("destinationZoneId");
   const serviceType = form.watch("serviceType");
   const weight = form.watch("parcel.weight");
@@ -345,7 +346,7 @@ export default function CreateShipmentWizard() {
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                {getCitiesForZone(form.watch("originZoneId")).map(city => (
+                                {getCitiesForZone(originZoneId).map(city => (
                                   <SelectItem key={city} value={city}>{city}</SelectItem>
                                 ))}
                               </SelectContent>
@@ -412,7 +413,7 @@ export default function CreateShipmentWizard() {
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                {getCitiesForZone(form.watch("destinationZoneId")).map(city => (
+                                {getCitiesForZone(destinationZoneId).map(city => (
                                   <SelectItem key={city} value={city}>{city}</SelectItem>
                                 ))}
                               </SelectContent>

@@ -65,7 +65,7 @@ async function handleProxy(request: NextRequest) {
       statusText: response.statusText,
       headers: responseHeaders,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('API Proxy Error:', error);
     return NextResponse.json(
       { success: false, message: 'Internal Server Proxy Error' },

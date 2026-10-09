@@ -50,6 +50,8 @@ export function RegisterForm() {
     },
   });
 
+  const watchPassword = form.watch("password");
+
   async function onSubmit(data: RegisterFormValues) {
     setIsLoading(true);
     setError(null);
@@ -189,7 +191,7 @@ export function RegisterForm() {
                   <FormControl>
                     <PasswordInput placeholder="Enter a secure password" {...field} />
                   </FormControl>
-                  <PasswordStrengthHint password={form.watch("password")} />
+                  <PasswordStrengthHint password={watchPassword} />
                   <FormMessage />
                 </FormItem>
               )}

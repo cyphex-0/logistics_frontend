@@ -86,7 +86,7 @@ export async function apiClient<T>(
       } else {
         // Redirect to login and throw immediately so parseResponse is never
         // reached on the stale 401 response (avoids confusing JSON-parse errors).
-        window.location.href = "/auth/login";
+        window.location.assign("/auth/login");
         throw new ApiError(401, "Session expired. Redirecting to login...");
       }
     }

@@ -93,7 +93,7 @@ export default function ProfilePage() {
   }
 
   const onSubmit = (data: ProfileFormValues) => {
-    const payload: any = { ...data };
+    const payload: Partial<ProfileFormValues> = { ...data };
     if (!payload.avatar) delete payload.avatar;
     if (!payload.phone) delete payload.phone;
     updateProfile.mutate(payload);

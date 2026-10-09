@@ -45,8 +45,8 @@ export function RevenueChart() {
                   tickFormatter={(val) => `$${val}`}
                 />
                 <Tooltip 
-                  formatter={(value: any) => [`$${Number(value).toFixed(2)}`, 'Revenue']}
-                  labelFormatter={(label: any) => new Date(label).toLocaleDateString()}
+                  formatter={(value: unknown) => [`$${Number(value).toFixed(2)}`, 'Revenue']}
+                  labelFormatter={(label: unknown) => new Date(label as string | number).toLocaleDateString()}
                 />
                 <Line type="monotone" dataKey="revenue" stroke="#3b82f6" strokeWidth={2} dot={false} activeDot={{ r: 8 }} />
               </LineChart>

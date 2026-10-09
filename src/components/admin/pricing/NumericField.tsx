@@ -1,17 +1,22 @@
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { UseFormReturn } from "react-hook-form";
+import { UseFormReturn, FieldValues, Path } from "react-hook-form";
 
-interface NumericFieldProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  form: UseFormReturn<any>;
-  name: string;
+interface NumericFieldProps<TFieldValues extends FieldValues> {
+  form: UseFormReturn<TFieldValues>;
+  name: Path<TFieldValues>;
   label: string;
   placeholder?: string;
   step?: string;
 }
 
-export function NumericField({ form, name, label, placeholder, step = "0.01" }: NumericFieldProps) {
+export function NumericField<TFieldValues extends FieldValues>({ 
+  form, 
+  name, 
+  label, 
+  placeholder, 
+  step = "0.01" 
+}: NumericFieldProps<TFieldValues>) {
   return (
     <FormField
       control={form.control}

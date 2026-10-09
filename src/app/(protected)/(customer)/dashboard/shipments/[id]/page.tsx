@@ -21,7 +21,7 @@ export default function ShipmentDetailPage({ params }: { params: Promise<{ id: s
   
   const { data: shipment, isLoading, isError } = useShipment(id, {
     refetchInterval: (query) => {
-      const currentShipment = query.state.data as any;
+      const currentShipment = query.state.data as import("@/services/shipment.service").Shipment | undefined;
       if (!currentShipment) return 5000;
       if (currentShipment.status === "PENDING") return 3000;
       if (["CONFIRMED", "PICKED_UP", "IN_TRANSIT"].includes(currentShipment.status)) return 10000;

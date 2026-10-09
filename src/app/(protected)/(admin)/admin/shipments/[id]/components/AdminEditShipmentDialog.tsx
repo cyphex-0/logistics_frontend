@@ -120,11 +120,11 @@ export function AdminEditShipmentDialog({ shipment, open, onOpenChange }: AdminA
               
               <div className="flex-1 overflow-y-auto py-4 px-1">
                 <TabsContent value="origin" className="space-y-4 mt-0">
-                  <FormField control={form.control as any} name="originAddress" render={({ field }) => (
+                  <FormField control={form.control} name="originAddress" render={({ field }) => (
                     <FormItem><FormLabel>Origin Address</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
                   )} />
                   <div className="grid grid-cols-2 gap-4">
-                    <FormField control={form.control as any} name="originCity" render={({ field }) => (
+                    <FormField control={form.control} name="originCity" render={({ field }) => (
                       <FormItem>
                         <FormLabel>Origin City</FormLabel>
                         <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
@@ -138,7 +138,7 @@ export function AdminEditShipmentDialog({ shipment, open, onOpenChange }: AdminA
                         <FormMessage />
                       </FormItem>
                     )} />
-                    <FormField control={form.control as any} name="originZoneId" render={({ field }) => (
+                    <FormField control={form.control} name="originZoneId" render={({ field }) => (
                       <FormItem>
                         <FormLabel>Origin Zone</FormLabel>
                         <Select onValueChange={field.onChange} value={field.value}>
@@ -167,18 +167,18 @@ export function AdminEditShipmentDialog({ shipment, open, onOpenChange }: AdminA
                 
                 <TabsContent value="destination" className="space-y-4 mt-0">
                   <div className="grid grid-cols-2 gap-4">
-                    <FormField control={form.control as any} name="recipientName" render={({ field }) => (
+                    <FormField control={form.control} name="recipientName" render={({ field }) => (
                       <FormItem><FormLabel>Recipient Name</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
                     )} />
-                    <FormField control={form.control as any} name="recipientPhone" render={({ field }) => (
+                    <FormField control={form.control} name="recipientPhone" render={({ field }) => (
                       <FormItem><FormLabel>Recipient Phone</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
                     )} />
                   </div>
-                  <FormField control={form.control as any} name="destinationAddress" render={({ field }) => (
+                  <FormField control={form.control} name="destinationAddress" render={({ field }) => (
                     <FormItem><FormLabel>Destination Address</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
                   )} />
                   <div className="grid grid-cols-2 gap-4">
-                    <FormField control={form.control as any} name="destinationCity" render={({ field }) => (
+                    <FormField control={form.control} name="destinationCity" render={({ field }) => (
                       <FormItem>
                         <FormLabel>Destination City</FormLabel>
                         <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
@@ -192,7 +192,7 @@ export function AdminEditShipmentDialog({ shipment, open, onOpenChange }: AdminA
                         <FormMessage />
                       </FormItem>
                     )} />
-                    <FormField control={form.control as any} name="destinationZoneId" render={({ field }) => (
+                    <FormField control={form.control} name="destinationZoneId" render={({ field }) => (
                       <FormItem>
                         <FormLabel>Destination Zone</FormLabel>
                         <Select onValueChange={field.onChange} value={field.value}>
@@ -221,7 +221,7 @@ export function AdminEditShipmentDialog({ shipment, open, onOpenChange }: AdminA
                 
                 <TabsContent value="parcel" className="space-y-4 mt-0">
                   <div className="grid grid-cols-2 gap-4">
-                    <FormField control={form.control as any} name="serviceType" render={({ field }) => (
+                    <FormField control={form.control} name="serviceType" render={({ field }) => (
                       <FormItem>
                         <FormLabel>Service Type</FormLabel>
                         <Select onValueChange={field.onChange} value={field.value}>
@@ -234,25 +234,25 @@ export function AdminEditShipmentDialog({ shipment, open, onOpenChange }: AdminA
                         <FormMessage />
                       </FormItem>
                     )} />
-                    <FormField control={form.control as any} name="parcel.weight" render={({ field }) => (
+                    <FormField control={form.control} name="parcel.weight" render={({ field }) => (
                       <FormItem><FormLabel>Weight (kg)</FormLabel><FormControl><Input type="number" step="0.1" {...field} /></FormControl><FormMessage /></FormItem>
                     )} />
                   </div>
                   <div className="grid grid-cols-3 gap-4">
-                    <FormField control={form.control as any} name="parcel.length" render={({ field }) => (
+                    <FormField control={form.control} name="parcel.length" render={({ field }) => (
                       <FormItem><FormLabel>Length (cm)</FormLabel><FormControl><Input type="number" {...field} /></FormControl><FormMessage /></FormItem>
                     )} />
-                    <FormField control={form.control as any} name="parcel.width" render={({ field }) => (
+                    <FormField control={form.control} name="parcel.width" render={({ field }) => (
                       <FormItem><FormLabel>Width (cm)</FormLabel><FormControl><Input type="number" {...field} /></FormControl><FormMessage /></FormItem>
                     )} />
-                    <FormField control={form.control as any} name="parcel.height" render={({ field }) => (
+                    <FormField control={form.control} name="parcel.height" render={({ field }) => (
                       <FormItem><FormLabel>Height (cm)</FormLabel><FormControl><Input type="number" {...field} /></FormControl><FormMessage /></FormItem>
                     )} />
                   </div>
-                  <FormField control={form.control as any} name="parcel.description" render={({ field }) => (
+                  <FormField control={form.control} name="parcel.description" render={({ field }) => (
                     <FormItem><FormLabel>Description</FormLabel><FormControl><Textarea placeholder="What's in the parcel?" {...field} /></FormControl><FormMessage /></FormItem>
                   )} />
-                  <FormField control={form.control as any} name="parcel.isFragile" render={({ field }) => (
+                  <FormField control={form.control} name="parcel.isFragile" render={({ field }) => (
                     <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                       <FormControl>
                         <Checkbox checked={field.value} onCheckedChange={field.onChange} />

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { GoogleLogin } from "@react-oauth/google";
+import { GoogleLogin, CredentialResponse } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 import { queryKeys } from "@/lib/query-keys";
@@ -13,7 +13,7 @@ export function GoogleLoginButton() {
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSuccess = async (credentialResponse: any) => {
+  const handleSuccess = async (credentialResponse: CredentialResponse) => {
     try {
       setIsLoading(true);
       const res = await fetch("/api/auth/google", {
@@ -31,9 +31,9 @@ export function GoogleLoginButton() {
       await queryClient.invalidateQueries({ queryKey: queryKeys.auth.me() });
       toast.success("Login successful");
       router.push("/profile"); // Default redirect, can be adjusted
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Google login error", error);
-      toast.error(error.message || "Failed to login with Google");
+      toast.error(error instanceof Error ? error.message : "Failed to login with Google");
     } finally {
       setIsLoading(false);
     }

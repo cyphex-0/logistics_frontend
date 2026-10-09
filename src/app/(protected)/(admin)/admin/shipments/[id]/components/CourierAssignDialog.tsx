@@ -45,7 +45,7 @@ export function CourierAssignDialog({ shipment, open, onOpenChange }: CourierAss
   
   // Filter couriers to only those whose serviceArea matches the originZone's name
   const allCouriers = Array.isArray(usersData) ? usersData : ((usersData as unknown as { data: User[] })?.data || []);
-  const couriers = allCouriers.filter((c: any) => {
+  const couriers = allCouriers.filter((c: User) => {
     if (!originZone || !c.serviceArea) return false;
     const allowedZones = c.serviceArea.toLowerCase().split(',').map((z: string) => z.trim());
     return allowedZones.includes(originZone.name.toLowerCase());
@@ -94,8 +94,8 @@ export function CourierAssignDialog({ shipment, open, onOpenChange }: CourierAss
             <Select value={selectedCourierId} onValueChange={(val) => setSelectedCourierId(val || "")}>
               <SelectTrigger id="courier-select">
                 <span className="flex-1 text-left truncate">
-                  {selectedCourierId && couriers.find((c: any) => c.id === selectedCourierId) 
-                    ? `${couriers.find((c: any) => c.id === selectedCourierId).name} (${couriers.find((c: any) => c.id === selectedCourierId).email})`
+                  {selectedCourierId && couriers.find((c: User) => c.id === selectedCourierId) 
+                    ? `${couriers.find((c: User) => c.id === selectedCourierId).name} (${couriers.find((c: User) => c.id === selectedCourierId).email})`
                     : "Select a courier..."}
                 </span>
               </SelectTrigger>

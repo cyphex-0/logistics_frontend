@@ -1,7 +1,7 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { shipmentService, CreateShipmentPayload } from "@/services/shipment.service";
-import { queryKeys } from "./keys";
+import { useMutation, useQuery, useQueryClient, Query, UseQueryOptions } from "@tanstack/react-query";
+import { shipmentService, CreateShipmentPayload, Shipment } from "@/services/shipment.service";
 import { ShipmentStatus } from "@/types/api";
+import { queryKeys } from "./keys";
 import { toast } from "sonner";
 
 export function useShipments(filters?: { status?: ShipmentStatus; page?: number; limit?: number }) {
@@ -13,7 +13,7 @@ export function useShipments(filters?: { status?: ShipmentStatus; page?: number;
   });
 }
 
-export function useShipment(id: string, options?: { refetchInterval?: number | false | ((query: any) => number | false) }) {
+export function useShipment(id: string, options?: Omit<UseQueryOptions<Shipment, Error, Shipment, readonly unknown[]>, "queryKey" | "queryFn">) {
   return useQuery({
     queryKey: queryKeys.shipments.detail(id),
     queryFn: () => shipmentService.getShipmentById(id),
@@ -48,14 +48,14 @@ export function useUpdateShipment() {
       queryClient.invalidateQueries({ queryKey: queryKeys.shipments.lists() });
       toast.success("Shipment updated successfully");
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onError: (error: any, variables) => {
-      if (error?.response?.status === 409 || error?.status === 409) {
+
+    onError: (error: unknown, variables) => {
+      const err = error as { response?: { status?: number }, status?: number }; if (err?.response?.status === 409 || err?.status === 409) {
         toast.error("Shipment status has changed. Refreshing data...");
         queryClient.invalidateQueries({ queryKey: queryKeys.shipments.detail(variables.id) });
         queryClient.invalidateQueries({ queryKey: queryKeys.shipments.lists() });
       } else {
-        toast.error(error?.response?.data?.message || error?.message || "Failed to update shipment");
+        const typedErr = error as { response?: { data?: { message?: string } }, message?: string }; toast.error(typedErr?.response?.data?.message || typedErr?.message || "Failed to update shipment");
       }
     },
   });
@@ -73,13 +73,13 @@ export function useCancelShipment() {
       queryClient.invalidateQueries({ queryKey: queryKeys.shipments.lists() });
       toast.success("Shipment cancelled successfully");
     },
-    onError: (error: any, variables) => {
-      if (error?.response?.status === 409 || error?.status === 409) {
+    onError: (error: unknown, variables) => {
+      const err = error as { response?: { status?: number }, status?: number }; if (err?.response?.status === 409 || err?.status === 409) {
         toast.error("Shipment status has changed. Refreshing data...");
         queryClient.invalidateQueries({ queryKey: queryKeys.shipments.detail(variables.id) });
         queryClient.invalidateQueries({ queryKey: queryKeys.shipments.lists() });
       } else {
-        toast.error(error?.response?.data?.message || error?.message || "Failed to cancel shipment");
+        const typedErr = error as { response?: { data?: { message?: string } }, message?: string }; toast.error(typedErr?.response?.data?.message || typedErr?.message || "Failed to cancel shipment");
       }
     },
   });
@@ -97,14 +97,14 @@ export function useUpdateShipmentStatus() {
       queryClient.invalidateQueries({ queryKey: queryKeys.shipments.lists() });
       toast.success(`Shipment status updated to ${data.status}`);
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onError: (error: any, variables) => {
-      if (error?.response?.status === 409 || error?.status === 409) {
+
+    onError: (error: unknown, variables) => {
+      const err = error as { response?: { status?: number }, status?: number }; if (err?.response?.status === 409 || err?.status === 409) {
         toast.error("Shipment status has changed or conflicts. Refreshing data...");
         queryClient.invalidateQueries({ queryKey: queryKeys.shipments.detail(variables.id) });
         queryClient.invalidateQueries({ queryKey: queryKeys.shipments.lists() });
       } else {
-        toast.error(error?.response?.data?.message || error?.message || "Failed to update shipment status");
+        const typedErr = error as { response?: { data?: { message?: string } }, message?: string }; toast.error(typedErr?.response?.data?.message || typedErr?.message || "Failed to update shipment status");
       }
     },
   });

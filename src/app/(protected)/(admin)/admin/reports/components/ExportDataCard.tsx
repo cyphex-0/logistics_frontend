@@ -32,14 +32,14 @@ export function ExportDataCard() {
       }
 
       // Helper function to flatten nested objects for CSV
-      const flattenObject = (obj: any, prefix = ''): Record<string, any> => {
-        return Object.keys(obj).reduce((acc: Record<string, any>, k: string) => {
+      const flattenObject = (obj: Record<string, unknown>, prefix = ''): Record<string, unknown> => {
+        return Object.keys(obj).reduce((acc: Record<string, unknown>, k: string) => {
           const pre = prefix.length ? prefix + '_' : '';
           
           if (obj[k] === null || obj[k] === undefined) {
             acc[pre + k] = '';
           } else if (typeof obj[k] === 'object' && !Array.isArray(obj[k]) && !(obj[k] instanceof Date)) {
-            Object.assign(acc, flattenObject(obj[k], pre + k));
+            Object.assign(acc, flattenObject(obj[k] as Record<string, unknown>, pre + k));
           } else if (Array.isArray(obj[k])) {
             acc[pre + k] = JSON.stringify(obj[k]);
           } else {
