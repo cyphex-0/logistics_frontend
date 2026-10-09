@@ -24,7 +24,7 @@ export function HeroSection() {
               <Link href="/auth/register" className={buttonVariants({ size: "lg", className: "h-14 px-8 text-lg" })}>
                 Get a Quote <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
-              <Link href="/tracking" className={buttonVariants({ size: "lg", variant: "outline", className: "h-14 px-8 text-lg" })}>
+              <Link href="/dashboard/tracking" className={buttonVariants({ size: "lg", variant: "outline", className: "h-14 px-8 text-lg" })}>
                 Track Shipment
               </Link>
             </div>
