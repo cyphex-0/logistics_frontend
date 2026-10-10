@@ -4,6 +4,7 @@ import { Truck, User } from 'lucide-react';
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { useUIStore } from '@/lib/store/ui.store';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
@@ -37,7 +38,7 @@ export function RegisterForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl');
   const [error, setError] = useState<string | null>(null);
-  const { setGlobalLoading } = useUIStore();;
+  const { setGlobalLoading } = useUIStore();
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<RegisterFormValues>({
