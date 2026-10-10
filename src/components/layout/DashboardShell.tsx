@@ -6,7 +6,8 @@ import { DashboardSidebar } from "./DashboardSidebar";
 import { UserNav } from "./UserNav";
 import { NotificationBell } from "./NotificationBell";
 import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "./ThemeToggle";
 import Link from "next/link";
@@ -33,7 +34,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
         <header className="h-16 flex items-center justify-between border-b px-4 md:px-6 shrink-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="flex items-center gap-4 md:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger render={<Button variant="ghost" size="icon" className="md:hidden" />}>
+              <SheetTrigger className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "md:hidden")}>
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle Sidebar</span>
               </SheetTrigger>
