@@ -19,6 +19,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
   const pathname = usePathname();
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsOpen(false);
   }, [pathname]);
   return (
@@ -32,11 +33,9 @@ export function DashboardShell({ children }: DashboardShellProps) {
         <header className="h-16 flex items-center justify-between border-b px-4 md:px-6 shrink-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="flex items-center gap-4 md:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden">
-                  <Menu className="h-5 w-5" />
-                  <span className="sr-only">Toggle Sidebar</span>
-                </Button>
+              <SheetTrigger render={<Button variant="ghost" size="icon" className="md:hidden" />}>
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Toggle Sidebar</span>
               </SheetTrigger>
               <SheetContent side="left" className="p-0 w-64">
                 <DashboardSidebar className="border-r-0" />
