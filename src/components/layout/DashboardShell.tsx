@@ -1,3 +1,7 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { DashboardSidebar } from "./DashboardSidebar";
 import { UserNav } from "./UserNav";
 import { NotificationBell } from "./NotificationBell";
@@ -11,6 +15,12 @@ interface DashboardShellProps {
 }
 
 export function DashboardShell({ children }: DashboardShellProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
   return (
     <div className="flex h-screen overflow-hidden bg-background">
       {/* Desktop Sidebar */}
@@ -21,7 +31,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
         {/* Dashboard Top Header */}
         <header className="h-16 flex items-center justify-between border-b px-4 md:px-6 shrink-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <div className="flex items-center gap-4 md:hidden">
-            <Sheet>
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger render={<Button variant="ghost" size="icon" className="md:hidden" />}>
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle Sidebar</span>
