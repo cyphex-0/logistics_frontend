@@ -1,7 +1,8 @@
-﻿
+
 "use client";
 
 import { useState } from "react";
+import { useUIStore } from "@/lib/store/ui.store";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,6 +12,7 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const { setGlobalLoading } = useUIStore();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
