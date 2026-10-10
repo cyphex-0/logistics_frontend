@@ -49,14 +49,13 @@ export function GoogleLoginButton() {
   }
 
   return (
-    <div className="w-full flex justify-center [&>div]:w-full [&>div>div]:!w-full [&_iframe]:!w-full">
+    <div className="flex justify-center w-full">
       <GoogleLogin
         onSuccess={handleSuccess}
         onError={() => toast.error("Google Login failed")}
         shape="rectangular"
         size="large"
         theme="outline"
-        width="100%"
         text="signin_with"
       />
     </div>
