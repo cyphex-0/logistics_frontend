@@ -98,7 +98,7 @@ export function CourierQueue() {
           <PackageX className="h-12 w-12 text-muted-foreground/50 mb-4" />
           <h3 className="font-semibold text-lg">No assigned shipments</h3>
           <p className="text-muted-foreground text-sm max-w-sm mt-2">
-            You don't have any packages assigned to you right now. 
+            You don&apos;t have any packages assigned to you right now. 
             When an Admin assigns a shipment to you, it will appear here.
           </p>
         </div>
