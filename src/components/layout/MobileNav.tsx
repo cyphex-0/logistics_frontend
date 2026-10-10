@@ -22,9 +22,13 @@ export function MobileNav() {
 
   return (
     <Sheet open={isMobileNavOpen} onOpenChange={setMobileNavOpen}>
-      <SheetTrigger render={<Button variant="ghost" size="icon" className="md:hidden" />}>
+      <SheetTrigger asChild>
+        <Button variant="ghost" size="icon" className="md:hidden">
+          
         <Menu className="h-5 w-5" />
         <span className="sr-only">Toggle Menu</span>
+      
+        </Button>
       </SheetTrigger>
       <SheetContent side="right">
         <nav className="flex flex-col gap-4 mt-8">
