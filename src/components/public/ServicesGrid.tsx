@@ -42,11 +42,11 @@ const services = [
 
 export function ServicesGrid() {
   return (
-    <section className="py-24 bg-background">
+    <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="mb-16">
+        <div className="mb-12 md:mb-16">
           <p className="text-primary text-xs font-semibold tracking-wider uppercase mb-3">What we move</p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
             Every link in your supply chain.
           </h2>
         </div>
@@ -57,7 +57,7 @@ export function ServicesGrid() {
             return (
               <div 
                 key={idx} 
-                className="group relative p-8 rounded-2xl border bg-card hover:shadow-lg transition-all duration-300 overflow-hidden"
+                className="group relative p-6 md:p-8 rounded-2xl border bg-card hover:shadow-lg transition-all duration-300 overflow-hidden"
               >
                 <div className="mb-6 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 text-primary group-hover:scale-110 transition-transform duration-300">
                   <Icon className="w-6 h-6" />

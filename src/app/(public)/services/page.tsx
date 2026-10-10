@@ -39,7 +39,7 @@ export default function ServicesPage() {
   return (
     <div className="flex flex-col min-h-[calc(100vh-140px)]">
       {/* Hero */}
-      <section className="relative py-24 bg-foreground text-background overflow-hidden">
+      <section className="relative py-16 md:py-24 bg-foreground text-background overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <Image fill unoptimized 
             src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
@@ -48,15 +48,15 @@ export default function ServicesPage() {
           />
         </div>
         <div className="container px-4 mx-auto relative z-10 text-center max-w-3xl">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Logistics solutions tailored to you.</h1>
-          <p className="text-xl opacity-90 mb-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-6">Logistics solutions tailored to you.</h1>
+          <p className="text-lg sm:text-xl opacity-90 mb-8">
             Shiply offers a streamlined platform connecting customers who need packages delivered with independent couriers ready to move them.
           </p>
         </div>
       </section>
 
       {/* Services List */}
-      <section className="py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container px-4 mx-auto">
           <div className="grid lg:grid-cols-2 gap-16">
             {services.map((service, index) => (

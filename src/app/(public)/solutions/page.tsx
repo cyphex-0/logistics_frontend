@@ -42,17 +42,17 @@ export default function SolutionsPage() {
   return (
     <div className="flex flex-col min-h-[calc(100vh-140px)]">
       {/* Header */}
-      <section className="py-20 bg-muted/30">
+      <section className="py-12 md:py-20 bg-muted/30">
         <div className="container px-4 mx-auto text-center max-w-3xl">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Built for your industry.</h1>
-          <p className="text-lg text-muted-foreground">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-4 md:mb-6">Built for your industry.</h1>
+          <p className="text-base sm:text-lg text-muted-foreground">
             Whether you&apos;re shipping medical supplies, managing an e-commerce empire, or running a local retail chain, Shiply has specialized workflows designed for your exact needs.
           </p>
         </div>
       </section>
 
       {/* Industries */}
-      <section className="py-24 bg-background">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container px-4 mx-auto">
           <div className="space-y-24">
             {industries.map((industry, index) => (

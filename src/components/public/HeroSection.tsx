@@ -4,23 +4,23 @@ import { ArrowRight, Play, MapPin } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="py-20 md:py-32 overflow-hidden relative">
+    <section className="py-12 md:py-20 lg:py-32 overflow-hidden relative">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Text Content */}
-          <div className="max-w-xl">
-            <p className="text-sm font-semibold tracking-wider text-muted-foreground uppercase mb-4 flex items-center gap-2">
+          <div className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
+            <p className="text-sm font-semibold tracking-wider text-muted-foreground uppercase mb-4 flex items-center justify-center lg:justify-start gap-2">
               <span className="text-primary">GLOBAL FREIGHT</span>
               <span>•</span>
               <span>LIVE CONTROL</span>
             </p>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 leading-tight">
-              Shipments move. <br /> You see everything.
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter mb-6 leading-tight">
+              Shipments move. <br className="hidden sm:block" /> You see everything.
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8">
               One manifest. Every handoff visible. Shiply connects road, ocean, air, and last mile in one continuous view.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link href="/auth/register" className={buttonVariants({ size: "lg", className: "h-14 px-8 text-lg" })}>
                 Get a Quote <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -54,7 +54,7 @@ export function HeroSection() {
               {/* Animated Map visualization */}
               <div className="relative h-48 w-full mt-10 mb-8">
                 {/* SVG Route */}
-                <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 400 150">
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 150">
                   <path 
                     d="M 20 80 Q 100 20 200 80 T 380 60" 
                     fill="transparent" 
