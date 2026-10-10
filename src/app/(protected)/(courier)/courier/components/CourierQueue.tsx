@@ -79,14 +79,14 @@ export function CourierQueue() {
                   <span>
                     {statusFilter === "ALL" && "All Shipments"}
                     {statusFilter === "ACTIVE" && "Active Only"}
-                    {statusFilter === "COMPLETED" && "Completed"}
+                    {statusFilter === "COMPLETED" && "Closed"}
                   </span>
                 </span>
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="ALL">All Shipments</SelectItem>
                 <SelectItem value="ACTIVE">Active Only</SelectItem>
-                <SelectItem value="COMPLETED">Completed</SelectItem>
+                <SelectItem value="COMPLETED">Closed</SelectItem>
               </SelectContent>
             </Select>
           </div>
