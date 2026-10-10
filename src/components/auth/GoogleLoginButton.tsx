@@ -4,6 +4,7 @@ import { useState } from "react";
 import { GoogleLogin, CredentialResponse } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
+import { useUIStore } from "@/lib/store/ui.store";
 import { queryKeys } from "@/lib/query-keys";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
@@ -12,10 +13,12 @@ export function GoogleLoginButton() {
   const router = useRouter();
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
+  const { setGlobalLoading } = useUIStore();
 
   const handleSuccess = async (credentialResponse: CredentialResponse) => {
     try {
       setIsLoading(true);
+      setGlobalLoading(true);
       const res = await fetch("/api/auth/google", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -36,6 +39,7 @@ export function GoogleLoginButton() {
       toast.error(error instanceof Error ? error.message : "Failed to login with Google");
     } finally {
       setIsLoading(false);
+      setGlobalLoading(false);
     }
   };
 

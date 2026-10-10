@@ -2,10 +2,12 @@
 
 import { useIsFetching, useIsMutating } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import { useUIStore } from "@/lib/store/ui.store";
 
 export function GlobalLoadingIndicator() {
   const isFetching = useIsFetching();
   const isMutating = useIsMutating();
+  const { isGlobalLoading } = useUIStore();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -13,14 +15,14 @@ export function GlobalLoadingIndicator() {
     // to prevent flickering for fast requests
     let timeoutId: NodeJS.Timeout;
 
-    if (isFetching > 0 || isMutating > 0) {
+    if (isFetching > 0 || isMutating > 0 || isGlobalLoading) {
       timeoutId = setTimeout(() => setShow(true), 300);
     } else {
       timeoutId = setTimeout(() => setShow(false), 0);
     }
 
     return () => clearTimeout(timeoutId);
-  }, [isFetching, isMutating]);
+  }, [isFetching, isMutating, isGlobalLoading]);
 
   if (!show) return null;
 

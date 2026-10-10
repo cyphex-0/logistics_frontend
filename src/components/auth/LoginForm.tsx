@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/form';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useQueryClient } from '@tanstack/react-query';
+import { useUIStore } from '@/lib/store/ui.store';
 import { queryKeys } from '@/lib/query-keys';
 import { toast } from 'sonner';
 import { PasswordInput } from '@/components/auth/PasswordInput';
@@ -38,6 +39,7 @@ export function LoginForm() {
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
   const [demoLoading, setDemoLoading] = useState<string | null>(null);
+  const { setGlobalLoading } = useUIStore();
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -48,6 +50,7 @@ export function LoginForm() {
   });
 
   const onSubmit = async (data: LoginFormValues, isDemo: string | null = null) => {
+    setGlobalLoading(true);
     if (isDemo) setDemoLoading(isDemo);
     else setIsLoading(true);
 
@@ -85,6 +88,7 @@ export function LoginForm() {
     } finally {
       setIsLoading(false);
       setDemoLoading(null);
+      setGlobalLoading(false);
     }
   };
 

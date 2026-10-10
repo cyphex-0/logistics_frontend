@@ -37,6 +37,7 @@ export function RegisterForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl');
   const [error, setError] = useState<string | null>(null);
+  const { setGlobalLoading } = useUIStore();;
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<RegisterFormValues>({
@@ -54,6 +55,7 @@ export function RegisterForm() {
 
   async function onSubmit(data: RegisterFormValues) {
     setIsLoading(true);
+    setGlobalLoading(true);
     setError(null);
     try {
       const response = await fetch('/api/auth/register', {
@@ -96,6 +98,7 @@ export function RegisterForm() {
       setError('An unexpected error occurred. Please try again.');
     } finally {
       setIsLoading(false);
+      setGlobalLoading(false);
     }
   }
 
