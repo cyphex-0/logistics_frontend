@@ -6,6 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { cn } from "@/lib/utils";
 import { UserDetailCard } from "./UserDetailCard";
 import { ErrorPanel } from "@/components/shared/ErrorPanel";
 
@@ -34,14 +35,15 @@ export function AdminUserDetailClient({ id }: AdminUserDetailClientProps) {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
-        <Link href="/admin/users" className={buttonVariants({ variant: "ghost", size: "icon" })}>
+      <div className="flex items-start gap-4">
+        <Link href="/admin/users" className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "mt-1 shrink-0")}>
           <ArrowLeft className="h-4 w-4" />
           <span className="sr-only">Back</span>
         </Link>
         <PageHeader 
           title="User Details" 
           description={user ? `Manage ${user.name}'s account and role.` : "Loading..."}
+          className="pb-0"
         />
       </div>
 

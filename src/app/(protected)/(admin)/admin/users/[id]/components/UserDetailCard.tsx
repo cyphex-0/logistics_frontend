@@ -31,21 +31,24 @@ export function UserDetailCard({ user, isLoading }: UserDetailCardProps) {
 
   return (
     <Card>
-      <CardHeader className="flex flex-row items-start justify-between space-y-0">
-        <div className="space-y-1.5">
-          <CardTitle className="text-2xl flex items-center gap-3">
-            {user.name}
-            <Badge variant={user.isActive ? "default" : "secondary"}>
+      <CardHeader className="flex flex-col sm:flex-row items-start justify-between gap-4 space-y-0">
+        <div className="space-y-1.5 w-full sm:w-auto">
+          <CardTitle className="text-2xl flex flex-wrap items-center gap-3">
+            <span className="break-words">{user.name}</span>
+            <Badge variant={user.isActive ? "default" : "secondary"} className="shrink-0">
               {user.isActive ? "Active" : "Inactive"}
             </Badge>
           </CardTitle>
-          <CardDescription className="flex items-center gap-2 mt-1">
-            <RoleIcon role={user.role} />
-            <span className="capitalize font-medium text-foreground">{user.role.toLowerCase()}</span>
-            <span className="text-muted-foreground">User ID: {user.id}</span>
+          <CardDescription className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mt-1">
+            <div className="flex items-center gap-2">
+              <RoleIcon role={user.role} />
+              <span className="capitalize font-medium text-foreground">{user.role.toLowerCase()}</span>
+            </div>
+            <span className="hidden sm:inline text-muted-foreground">•</span>
+            <span className="text-muted-foreground break-all">User ID: {user.id}</span>
           </CardDescription>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2 w-full sm:w-auto">
           <RoleChangeDialog user={user} />
           <UserDeleteDialog user={user} />
         </div>
