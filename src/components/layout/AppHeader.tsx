@@ -7,6 +7,7 @@ import Image from "next/image";
 import { MobileNav } from "./MobileNav";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { UserNav } from "./UserNav";
+import { UserRole } from "@/types/api";
 
 export function AppHeader() {
   const { user, isLoading } = useAuth();
@@ -40,7 +41,7 @@ export function AppHeader() {
           <Link href="/solutions" className="transition-colors hover:text-primary text-foreground/70">
             Solutions
           </Link>
-          {user && (
+          {user && user.role === UserRole.CUSTOMER && (
             <Link href="/dashboard/tracking" className="transition-colors hover:text-primary text-foreground/70">
               Track Shipment
             </Link>

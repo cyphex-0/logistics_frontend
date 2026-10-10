@@ -8,6 +8,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { useUIStore } from "@/lib/store/ui.store";
+import { UserRole } from "@/types/api";
 
 export function MobileNav() {
   const { user, isLoading } = useAuth();
@@ -33,7 +34,7 @@ export function MobileNav() {
           <Link href="/solutions" className={`text-lg font-medium hover:text-primary ${pathname === '/solutions' ? 'text-primary' : 'text-foreground/70'}`}>
             Solutions
           </Link>
-          {user && (
+          {user && user.role === UserRole.CUSTOMER && (
             <Link href="/dashboard/tracking" className={`text-lg font-medium hover:text-primary ${pathname === '/dashboard/tracking' ? 'text-primary' : 'text-foreground/70'}`}>
               Track Shipment
             </Link>

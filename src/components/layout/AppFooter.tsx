@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { UserRole } from "@/types/api";
 import { useAuth } from "@/components/providers/AuthProvider";
 
 export function AppFooter() {
@@ -43,7 +44,7 @@ export function AppFooter() {
                   Pricing
                 </Link>
               </li>
-              {user && (
+              {user && user.role === UserRole.CUSTOMER && (
                 <li>
                   <Link href="/dashboard/tracking" className="hover:text-primary transition-colors">
                     Track Package
