@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Filter } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Sheet,
   SheetContent,
@@ -29,7 +29,7 @@ export function MobileFilterSheet({
   return (
     <div className={cn("md:hidden w-full", className)}>
       <Sheet>
-        <SheetTrigger render={<Button variant="outline" size="sm" className="w-full flex gap-2" />}>
+        <SheetTrigger className={cn(buttonVariants({ variant: "outline", size: "sm" }), "w-full flex gap-2")}>
           <Filter className="h-4 w-4" />
           {triggerLabel}
         </SheetTrigger>
