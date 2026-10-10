@@ -23,7 +23,7 @@ export function CourierStatStrip() {
   
   const assigned = shipments.filter(s => s.status === ShipmentStatus.PICKUP_ASSIGNED || s.status === ShipmentStatus.PICKED_UP || s.status === ShipmentStatus.IN_TRANSIT || s.status === ShipmentStatus.OUT_FOR_DELIVERY).length;
   
-  const remaining = shipments.filter(s => s.status !== ShipmentStatus.DELIVERED && s.status !== ShipmentStatus.FAILED_DELIVERY && s.status !== ShipmentStatus.CANCELLED).length;
+  const remaining = shipments.filter(s => s.status !== ShipmentStatus.DELIVERED && s.status !== ShipmentStatus.FAILED_DELIVERY && s.status !== ShipmentStatus.CANCELLED && s.status !== ShipmentStatus.RETURNED).length;
   
   const completed = shipments.filter(s => s.status === ShipmentStatus.DELIVERED).length;
 
