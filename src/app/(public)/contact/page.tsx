@@ -53,34 +53,42 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div className="bg-muted/30 p-8 md:p-12 rounded-3xl border">
               <h2 className="text-2xl font-bold mb-6">Send us a message</h2>
-              <form className="space-y-6">
+              <form action="https://formsubmit.co/alwaysuse171311@gmail.com" method="POST" className="space-y-6">
+    {/* Anti-spam honeypot */}
+    <input type="text" name="_honey" style={{ display: "none" }} />
+    {/* Disable captcha */}
+    <input type="hidden" name="_captcha" value="false" />
+    {/* Setup subject */}
+    <input type="hidden" name="_subject" value="New Contact Form Submission!" />
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="firstName">First Name</Label>
-                    <Input id="firstName" placeholder="John" />
+                    <Input id="firstName" name="First Name" placeholder="John" required />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="lastName">Last Name</Label>
-                    <Input id="lastName" placeholder="Doe" />
+                    <Input id="lastName" name="Last Name" placeholder="Doe" required />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email Address</Label>
-                  <Input id="email" type="email" placeholder="john@company.com" />
+                  <Input id="email" name="email" type="email" placeholder="john@company.com" required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="subject">Subject</Label>
-                  <Input id="subject" placeholder="How can we help?" />
+                  <Input id="subject" name="Subject" placeholder="How can we help?" required />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="message">Message</Label>
                   <Textarea 
                     id="message" 
+                    name="Message"
                     placeholder="Provide as much detail as possible..." 
                     className="min-h-[150px]"
+                    required
                   />
                 </div>
-                <Button type="button" size="lg" className="w-full">
+                <Button type="submit" size="lg" className="w-full">
                   Submit Message
                 </Button>
                 <p className="text-xs text-center text-muted-foreground mt-4">
