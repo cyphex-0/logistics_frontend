@@ -49,15 +49,15 @@ export function DashboardSidebar({ className }: SidebarProps) {
   const pathname = usePathname();
 
   const links =
-    pathname.startsWith("/admin")
-      ? adminLinks
-      : pathname.startsWith("/courier")
-      ? courierLinks
-      : pathname.startsWith("/dashboard")
-      ? customerLinks
-      : user?.role === "ADMIN"
+    user?.role === "ADMIN"
       ? adminLinks
       : user?.role === "COURIER"
+      ? courierLinks
+      : user?.role === "CUSTOMER"
+      ? customerLinks
+      : pathname.startsWith("/admin")
+      ? adminLinks
+      : pathname.startsWith("/courier")
       ? courierLinks
       : customerLinks;
 
