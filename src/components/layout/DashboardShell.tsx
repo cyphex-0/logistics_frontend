@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "./ThemeToggle";
 import Link from "next/link";
+import { SupportChatWidget } from "@/components/support/SupportChatWidget";
 interface DashboardShellProps {
   children: React.ReactNode;
 }
@@ -57,6 +58,9 @@ export function DashboardShell({ children }: DashboardShellProps) {
           {children}
         </main>
       </div>
+
+      {/* Floating AI Support Widget */}
+      <SupportChatWidget />
     </div>
   );
 }

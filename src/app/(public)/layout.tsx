@@ -1,5 +1,6 @@
 import { AppHeader } from "@/components/layout/AppHeader";
 import { AppFooter } from "@/components/layout/AppFooter";
+import { SupportChatWidget } from "@/components/support/SupportChatWidget";
 
 export default function PublicLayout({
   children,
@@ -13,6 +14,7 @@ export default function PublicLayout({
         {children}
       </main>
       <AppFooter />
+      <SupportChatWidget />
     </div>
   );
 }
