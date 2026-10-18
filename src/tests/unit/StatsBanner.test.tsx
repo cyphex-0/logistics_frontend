@@ -18,10 +18,10 @@ describe("StatsBanner Component", () => {
     expect(screen.queryByText("120+")).not.toBeInTheDocument();
     expect(screen.queryByText("98%")).not.toBeInTheDocument();
 
-    // Should render real zero state
+    // Should render real states without placeholder numbers
     expect(screen.getByText("0%")).toBeInTheDocument();
-    const zeros = screen.getAllByText("0");
-    expect(zeros.length).toBeGreaterThanOrEqual(2); // countries & shipments handled
+    expect(screen.getByText("0")).toBeInTheDocument(); // shipments handled
+    expect(screen.getByText("1")).toBeInTheDocument(); // countries
     expect(screen.getByText("24/7")).toBeInTheDocument();
   });
 
@@ -34,7 +34,7 @@ describe("StatsBanner Component", () => {
           totalShipments: 8,
           deliveredShipments: 3,
           onTimeRate: 100,
-          countries: 0,
+          countries: 1,
           tracking: "24/7",
         },
       }),
@@ -45,7 +45,7 @@ describe("StatsBanner Component", () => {
     await waitFor(() => {
       expect(screen.getByText("100%")).toBeInTheDocument();
       expect(screen.getByText("8")).toBeInTheDocument();
-      expect(screen.getByText("0")).toBeInTheDocument();
+      expect(screen.getByText("1")).toBeInTheDocument();
       expect(screen.getByText("24/7")).toBeInTheDocument();
     });
   });

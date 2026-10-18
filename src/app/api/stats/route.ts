@@ -29,7 +29,7 @@ export async function GET() {
       totalShipments: 0,
       deliveredShipments: 0,
       onTimeRate: 0,
-      countries: 0,
+      countries: 1,
       tracking: "24/7",
     },
   });

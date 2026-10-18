@@ -15,7 +15,7 @@ export function StatsBanner() {
     totalShipments: 0,
     deliveredShipments: 0,
     onTimeRate: 0,
-    countries: 0,
+    countries: 1,
     tracking: "24/7",
   });
 
@@ -32,7 +32,7 @@ export function StatsBanner() {
             totalShipments: json.data.totalShipments ?? 0,
             deliveredShipments: json.data.deliveredShipments ?? 0,
             onTimeRate: json.data.onTimeRate ?? 0,
-            countries: json.data.countries ?? 0,
+            countries: json.data.countries ?? 1,
             tracking: json.data.tracking ?? "24/7",
           });
         }
