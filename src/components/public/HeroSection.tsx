@@ -5,20 +5,20 @@ import { cn } from "@/lib/utils";
 
 export function HeroSection() {
   return (
-    <section className="py-12 md:py-20 lg:py-32 overflow-hidden relative">
+    <section className="pt-6 pb-12 sm:pt-8 sm:pb-16 md:pt-10 md:pb-20 lg:pt-12 lg:pb-20 overflow-hidden relative">
       <div className="container mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Text Content */}
           <div className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
-            <p className="text-sm font-semibold tracking-wider text-muted-foreground uppercase mb-4 flex items-center justify-center lg:justify-start gap-2">
+            <p className="text-sm font-semibold tracking-wider text-muted-foreground uppercase mb-3 flex items-center justify-center lg:justify-start gap-2">
               <span className="text-primary">GLOBAL FREIGHT</span>
               <span>•</span>
               <span>LIVE CONTROL</span>
             </p>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-5 md:mb-6 leading-tight">
               Shipments move. <br className="hidden sm:block" /> You see everything.
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">
               One manifest. Every handoff visible. Shiply connects road, ocean, air, and last mile in one continuous view.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -36,9 +36,9 @@ export function HeroSection() {
             {/* Outer wrapper: blurry, lighter color, glass effect */}
             <div className="bg-slate-200/50 dark:bg-white/10 backdrop-blur-xl p-2 md:p-3 rounded-[2.5rem] shadow-2xl relative border border-slate-300/50 dark:border-white/20">
               {/* Inner wrapper: deep solid color */}
-              <div className="bg-slate-950 text-slate-100 rounded-[2rem] p-6 md:p-8 relative overflow-hidden border border-slate-900 shadow-inner">
+              <div className="bg-slate-950 text-slate-100 rounded-[2rem] p-5 sm:p-6 md:p-7 relative overflow-hidden border border-slate-900 shadow-inner">
               {/* Header */}
-              <div className="flex justify-between items-start mb-8">
+              <div className="flex justify-between items-start mb-4 md:mb-6">
                 <div>
                   <p className="text-slate-400 text-xs font-semibold tracking-wider uppercase mb-1">Shipment ID</p>
                   <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight">SH-123456</h3>
@@ -53,7 +53,7 @@ export function HeroSection() {
               </div>
 
               {/* Animated Map visualization */}
-              <div className="relative h-48 w-full mt-10 mb-8">
+              <div className="relative h-44 w-full my-4 md:my-5">
                 {/* SVG Route */}
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 150">
                   <path 
@@ -70,7 +70,7 @@ export function HeroSection() {
                     fill="transparent" 
                     stroke="#6366f1" 
                     strokeWidth="3" 
-                    strokeLinecap="round"
+                    strokeLinecap="round" 
                     className="animate-[dash_3s_linear_infinite]"
                     style={{ strokeDasharray: '400', strokeDashoffset: '400' }}
                   />
@@ -97,7 +97,7 @@ export function HeroSection() {
               </div>
 
               {/* Status Footer */}
-              <div className="grid grid-cols-2 gap-4 pt-6 border-t border-slate-800">
+              <div className="grid grid-cols-2 gap-4 pt-4 md:pt-5 border-t border-slate-800">
                 <div>
                   <p className="text-slate-400 text-xs font-medium uppercase mb-1">Current Signal</p>
                   <p className="text-white font-semibold flex items-center gap-2">
