@@ -23,9 +23,9 @@ const steps = [
 
 export function ProcessSteps() {
   return (
-    <section className="py-16 md:py-24 bg-background border-t">
+    <section className="py-12 md:py-16 bg-background border-t">
       <div className="container mx-auto px-4">
-        <div className="mb-12 md:mb-16">
+        <div className="mb-8 md:mb-12">
           <p className="text-primary text-xs font-semibold tracking-wider uppercase mb-3">The Shiply Way</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
             Simple at every checkpoint.
