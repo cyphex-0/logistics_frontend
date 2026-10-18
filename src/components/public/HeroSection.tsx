@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export function HeroSection() {
   return (
-    <section className="pt-6 pb-12 sm:pt-8 sm:pb-16 md:pt-10 md:pb-20 lg:pt-12 lg:pb-20 overflow-hidden relative">
+    <section className="pt-6 pb-6 sm:pt-8 sm:pb-8 md:pt-10 md:pb-8 lg:pt-12 lg:pb-8 overflow-hidden relative">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Text Content */}
