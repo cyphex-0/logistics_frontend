@@ -15,11 +15,11 @@ export function AppHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container relative mx-auto px-4 flex h-20 items-center justify-between">
+      <div className="container relative mx-auto px-4 flex h-16 md:h-18 items-center justify-between">
         {/* Left side: Logo */}
         <div className="flex items-center gap-4 z-10">
           <Link href="/" className="flex items-center gap-3">
-            <div className="relative h-10 w-10 md:h-12 md:w-12">
+            <div className="relative h-9 w-9 md:h-10 md:w-10">
               <Image 
                 src="/logo.png" 
                 alt="Shiply Logo" 
