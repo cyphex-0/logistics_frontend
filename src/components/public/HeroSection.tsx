@@ -1,6 +1,7 @@
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, Play, MapPin } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function HeroSection() {
   return (
@@ -21,10 +22,10 @@ export function HeroSection() {
               One manifest. Every handoff visible. Shiply connects road, ocean, air, and last mile in one continuous view.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link href="/auth/register" className={buttonVariants({ size: "lg", className: "h-14 px-8 text-lg" })}>
+              <Link href="/auth/register" className={cn(buttonVariants({ size: "lg" }), "h-14 px-8 text-lg")}>
                 Get a Quote <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
-              <Link href="/dashboard/tracking" className={buttonVariants({ size: "lg", variant: "outline", className: "h-14 px-8 text-lg" })}>
+              <Link href="/dashboard/tracking" className={cn(buttonVariants({ size: "lg", variant: "outline" }), "h-14 px-8 text-lg")}>
                 Track Shipment
               </Link>
             </div>

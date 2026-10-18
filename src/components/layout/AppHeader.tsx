@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./ThemeToggle";
 import Image from "next/image";
 import { MobileNav } from "./MobileNav";
@@ -74,10 +75,10 @@ export function AppHeader() {
               </div>
             ) : (
               <>
-                <Link href="/auth/login" className={buttonVariants({ variant: "ghost", className: "text-base font-medium" })}>
+                <Link href="/auth/login" className={cn(buttonVariants({ variant: "ghost" }), "text-base font-medium")}>
                   Log in
                 </Link>
-                <Link href="/auth/register" className={buttonVariants({ className: "text-base" })}>
+                <Link href="/auth/register" className={cn(buttonVariants(), "text-base")}>
                   Sign up
                 </Link>
               </>
