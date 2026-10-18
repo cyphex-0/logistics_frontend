@@ -133,11 +133,14 @@ export function SupportChatMessage({ message, onRetry }: SupportChatMessageProps
           )}
         >
           <span>{formattedTime}</span>
-          {!isUser && message.grounded && (
-            <span className="inline-flex items-center gap-0.5 text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
-              • Verified Info
-            </span>
-          )}
+          {!isUser &&
+            message.grounded &&
+            !message.content.includes("don't have verified information") &&
+            !message.content.includes("যাচাইকৃত তথ্য নেই") && (
+              <span className="inline-flex items-center gap-0.5 text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">
+                • Verified Info
+              </span>
+            )}
         </div>
       </div>
     </div>
