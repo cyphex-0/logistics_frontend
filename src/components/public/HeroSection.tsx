@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils";
 
 export function HeroSection() {
   return (
-    <section className="pt-6 pb-6 sm:pt-8 sm:pb-8 md:pt-10 md:pb-8 lg:pt-12 lg:pb-8 overflow-hidden relative">
-      <div className="container mx-auto px-4">
+    <section className="relative overflow-hidden min-h-[calc(100dvh-4rem)] md:min-h-[calc(100dvh-4.5rem)] flex items-center py-12 lg:py-16">
+      <div className="container mx-auto px-4 w-full">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Text Content */}
           <div className="max-w-xl mx-auto lg:mx-0 text-center lg:text-left">
@@ -28,6 +28,21 @@ export function HeroSection() {
               <Link href="/dashboard/tracking" className={cn(buttonVariants({ size: "lg", variant: "outline" }), "h-14 px-8 text-lg")}>
                 Track Shipment
               </Link>
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-border/40 flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 text-xs font-medium text-muted-foreground">
+              <span className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                Live GPS Updates
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                Verified Couriers
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                Transparent Pricing
+              </span>
             </div>
           </div>
 
